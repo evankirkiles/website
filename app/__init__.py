@@ -1,0 +1,41 @@
+"""Initializes the Flask web server app
+
+Defines the create_app function which builds the app instance and
+applies middlewares and sets up the config for the environment.
+
+"""
+
+from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+from flask_jwt_extended import JWTManager
+
+from config import config as Config
+
+import os
+
+# Initialize middlewares
+db = SQLAlchemy()
+jwt = JWTManager()
+
+def create_app(config):
+    """Initialize the Flask web server"""
+    app = Flask(__name__, static_url_path="", static_folder="static")
+
+    # Config stuff
+    config_name = config
+    if not isinstance(config, str):
+        config_name = os.getenv("FLASK_CONFIG", "default")
+    app.config.from_object(Config[config_name])
+    app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+    Config[config_name].init_app(app)
+    app.secret_key = app.config["SECRET_KEY"]
+
+    # Set up middlewares
+    db.init_app(app)
+    jwt.init_app(app)
+
+    # Create app blueprints
+    from .main import main as main_blueprint
+    app.register_blueprint(main_blueprint)
+
+    return app
