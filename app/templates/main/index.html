@@ -1,8 +1,14 @@
+{% extends "layouts/base.html" %}
+{% block title %}Index{% endblock %}
+{% block head %}
+    {{ super() }}
+    <style type="text/css">
+    </style>
+{% endblock %}
 {% block content %}
     <div class="ui text container">
-      <h1>Hello</h1>
-
-
-        <p>{{ lipsum(6) }}</p>
+      <div id="title"><h1>Evan Kirkiles</h1></div>
+      <div id="sections"><h2>Sections here</h2></div>
+      <div id="thoughts">Thoughts here</div>
     </div>
 {% endblock %}

@@ -2,3 +2,4 @@
 
 from .thought import *
 from .section import *
+from .user import *

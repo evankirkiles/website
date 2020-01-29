@@ -37,5 +37,9 @@ def create_app(config):
     # Create app blueprints
     from .main import main as main_blueprint
     app.register_blueprint(main_blueprint)
+    from .api import thoughts_bp as thoughts_blueprint
+    app.register_blueprint(thoughts_blueprint, url_prefix="/api/thoughts")
+    from .api import auth_bp as auth_blueprint
+    app.register_blueprint(auth_blueprint, url_prefix="/api/auth")
 
     return app

@@ -1,4 +1,5 @@
 from .. import db
+import datetime
 from sqlalchemy.dialects.postgresql import UUID
 
 class Thought(db.Model):
@@ -8,11 +9,9 @@ class Thought(db.Model):
     will be displayed on the front page of the website.
 
     """
-
     __tablename__ = "thoughts"
     id = db.Column(db.Integer, primary_key=True)
     created_on = db.Column(db.DateTime, default=datetime.datetime.utcnow)
     created_by = db.Column(UUID(as_uuid=True), db.ForeignKey("users.id"), nullable=False)
-    section = db.Column(db.String, db.ForeignKey())
+    section = db.Column(db.String(64), db.ForeignKey("sections.name"), nullable=False)
     body = db.Column(db.Text, nullable=False)
-    tags = db.Column()
