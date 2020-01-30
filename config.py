@@ -6,10 +6,9 @@ import os
 
 # What environment is being used?
 env = os.environ.get("ENV")
-
 # Initialize the base directory for file lookups
 basedir = os.path.abspath(os.path.dirname(__file__))
-# Import environment variables from config.env
+# Import environment variables from .config file if necessary
 if os.path.exists(env + ".config"):
     print("Importing config from .config file")
     for line in open(env + ".config"):
