@@ -1,5 +1,5 @@
-*.config
 .DS_Store
+*.env
 *.pyc
 *.sqlite
 migrations/

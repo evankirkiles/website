@@ -9,9 +9,9 @@ env = os.environ.get("ENV")
 # Initialize the base directory for file lookups
 basedir = os.path.abspath(os.path.dirname(__file__))
 # Import environment variables from .config file if necessary
-if os.path.exists(env + ".config"):
-    print("Importing config from .config file")
-    for line in open(env + ".config"):
+if os.path.exists(env + ".env"):
+    print("Importing env variables from .env file")
+    for line in open(env + ".env"):
         var = line.strip().split("=", 1)
         if len(var) == 2:
             os.environ[var[0]] = var[1].replace('"', "")
