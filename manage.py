@@ -1,7 +1,5 @@
 """ The manager for the website backend
 
-Also builds the Flask web server app.
-
 """
 
 from flask_migrate import Migrate, MigrateCommand
@@ -13,7 +11,7 @@ from app.models import User, Section
 import os
 
 # Build the app with the config specified in config.env
-app = create_app(os.getenv("FLASK_CONFIG") or "default")
+app = create_app(os.getenv("ENV") or "default")
 
 # Add the CLI manager to the app to allow commands
 manager = Manager(app)
