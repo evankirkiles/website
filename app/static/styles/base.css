@@ -1,5 +1,26 @@
+html {
+    height: 100%;
+}
 body {
     margin: 30px;
     background-color: #FFF;
     font-family: "Arial";
+    height: 90%;
+}
+#content {
+    display: block;
+    position: absolute;
+    height: auto;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-right: 20px;
+    margin-left: 20px;
+    background-color: #FFF;
+    color: #000;
+    padding: 20px;
+    text-align: center;
 }

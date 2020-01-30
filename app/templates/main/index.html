@@ -1,14 +1,17 @@
 {% extends "layouts/base.html" %}
-{% block title %}Index{% endblock %}
 {% block head %}
     {{ super() }}
-    <style type="text/css">
-    </style>
+    <script src="{{ url_for('static', filename='scripts/jquery.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/index.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/main.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 {% endblock %}
 {% block content %}
-    <div class="ui text container">
-      <div id="title"><h1>Evan Kirkiles</h1></div>
-      <div id="sections"><h2>Sections here</h2></div>
-      <div id="thoughts">Thoughts here</div>
+    <div class="ui text container" id="bodycontainer">
+      <div id="title"><h1>EVAN KIRKILES</h1></div>
+      <div id="sections"><h2>General</h2></div>
+      <div id="thought-wrap">
+        <div id="thought-container"></div>
+      </div>
     </div>
 {% endblock %}

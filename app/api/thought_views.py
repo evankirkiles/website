@@ -17,21 +17,21 @@ thoughts_bp = Blueprint("api/thoughts", __name__)
 @jwt_optional
 def get_thoughts():
     """Retrieves a number of thoughts from the database to render"""
-    num_days = request.json.get("num_days_back")
-    start_from = request.json.get("start_from")
-    fromDate = datetime.strptime(start_from, "%Y-%m-%dT%H:%M:%S.%fZ")
-    toDate = fromDate - timedelta(days=num_days)
-    results = db.session.query(Thought).filter(
-        func.date(Thought.created_on) >= toDate,
-        func.date(Thought.created_on) < fromDate).all()
+    num_rows = request.json.get("quantity")
+    sync_id = request.json.get("sync_id") # Could be empty, if so get most recent
+    results = None
+    if sync_id == 0:
+        results = db.session.query(Thought).order_by(Thought.id.desc()).limit(num_rows)
+    else:
+        results = db.session.query(Thought).filter(Thought.id < sync_id).\
+            order_by(Thought.id.desc()).limit(num_rows)
     return (json.dumps({
         "success": True,
-        "fromDate": str(fromDate),
-        "toDate": str(toDate),
+        "sync_id": "" if len(results.all()) == 0 else results[-1].id,
         "results": [{
             "body": thought.body,
             "section": thought.section,
-            "created_on": str(thought.created_on)
+            "created_on": thought.created_on.strftime('%Y-%m-%dT%H:%M:%SZ')
         } for thought in results]}), 200, {"Content-Type": "application/json"})
 
 @thoughts_bp.route("/create", methods=["POST"])

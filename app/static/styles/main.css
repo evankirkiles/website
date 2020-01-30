@@ -1,0 +1,56 @@
+#bodycontainer {
+    height: 100%;
+}
+
+::-webkit-scrollbar {
+    width: 0px;  /* Remove scrollbar space */
+    background: transparent;  /* Optional: just make scrollbar invisible */
+}
+/* Optional: show position indicator in red */
+::-webkit-scrollbar-thumb {
+    background: #FF0000;
+}
+
+#thought-wrap {
+    display: block;
+    overflow-y: scroll;
+    height: 80%;
+    width: 50%;
+    margin: auto;
+    align-items: center;
+    background-color: #FFF;
+    padding: 10px;
+}
+
+#thought-container {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    flex: 9;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+}
+
+.thought {
+    display: block;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    background-color: #FFF;
+    padding: 10px;
+    text-align: left;
+    border-radius: 5px;
+}
+
+.thought-time {
+    font-size: 80%;
+}
+
+.thought:first-of-type {
+    margin-top: 0;
+}
+
+.thought:last-of-type {
+    margin-bottom: 0;
+}
