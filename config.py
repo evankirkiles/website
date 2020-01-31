@@ -5,7 +5,7 @@
 import os
 
 # What environment is being used?
-env = os.environ.get("ENV")
+env = os.environ["CURRENT_ENV"]
 # Initialize the base directory for file lookups
 basedir = os.path.abspath(os.path.dirname(__file__))
 assert env != "" and env != None, "Please set the ENV variable!"
