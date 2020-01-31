@@ -8,11 +8,12 @@ import os
 env = os.environ.get("ENV")
 # Initialize the base directory for file lookups
 basedir = os.path.abspath(os.path.dirname(__file__))
+assert env != "" and env != None, "Please set the ENV variable!"
 # Import environment variables from .config file if necessary
 env_file = "/config/production.env" if env == "production" and \
             os.path.exists("/config/" + env + ".env") else \
             env + ".env" if os.path.exists(env + ".env") else None
-if env_file not None:
+if env_file is not None:
     print("Importing env variables from .env file")
     for line in open(env_file):
         var = line.strip().split("=", 1)
