@@ -5,11 +5,11 @@
 import os
 
 # What environment is being used?
-env = os.environ["CURRENT_ENV"]
+env = os.environ.get("ENV", "production")
 # Initialize the base directory for file lookups
 basedir = os.path.abspath(os.path.dirname(__file__))
 # Import environment variables from .config file if necessary
-env_file = "/config/production.env" if os.path.exists("/config/production.env") else \
+env_file = "/config/production.env" if env == "production" else \
             env + ".env" if os.path.exists(env + ".env") else None
 assert env_file is not None, "ENV file is none!"
 if env_file is not None:
