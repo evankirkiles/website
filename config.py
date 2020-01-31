@@ -10,7 +10,7 @@ env = os.environ.get("ENV")
 basedir = os.path.abspath(os.path.dirname(__file__))
 # Import environment variables from .config file if necessary
 env_file = "/config/production.env" if env == "production" and \
-            os.path.exists("/config/" + env + ".env") else
+            os.path.exists("/config/" + env + ".env") else \
             env + ".env" if os.path.exists(env + ".env") else None
 if env_file not None:
     print("Importing env variables from .env file")
