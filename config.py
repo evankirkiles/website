@@ -39,6 +39,7 @@ class Config:
         SECRET_KEY = "SECRET_KEY_ENV_VAR_NOT_SET"
         print("Secret key environment variable not set! Careful!")
     JWT_SECRET_KEY = SECRET_KEY
+    JWT_HEADER_NAME="EK Authorization"
     BASE_URI = os.environ.get("BASE_URI")
 
     @staticmethod
