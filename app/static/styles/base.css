@@ -26,6 +26,7 @@ a {
     transition: color 0.5s ease;
 }
 a:hover {
+    text-decoration: none;
     color: #344da8;
 }
 #intro {
@@ -72,6 +73,15 @@ a:hover {
 }
 #bodycont {
     height: 100%;
+}
+#socialmedias {
+    display: flex;
+    flex-direction: row;
+    width: 60%;
+    margin: auto;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    opacity: 0.7;
 }
 #sections {
     display: flex;
