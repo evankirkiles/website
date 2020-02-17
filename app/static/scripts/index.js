@@ -21,7 +21,7 @@ function loadThoughts(num_thoughts=20) {
             $.each(data.results, function(index) {
                 date = new Date(data.results[index].created_on)
                 if (previousDate != null && !datesAreOnSameDay(previousDate, date)) {
-                    $('#thought-container').prepend(dateNotifier(date.toLocaleDateString()))
+                    $('#thought-container').prepend(dateNotifier(previousDate.toLocaleDateString()))
                 }
                 $('#thought-container').prepend(
                     thought(
