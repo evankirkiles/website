@@ -2,13 +2,33 @@
 <html lang="en">
 <head>
     {% block head %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/base.css') }}">
     <title>Evan Kirkiles</title>
     {% endblock %}
 </head>
 <body>
-    <div id="content">{% block content %}{% endblock %}</div>
-    {% block footer %}
-    {% endblock %}
+    <div id="content">
+        <div class="row" id="bodycontainer">
+            <div id="title" class="col-lg-5">
+                <!-- <img src="https://static.etoffe.com/inter/141855/panneau-drawing-hands-mc-escher.jpg" class="titleimg"> -->
+                <div id="intro">
+                    <span id="name" class="bold">Hi, I'm Evan!</span>
+                    <div id="splurg">Student & aspiring big-problem-solver in the middle of nowhere, New England.</div>
+                    <div id="moreinfo">I'm interested in all things code, tech, automation, artificial intelligence, societal progress, neuroscience, philosophy, psychology, piano, puzzles, and literature.</div>
+                    <div id="sections">
+                        <h2><a href="/">Thoughts</a></h2>
+                        <h2><a href="/projects">Projects</a></h2>
+                        <h2><a href="/books">Books</a></h2>
+                    </div>
+                </div>
+                <!-- <img src="https://img.over-blog-kiwi.com/0/72/46/81/20150612/ob_a11dfe_pan-de-mur-jpg" class="titleimg"> -->
+            </div>
+            <div id="bodycont" class="col-lg-7">
+                {% block content %}{% endblock %}
+            </div>
+        </div>
+    </div>
+    {% block footer %}{% endblock %}
 </body>
 </html>
