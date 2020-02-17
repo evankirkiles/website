@@ -32,6 +32,7 @@ function loadThoughts(num_thoughts=20) {
                 previousDate = date
             });
             $('#thought-container').prepend(dateNotifier(previousDate.toLocaleDateString()))
+            updateScroll();
         }
     });
 }
@@ -50,4 +51,8 @@ function dateNotifier(day) {
 // Builder of thought HTML
 function thought(body, time) {
     return '<div class="thought"><div class="thought-time"><b>' + time + '</b></div>' + body + '</div>'
+}
+
+function updateScroll(){
+    $("#thought-wrap").scrollTop($("#thought-wrap")[0].scrollHeight);
 }
