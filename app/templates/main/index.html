@@ -4,10 +4,11 @@
     <script src="{{ url_for('static', filename='scripts/jquery.js') }}"></script>
     <script src="{{ url_for('static', filename='scripts/index.js') }}"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/main.css') }}">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 {% endblock %}
 {% block content %}
-      <div id="thought-wrap">
+    <div id="thought-gradient-top"></div>
+    <div id="thought-wrap">
         <div id="thought-container"></div>
-      </div>
+    </div>
+    <div id="thought-gradient-bottom"></div>
 {% endblock %}

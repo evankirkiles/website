@@ -19,7 +19,8 @@ jwt = JWTManager()
 
 def create_app(config):
     """Initialize the Flask web server"""
-    app = Flask(__name__, static_url_path="", static_folder="static")
+    template_dir = os.path.abspath('./app/templates')
+    app = Flask(__name__, static_url_path="", static_folder="static", template_folder=template_dir)
 
     # Config stuff
     config_name = config

@@ -1,0 +1,12 @@
+{% extends "layouts/base.html" %}
+{% block head %}
+    {{ super() }}
+    <script src="{{ url_for('static', filename='scripts/jquery.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/books.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/books.css') }}">
+{% endblock %}
+{% block content %}
+      <div id="book-wrap">
+        <div id="book-container"></div>
+      </div>
+{% endblock %}

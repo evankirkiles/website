@@ -1,5 +1,8 @@
 $(document).ready(function() {
-    loadThoughts()
+    $('#thoughts').css('color', '#FFF');
+    $('#thoughts').css('cursor', 'default');
+    $('#thoughts').attr('href', 'javascript: void(0);')
+    loadThoughts();
 })
 
 // This holds the id of the oldest thought pulled
