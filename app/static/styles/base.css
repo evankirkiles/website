@@ -29,6 +29,9 @@ a:hover {
     text-decoration: none;
     color: #344da8;
 }
+i {
+    color: #8a1c2a;
+}
 #intro {
     margin: auto;
     font-size: 25px;
