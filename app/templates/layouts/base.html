@@ -17,7 +17,6 @@
     <div id="content">
         <div class="row" id="bodycontainer">
             <div id="title" class="col-lg-5">
-                <!-- <img src="https://static.etoffe.com/inter/141855/panneau-drawing-hands-mc-escher.jpg" class="titleimg"> -->
                 <div id="intro">
                     <span id="name" class="bold">Hi, I'm Evan!</span>
                     <div id="splurg">Student & aspiring software developer / entrepreneur in Kent, Connecticut.</div>
@@ -34,10 +33,10 @@
                         <h2><a href="/projects" id="projects">Projects</a></h2>
                         <h2><a href="/books" id="books">Books</a></h2>
                     </div>
+                    {% block content_description %}{% endblock %}
                 </div>
-                <!-- <img src="https://img.over-blog-kiwi.com/0/72/46/81/20150612/ob_a11dfe_pan-de-mur-jpg" class="titleimg"> -->
             </div>
-            <div id="bodycont" class="col-lg-7">
+            <div id="bodycont2" class="col-lg-7">
                 {% block content %}{% endblock %}
             </div>
         </div>

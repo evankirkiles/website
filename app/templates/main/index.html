@@ -5,6 +5,12 @@
     <script src="{{ url_for('static', filename='scripts/index.js') }}"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/main.css') }}">
 {% endblock %}
+{% block content_description %}
+<div id="thought-description">
+    <img src="https://static.etoffe.com/inter/141855/panneau-drawing-hands-mc-escher.jpg" id="drawinghands">
+    <div id="thought-desc-text">This is my personal twitter, my thoughts & ideas. See something you want to talk about? Email me!</div>
+</div>
+{% endblock %}
 {% block content %}
     <div id="thought-gradient-top"></div>
     <div id="thought-wrap">
