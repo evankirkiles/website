@@ -47,6 +47,7 @@
     border-radius: 5px;
     box-shadow: inset 0 0 10px #000000;
     padding: 10px;
+    min-height: 163px;
     height: 163px;
     display: flex;
     flex-direction: row;
@@ -63,7 +64,7 @@
     margin-right: 10px;
     min-width: 98px;
     width: 98px;
-    height: 143px;
+    height: 135px;
     overflow: hidden;
     transition: box-shadow .3s linear;
     background-color: #FFF;
@@ -89,7 +90,7 @@
 }
 
 #book-gradient-left {
-    height: 100%;
+    height: 163px;
     width: 30px;
     position:absolute;
     left:0;
@@ -104,7 +105,7 @@
 }
 
 #book-gradient-right {
-    height: 100%;
+    height: 163px;
     width: 30px;
     position:absolute;
     right:0;
@@ -116,4 +117,41 @@
         rgba(0, 0, 0, 1) 0%, 
         rgba(0, 0, 0, 0) 100%
     );
+}
+
+.book-img {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    margin: auto;
+    width: 80%;
+    margin-bottom: 10px;
+}
+
+.book-metadata {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.book-description {
+    padding: 10px;
+    width: 100%;
+    height: calc(100% - 153px);
+}
+
+.book-review {
+    height: 100%;
+}
+
+.book-review-text {
+    text-align: left;
+    display: inline-block;
+    overflow-y: scroll;
+    height: 100%;
+}
+
+.fake-padding {
+    height: 10px;
+    width: 100%;
 }
