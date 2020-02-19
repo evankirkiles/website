@@ -44,6 +44,7 @@ i {
     justify-content: flex-end;
     margin: auto;
     height: 75%;
+    min-height: 500px;
 }
 #moreinfo {
     margin-top: 10px;
