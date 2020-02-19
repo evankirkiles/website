@@ -5,8 +5,44 @@
     <script src="{{ url_for('static', filename='scripts/books.js') }}"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/books.css') }}">
 {% endblock %}
+{% block content_description %}
+<div id="books-description">
+    <img src="https://i.pinimg.com/474x/7e/7d/0d/7e7d0ddfe4c4d357ab675204b3a294fe--petit-pan.jpg" id="petitepandemurjaune">
+    <div id="books-desc-text">I believe that I read a bit more than average, so I've put all my thoughts on some of the books I've read here.</div>
+</div>
+{% endblock %}
 {% block content %}
       <div id="book-wrap">
-        <div id="book-container"></div>
+        <div id="bookshelf">
+            <div id="book-gradient-left"></div>
+            <div id="book-gradient-right"></div>
+            <div class="book">
+                <img src="https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9782/2210/9782221047415.jpg" id="recherche">
+            </div>
+            <div class="book">
+                <img src="https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9782/2210/9782221047415.jpg" id="recherche">
+            </div>
+            <div class="book">
+                <img src="https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9782/2210/9782221047415.jpg" id="recherche">
+            </div>
+            <div class="book">
+                <img src="https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9782/2210/9782221047415.jpg" id="recherche">
+            </div>
+            <div class="book">
+                <img src="https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9782/2210/9782221047415.jpg" id="recherche">
+            </div>
+            <div class="book">
+                <img src="https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9782/2210/9782221047415.jpg" id="recherche">
+            </div>
+            <div class="book">
+                <img src="https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9782/2210/9782221047415.jpg" id="recherche">
+            </div>
+            <div class="book">
+                <img src="https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9782/2210/9782221047415.jpg" id="recherche">
+            </div>
+            <div class="book">
+                <img src="https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9782/2210/9782221047415.jpg" id="recherche">
+            </div>
+        </div>
       </div>
 {% endblock %}
