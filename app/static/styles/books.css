@@ -42,7 +42,7 @@
 }
 
 #bookshelf {
-    width: 100%;
+    width: 90%;
     background-color: #121212;
     border-radius: 5px;
     box-shadow: inset 0 0 10px #000000;
@@ -91,7 +91,7 @@
 
 #book-gradient-left {
     height: 163px;
-    width: 30px;
+    width: 100px;
     position:absolute;
     left:0;
     border-top-left-radius: 5px;
@@ -106,7 +106,7 @@
 
 #book-gradient-right {
     height: 163px;
-    width: 30px;
+    width: 100px;
     position:absolute;
     right:0;
     border-top-left-radius: 5px;
