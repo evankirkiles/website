@@ -15,9 +15,10 @@
 </head>
 <body>
     <div id="content">
-        <div class="row" id="bodycontainer">
-            <div id="title" class="col-lg-5">
-                <div id="intro">
+        <div class="row h-100" id="bodycontainer">
+            <!-- <div id="title" class="col-lg-5"> -->
+                <!-- <div class="spacer"></div> -->
+                <div id="intro" class="col-lg-5 justify-content-center flex-grow-1">
                     <span id="name" class="bold">Hi, I'm Evan!</span>
                     <div id="splurg">Student & aspiring software developer / entrepreneur in Kent, Connecticut.</div>
                     <div id="moreinfo">I'm interested in all things code, tech, automation, artificial intelligence, neuroscience, philosophy, psychology, space, piano, and literature.</div>
@@ -35,7 +36,7 @@
                     </div>
                     {% block content_description %}{% endblock %}
                 </div>
-            </div>
+            <!-- </div> -->
             <div id="bodycont2" class="col-lg-7">
                 {% block content %}{% endblock %}
             </div>
