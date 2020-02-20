@@ -45,3 +45,23 @@ def create_thought():
     db.session.add(thought)
     db.session.commit()
     return (json.dumps({"success": True}), 200, {"Content-Type": "application/json"})
+
+@thoughts_bp.route("/edit", methods=["POST"])
+@jwt_required
+def edit_thought():
+    """Edits a thought given by the id."""
+    body = request.json.get("body")
+    thoughtid = request.json.get("id")
+    result = db.session.query(Thought).filter(Thought.id == thoughtid).first()
+    result.body = body
+    db.session.commit()
+    return (json.dumps({"success": True}), 200, {"Content-Type": "application/json"})
+
+@thoughts_bp.route("/delete", methods=["POST"])
+@jwt_required
+def delete_thought():
+    """Deletes a thought from the db"""
+    thoughtid = request.json.get("id")
+    db.session.query(Thought).filter_by(id=thoughtid).delete()
+    db.session.commit()
+    return (json.dumps({"success": True}), 200, {"Content-Type": "application/json"})

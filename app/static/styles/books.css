@@ -124,6 +124,7 @@
     border-bottom-right-radius: 5px;
     margin: auto;
     width: 80%;
+    max-width: 500px;
     margin-bottom: 10px;
 }
 

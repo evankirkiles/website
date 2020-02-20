@@ -42,5 +42,7 @@ def create_app(config):
     app.register_blueprint(thoughts_blueprint, url_prefix="/api/thoughts")
     from .api import auth_bp as auth_blueprint
     app.register_blueprint(auth_blueprint, url_prefix="/api/auth")
+    from .api import books_bp as books_blueprint
+    app.register_blueprint(books_blueprint, url_prefix="/api/books")
 
     return app
