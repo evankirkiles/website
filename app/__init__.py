@@ -17,6 +17,11 @@ import os
 db = SQLAlchemy()
 jwt = JWTManager()
 
+# If the JWT token expires, redirect to refresh
+@jwt.expired_token_loader
+def expired_token_loader_callback(token):
+    return redirect("/api/auth/refresh")
+
 def create_app(config):
     """Initialize the Flask web server"""
     template_dir = os.path.abspath('./app/templates')
@@ -27,9 +32,10 @@ def create_app(config):
     if not isinstance(config, str):
         config_name = os.getenv("FLASK_CONFIG", "default")
     app.config.from_object(Config[config_name])
-    app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-    Config[config_name].init_app(app)
+    app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = True
     app.secret_key = app.config["SECRET_KEY"]
+    app.config['JWT_TOKEN_LOCATION'] = ['headers', 'cookies']
+    Config[config_name].init_app(app)
 
     # Set up middlewares
     db.init_app(app)

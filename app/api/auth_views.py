@@ -1,10 +1,11 @@
 """ Views to log in and just verify identity before creating thoughts.
 
 """
-from flask import Blueprint, request
+from flask import Blueprint, request, make_response
 from flask_jwt_extended import (
     jwt_optional, jwt_required, get_jwt_identity,
-    create_access_token, create_refresh_token)
+    create_access_token, create_refresh_token, set_access_cookies,
+    set_refresh_cookies, jwt_refresh_token_required)
 from sqlalchemy import func
 
 import json
@@ -25,8 +26,21 @@ def login():
         if (user is None or user.password_hash is None
             or not user.verify_password(password)):
             return _failed_login("Login failed.")
-        return _successful_login(user.id)
+        access_and_resp = _successful_login(user.id)
+        resp = make_response(*access_and_resp[1])
+        set_access_cookies(resp, access_and_resp[0][0])
+        set_refresh_cookies(resp, access_and_resp[0][1])
+        return resp
     return _failed_login("Malformed login request.")
+
+@auth_bp.route("/refresh", methods=["GET"])
+@jwt_refresh_token_required
+def refresh_login():
+    """Refreshes the user's token"""
+    current_user = get_jwt_identity()
+    resp = redirect('/')
+    set_access_cookies(resp, create_access_token(current_user))
+    return resp
     
 def _failed_login(reason):
     """Return this if the login fails"""
@@ -41,6 +55,6 @@ def _successful_login(user_id):
         identity=user_id, expires_delta=access_token_expiration_date)
     refresh_token = create_refresh_token(
         identity=user_id, expires_delta=refresh_token_expiration_date)
-    return (json.dumps({"success": True,"access_token": access_token,
+    return ((access_token, refresh_token), (json.dumps({"success": True,"access_token": access_token,
             "refresh_token": refresh_token}), 200,
-            {"Content-Type": "application/json"})
+            {"Content-Type": "application/json"}))
