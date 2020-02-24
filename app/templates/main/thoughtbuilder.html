@@ -1,0 +1,27 @@
+{% extends "layouts/empty.html" %}
+{% block head %}
+    {{ super() }}
+    <script src="{{ url_for('static', filename='scripts/jquery.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@beta/dist/js.cookie.min.js"></script>
+    <script src="{{ url_for('static', filename='scripts/thoughtbuilder.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/thoughtbuilder.css') }}">
+{% endblock %}
+{% block body %}
+    <div class="row h-100" id="bodycontainer">
+        <div class="col-lg-6" id="thoughtinputgroup">
+            <label for="thoughtinput">Thought</label>
+            <textarea class="form-control" id="thoughtinput" rows="3" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
+            <button class="btn btn-danger" id="submitthought" onclick="submitThought();">Submit</button>
+        </div>
+        <div class="col-lg-6">
+            <label for="thought-container">Render</label>
+            <div id="thought-container">
+                <div id="examplethought" class="thought">
+                    <div id="examplethoughttime" class="thought-time"><b>THE TIME</b></div>
+                    <div id="examplethoughttext">Placeholder text...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

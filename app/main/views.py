@@ -1,4 +1,5 @@
 from flask import Blueprint, render_template
+from flask_jwt_extended import jwt_required
 
 # Create the main blueprint
 main = Blueprint("main", __name__)
@@ -17,3 +18,14 @@ def projects():
 @main.route("/books")
 def books():
     return render_template("main/books.html")
+
+# Add a login page for validation
+@main.route("/login")
+def login():
+    return render_template("main/login.html")
+
+# Protected endpoints
+@main.route("/thoughtbuilder")
+@jwt_required
+def create_thought():
+    return render_template("main/thoughtbuilder.html")

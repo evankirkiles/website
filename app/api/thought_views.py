@@ -14,7 +14,6 @@ import json
 thoughts_bp = Blueprint("api/thoughts", __name__)
 
 @thoughts_bp.route("/get", methods=["POST"])
-@jwt_optional
 def get_thoughts():
     """Retrieves a number of thoughts from the database to render"""
     num_rows = request.json.get("quantity")

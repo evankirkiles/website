@@ -1,0 +1,20 @@
+#bodycontainer {
+    height: 100%;
+}
+label {
+    color:  #bd2438;
+    margin-bottom: 10px;
+}
+#thoughtinput {
+    max-width: 500px;
+    width: 100%;
+    height: 300px;
+    margin: auto;
+    background-color: #101010;
+    border-color: transparent;
+}
+#submitthought {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 50%;
+}

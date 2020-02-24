@@ -5,17 +5,23 @@ applies middlewares and sets up the config for the environment.
 
 """
 
-from flask import Flask
+from flask import Flask, redirect, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_jwt_extended import JWTManager
 
 from config import config as Config
 
-import os
+import os, urllib
 
 # Initialize middlewares
 db = SQLAlchemy()
 jwt = JWTManager()
+
+# Redirect to login when there's no JWT token
+@jwt.unauthorized_loader
+@jwt.invalid_token_loader
+def unauthorized_loader_callback(token):
+    return redirect("/login?redirect=" + urllib.parse.quote(request.url))
 
 # If the JWT token expires, redirect to refresh
 @jwt.expired_token_loader
@@ -34,7 +40,6 @@ def create_app(config):
     app.config.from_object(Config[config_name])
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = True
     app.secret_key = app.config["SECRET_KEY"]
-    app.config['JWT_TOKEN_LOCATION'] = ['headers', 'cookies']
     Config[config_name].init_app(app)
 
     # Set up middlewares

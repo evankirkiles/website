@@ -1,0 +1,18 @@
+{% extends "layouts/empty.html" %}
+{% block head %}
+    {{ super() }}
+    <script src="{{ url_for('static', filename='scripts/jquery.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/login.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/login.css') }}">
+{% endblock %}
+{% block body %}
+    <div class="h-100" id="bodycontainer">
+        <div class="form-group">
+          <input type="text" class="form-control" id="usr" placeholder="Name">
+        </div>
+        <div class="form-group">
+          <input type="password" class="form-control" id="pwd" placeholder="Password">
+        </div>
+        <button class="btn btn-danger" id="sendlogin" onclick="login();">Submit</button>
+    </div>
+{% endblock %}
