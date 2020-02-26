@@ -1,4 +1,5 @@
 from .. import db
+from flask_sqlalchemy import event
 import datetime
 
 class Book(db.Model):
@@ -11,6 +12,7 @@ class Book(db.Model):
     __tablename__ = "books"
     id = db.Column(db.Integer, primary_key=True)
     created_on = db.Column(db.DateTime, default=datetime.datetime.utcnow)
+    edited_on = db.Column(db.DateTime, default=datetime.datetime.utcnow)
     title = db.Column(db.String(64), nullable=False)
     author = db.Column(db.String(64), nullable=False)
     year = db.Column(db.String(4), nullable=False)

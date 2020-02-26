@@ -13,10 +13,9 @@ import json
 books_bp = Blueprint("api/books", __name__)
 
 @books_bp.route("/get-all", methods=["GET"])
-@jwt_optional
 def get_all_books():
     """Retrieves the metadata of all books from the database (without body)"""
-    results = db.session.query(Book).order_by(Book.id.asc())
+    results = db.session.query(Book).order_by(Book.edited_on.desc())
     return (json.dumps({
         "success": True,
         "sync_id": "" if len(results.all()) == 0 else results[-1].id,
@@ -30,7 +29,6 @@ def get_all_books():
         } for book in results]}), 200, {"Content-Type": "application/json"})
 
 @books_bp.route("/get", methods=["POST"])
-@jwt_optional
 def get_book():
     """Retrieves the review for a specific book"""
     book_id = request.json.get("id")
@@ -71,6 +69,7 @@ def edit_book():
     book_id = request.json.get("id")
     book = db.session.query(Book).filter(Book.id == book_id).first()
     book.review = body
+    book.edited_on = datetime.utcnow()
     db.session.commit()
     return (json.dumps({"success": True}), 200, {"Content-Type": "application/json"})
 
