@@ -4,7 +4,8 @@ class Section(db.Model):
     """[PostgreSQL model] Represents a "Section"
 
     A section on the website under which thoughts can be filtered. I'm
-    thinking this will represent each project I'm working on.
+    thinking this will represent each project I'm working on. I'm not actually
+    using this model, so this class can be ignored.
 
     """
     

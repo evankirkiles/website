@@ -64,7 +64,7 @@ def create_book():
 @books_bp.route("/edit", methods=["POST"])
 @jwt_required
 def edit_book():
-    """Edits a thought given by the id."""
+    """Edits a book given by the id."""
     body = request.json.get("body")
     book_id = request.json.get("id")
     book = db.session.query(Book).filter(Book.id == book_id).first()
@@ -76,7 +76,7 @@ def edit_book():
 @books_bp.route("/delete", methods=["POST"])
 @jwt_required
 def delete_book():
-    """Deletes a thought from the db"""
+    """Deletes a book from the db"""
     book_id = request.json.get("id")
     db.session.query(Book).filter_by(id=book_id).delete()
     db.session.commit()

@@ -1,2 +1,4 @@
-# website
-My website! See Escher's Drawing Hands.
+# My Website
+See Escher's Drawing Hands.
+
+Working on setup instructions...

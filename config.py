@@ -26,7 +26,7 @@ class Config:
 
     Attributes:
         APP_NAME: The name of the app
-        BASE_DIR: The directory (the-kent-connection)
+        BASE_DIR: The directory all these files are in
         JWT_SECRET_KEY: The secret key for signing JWT tokens
         BASE_URI: The base URI for the app configuration
     """
