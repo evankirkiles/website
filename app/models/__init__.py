@@ -4,3 +4,4 @@ from .thought import *
 from .section import *
 from .user import *
 from .book import *
+from .project import *
