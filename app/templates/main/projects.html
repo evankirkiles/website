@@ -5,8 +5,16 @@
     <script src="{{ url_for('static', filename='scripts/projects.js') }}"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/projects.css') }}">
 {% endblock %}
+{% block content_description %}
+<div id="projects-description">
+    <img src="https://nevalalee.files.wordpress.com/2018/03/foundation-and-empire.jpg?w=584" id="themule">
+    <div id="projects-desc-text">Some of my projects! Many of these are a couple years old, so I might not be too interested in them anymore, but you can reach out if you like something.</div>
+</div>
+{% endblock %}
 {% block content %}
       <div id="projects-wrap">
-        <div id="projects-container"></div>
+        <div id="projects-container" class="col-12">
+            
+        </div>
       </div>
 {% endblock %}

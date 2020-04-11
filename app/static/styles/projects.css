@@ -1,0 +1,25 @@
+#projects-description {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 100px;
+    margin-bottom: 10px;
+}
+
+#projects-desc-text {
+    padding: 15px;
+    padding-right: 0px;
+    opacity: 0.8;
+    font-size: 20px;
+}
+
+#themule {
+    height: 100px;
+    width: 100px;
+    margin-top: 10px;
+    border-radius: 5px;
+    margin-left: 5px;
+    object-fit: cover;
+}
