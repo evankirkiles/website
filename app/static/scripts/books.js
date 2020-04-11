@@ -13,6 +13,7 @@ function loadAllBooks() {
             $.each(data.results, function(index) {
                 $('#bookshelf').append(bookMetadata(data.results[index]))
             })
+            renderSpecificBook(data.results[0].id);
         }
     })
 }
