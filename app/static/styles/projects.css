@@ -1,3 +1,16 @@
+#projects-wrap {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+#projects-container {
+    padding: 10px;
+    overflow-y: scroll;
+}
+
 #projects-description {
     display: flex;
     flex-direction: row;
@@ -38,6 +51,7 @@
     object-fit: cover;
     border-radius: 5px;
     margin-right: 10px;
+    min-width: 100px;
 }
 
 .project-info {
@@ -47,4 +61,10 @@
 .project-title {
     color: #8a1c2a;
     font-size: 20px;
+}
+
+.project-year {
+    opacity: 0.8;
+    font-size: 10px;
+    margin-left: 5px;
 }

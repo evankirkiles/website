@@ -24,6 +24,7 @@ def get_all_projects():
             "review": project.review,
             "cover": project.cover,
             "id": project.id,
+            "url": project.url,
             "created_on": project.created_on.strftime('%Y-%m-%dT%H:%M:%SZ')
         } for project in results]}), 200, {"Content-Type": "application/json"})
 
@@ -35,7 +36,8 @@ def create_project():
     title = request.json.get("title")
     year = request.json.get("year")
     cover = request.json.get("cover")
-    project = Project(review=review,title=title,year=year,cover=cover)
+    url = request.json.get("url")
+    project = Project(review=review,title=title,year=year,cover=cover,url=url)
     db.session.add(project)
     db.session.commit()
     return (json.dumps({"success": True}), 200, {"Content-Type": "application/json"})
@@ -45,9 +47,13 @@ def create_project():
 def edit_project():
     """Edits a project given by the id."""
     review = request.json.get("review")
+    year = request.json.get("year")
     project_id = request.json.get("id")
     project = db.session.query(Project).filter(Project.id == project_id).first()
-    project.review = review
+    if review != None:
+        project.review = review
+    if year != None:
+        project.year = year
     db.session.commit()
     return (json.dumps({"success": True}), 200, {"Content-Type": "application/json"})
 

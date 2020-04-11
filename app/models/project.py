@@ -16,3 +16,4 @@ class Project(db.Model):
     year = db.Column(db.Integer, nullable=False)
     cover = db.Column(db.String(256), nullable=False)
     review = db.Column(db.Text, nullable=False, default="TODO")
+    url = db.Column(db.String(256), nullable=False)
