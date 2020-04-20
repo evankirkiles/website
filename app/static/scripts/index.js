@@ -9,7 +9,7 @@ $(document).ready(function() {
 var syncID = 0;
 
 // Load the thoughts from the database
-function loadThoughts(num_thoughts=20) {
+function loadThoughts(num_thoughts=10) {
     thoughts = $.ajax({
         type: 'POST',
         url: '/api/thoughts/get',
