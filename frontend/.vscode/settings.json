@@ -1,20 +1,4 @@
 {
   "typescript.tsdk": "node_modules/typescript/lib",
-  "typescript.enablePromptUseWorkspaceTsdk": true,
-  "fileHeaderComment.parameter": {
-    "*": {
-      "company": "evan's website",
-      "name": "evan kirkiles"
-    }
-  },
-  "fileHeaderComment.template": {
-    "*": [
-      "${commentbegin}",
-      "${commentprefix} ${filename}",
-      "${commentprefix} author: ${name}",
-      "${commentprefix} created on ${date}",
-      "${commentprefix} ${year} ${company} ",
-      "${commentend}"
-    ]
-  },
+  "typescript.enablePromptUseWorkspaceTsdk": true
 }

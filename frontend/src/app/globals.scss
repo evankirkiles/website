@@ -1,0 +1,17 @@
+/*
+ * globals.scss
+ * author: evan kirkiles
+ * created on Mon Apr 03 2023
+ * 2023 evan's website 
+ */
+
+@import '../styles/utils';
+@import '../styles/globals';
+
+html,
+body {
+  background-color: color('white');
+  color: color('black');
+  width: 100%;
+  font-family: var(--akzidenz-font);
+}

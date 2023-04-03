@@ -1,0 +1,73 @@
+/*
+ * _utils.scss
+ * author: evan kirkiles
+ * created on Mon Apr 03 2023
+ * 2023 evan's website 
+ */
+
+@use 'sass:math';
+@import './settings/colors';
+@import './settings/zIndex';
+@import './settings/responsive';
+@import './settings/fonts';
+
+//
+// Returns a color from the $color map. Used color('blue') for example.
+//
+@function color($color-name) {
+  @return map-get($colors, $color-name);
+}
+
+//
+// Returns a z-index from the $zIndex map. Used zIndex('medium') for example.
+//
+@function zIndex($level) {
+  @return map-get($zIndex, $level);
+}
+
+//
+// Converts a px value to rem at compile time.
+//
+@function pxToRem($pixel-value) {
+  $rem-value: math.div($pixel-value, 16) + rem;
+  @return $rem-value;
+}
+
+//
+// Returns a media query closure.
+//
+$media-queries: ();
+@each $name, $size in $breakpoints {
+  $media-queries: map-merge(
+    $media-queries,
+    (
+      '#{$name}': 'min-width: #{$size}',
+      '#{$name}-up': 'min-width: #{$size}',
+    )
+  );
+
+  // If there is a breakpoint above the current breakpoint, create a
+  // <breakpoint>-down class.
+  $breakpoint-sizes: map-values($breakpoints);
+  $next-breakpoint-index: index($breakpoint-sizes, $size) + 1;
+
+  @if $next-breakpoint-index <= length($breakpoint-sizes) {
+    $next-breakpoint-size: nth($breakpoint-sizes, $next-breakpoint-index);
+    $media-queries: map-merge(
+      $media-queries,
+      (
+        '#{$name}-down': 'max-width: #{$next-breakpoint-size - 1px}',
+      )
+    );
+  }
+}
+
+@function query($query-name) {
+  @return '#{map-get($media-queries, $query-name)}';
+}
+
+@mixin media($query) {
+  @media (query($query)) {
+    @content;
+  }
+}

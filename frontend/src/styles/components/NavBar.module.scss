@@ -1,0 +1,24 @@
+/*
+ * NavBar.module.scss
+ * author: evan kirkiles
+ * created on Mon Apr 03 2023
+ * 2023 evan's website 
+ */
+
+.container {
+  position: fixed;
+  width: calc(100% - 2em);
+  top: 1.1em;
+  left: 1em;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.button {
+  color: white;
+  mix-blend-mode: difference;
+  background-color: black;
+  padding: 0.1em 0.3em;
+  padding-top: 0.3em;
+}

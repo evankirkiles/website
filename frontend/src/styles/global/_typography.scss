@@ -1,0 +1,101 @@
+//
+// Root styles
+//
+// *::selection {
+//   color: color('black');
+//   background: rgba(255, 255, 255, 0.99) !important;
+// }
+
+// img::selection {
+//   background: color('white') !important;
+// }
+
+body,
+.body-copy,
+input,
+label,
+select,
+button,
+textarea {
+  font-family: $body-font;
+  font-weight: 400;
+  font-weight: normal;
+  font-style: normal;
+  line-height: 1;
+  font-size: inherit;
+}
+
+body,
+.body-copy {
+  font-size: pxToRem(24);
+  @include media('xs') {
+    font-size: pxToRem(24);
+  }
+
+  @include media('lg') {
+    font-size: pxToRem(28);
+  }
+
+  @include media('xl') {
+    font-size: pxToRem(28);
+  }
+
+  @include media('xxl') {
+    font-size: pxToRem(32);
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $header-font;
+}
+
+.small-text {
+  font-size: pxToRem(8);
+  line-height: 1.125em;
+
+  @include media('xs') {
+    font-size: #{pxToRem(8)};
+  }
+
+  @include media('lg') {
+    font-size: #{pxToRem(10)};
+  }
+
+  @include media('xl') {
+    font-size: #{pxToRem(10)};
+  }
+
+  @include media('xxl') {
+    font-size: #{pxToRem(13)};
+  }
+}
+
+small {
+  @extend .small-text;
+}
+
+.med-text {
+  font-size: pxToRem(10);
+  line-height: 1.125em;
+
+  @include media('xs') {
+    font-size: #{pxToRem(10)};
+  }
+
+  @include media('lg') {
+    font-size: #{pxToRem(10)};
+  }
+
+  @include media('xl') {
+    font-size: #{pxToRem(12)};
+  }
+
+  @include media('xxl') {
+    font-size: #{pxToRem(16)};
+  }
+}
