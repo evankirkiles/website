@@ -1,0 +1,67 @@
+/*
+ * Card.module.scss
+ * author: evan kirkiles
+ * created on Mon Apr 03 2023
+ * 2023 the nobot space, 
+ */
+ @import "@/styles/utils";
+
+
+ @keyframes fade-slide-right {
+  from {
+    opacity: 0;
+    transform: translateX(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
+
+$num-iters: 3;
+$iter-offset: 0.3s;
+.container {
+  display: grid;
+  grid-template: 
+    "c c" auto
+    "t d" auto / 1fr auto;
+  gap: 0.3em;
+
+  animation: fade-slide-right 0.5s ease-in-out;
+  animation-fill-mode: backwards;
+  animation-delay: $num-iters * $iter-offset;
+  @for $i from 0 through $num-iters {
+    &:nth-of-type(#{$i}) {
+      animation-delay: $i * $iter-offset;
+    }
+  }
+}
+
+.image {
+  grid-area: c;
+  background-color: color("white");
+  border: 1px solid color("darkestgray");
+  transition: filter 0.3s ease-in-out;
+  filter: grayscale(1) brightness(0.4);
+  z-index: 0;
+  cursor: pointer;
+  object-fit: contain;
+  width: 100%;
+  height: auto;
+
+  &:hover {
+    filter: grayscale(0) brightness(1);
+  }
+}
+
+.title {
+  grid-area: t;
+  font-size: 0.8em;
+  font-weight: 100;
+}
+
+.date {
+  grid-area: d;
+  font-size: 0.6em;
+  font-weight: 100;
+}

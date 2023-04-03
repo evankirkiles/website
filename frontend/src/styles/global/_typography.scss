@@ -37,11 +37,15 @@ body,
   }
 
   @include media('xl') {
-    font-size: pxToRem(28);
+    font-size: pxToRem(24);
   }
 
   @include media('xxl') {
     font-size: pxToRem(32);
+  }
+
+  @include media('xxxl') {
+    font-size: 7vh;
   }
 }
 

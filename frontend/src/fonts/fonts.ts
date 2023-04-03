@@ -16,7 +16,7 @@ export const AkzidenzGrotesk = localFont({
       style: 'normal',
     },
     {
-      path: './akzidenz-grotesk/Akzidenz-grotesk-bold.ttf',
+      path: './akzidenz-grotesk/Akzidenz-grotesk-bold.woff2',
       weight: '700',
       style: 'normal',
     },

@@ -8,6 +8,7 @@
 import { AkzidenzGrotesk } from '@/fonts/fonts';
 import './globals.scss';
 import NavBar from '@/components/NavBar';
+import Footer from '@/components/Footer';
 
 export const metadata = {
   title: 'Create Next App',
@@ -21,9 +22,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <meta name="theme-color" content="#000000" />
+      </head>
       <body className={AkzidenzGrotesk.variable}>
         <NavBar />
         {children}
+        <Footer />
       </body>
     </html>
   );

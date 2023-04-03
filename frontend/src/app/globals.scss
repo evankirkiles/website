@@ -10,12 +10,12 @@
 
 html,
 body {
-  background-color: color('white');
-  color: color('black');
+  background-color: color('black');
+  color: color('white');
   width: 100%;
   font-family: var(--akzidenz-font);
 }
 
-::-webkit-scrollbar {
-  display: none; /* for Chrome, Safari, and Opera */
+::selection {
+  background-color: color("blue");
 }
