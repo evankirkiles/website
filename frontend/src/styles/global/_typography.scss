@@ -27,13 +27,13 @@ textarea {
 
 body,
 .body-copy {
-  font-size: pxToRem(24);
-  @include media('xs') {
-    font-size: pxToRem(24);
+  font-size: pxToRem(16);
+  @include media('xxs') {
+    font-size: pxToRem(20);
   }
 
-  @include media('lg') {
-    font-size: pxToRem(28);
+  @include media('xs') {
+    font-size: pxToRem(24);
   }
 
   @include media('xl') {

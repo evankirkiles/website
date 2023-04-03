@@ -15,3 +15,7 @@ body {
   width: 100%;
   font-family: var(--akzidenz-font);
 }
+
+::-webkit-scrollbar {
+  display: none; /* for Chrome, Safari, and Opera */
+}
