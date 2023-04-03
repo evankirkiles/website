@@ -5,19 +5,23 @@
  * 2023 evan's website
  */
 import Card from '@/components/Card';
+import ps from '@/styles/pages/Page.module.scss';
 import s from '@/styles/pages/Home.module.scss';
+import Link from 'next/link';
 import ABOPS from '../assets/img/abops.png';
 import PAPER from '../assets/img/paperarium.png';
 import WEBWORLD from '../assets/img/webworld.png';
 
 export default function Home() {
   return (
-    <main className={s.container}>
-      <section className={s.mainLayout}>
+    <main className={ps.container}>
+      <section className={ps.columnMeta}>
         {/* <div style={{ gridArea: 'a', fontWeight: 800 }}>EK</div> */}
         <div style={{ gridArea: 'b', position: 'relative' }}>
           <ul className={s.links}>
-            <li>Work</li>
+            <li>
+              <Link href="/work">Work</Link>
+            </li>
             <li>Projects</li>
             <li>Designs</li>
             <li>About</li>
@@ -51,11 +55,11 @@ export default function Home() {
           </ul>
         </div>
       </section>
-      <section className={s.column}>
+      <section className={ps.columnContent}>
         <h1 className={s.projects}>
           <span className={s.projects_inner}>Gallery</span>
         </h1>
-        <Card
+        {/* <Card
           item={{
             title: 'A Bit of Personal Space',
             imgSrc: ABOPS,
@@ -75,7 +79,7 @@ export default function Home() {
             imgSrc: PAPER,
             date: new Date(2002),
           }}
-        />
+        /> */}
         <div>See more in the Projects section {'->'}</div>
       </section>
     </main>

@@ -15,6 +15,6 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": ["**/*.ts", "**/*.tsx"],
+  "include": ["**/*.ts", "**/*.tsx", "schemas/index.js", "schemas/_fields.js", "schemas/collection.js", "schemas/entity.js"],
   "exclude": ["node_modules"]
 }

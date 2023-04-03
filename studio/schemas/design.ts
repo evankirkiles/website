@@ -8,11 +8,11 @@
 import {SchemaTypeDefinition} from 'sanity'
 import * as F from './_fields'
 
-const Project: SchemaTypeDefinition<'document'> = {
-  name: 'project',
+const Design: SchemaTypeDefinition<'document'> = {
+  name: 'design',
   type: 'document',
-  title: 'Project',
-  fields: [F.Title, F.Location, F.StartDate, F.EndDate, F.TechStack, F.ToolsUsed],
+  title: 'Design',
+  fields: [F.Title, F.Location, F.StartDate, F.TechStack, F.ToolsUsed],
 }
 
-export default Project
+export default Design

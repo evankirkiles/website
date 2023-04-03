@@ -1,3 +1,9 @@
+/*
+ * sanity.config.ts
+ * author: evan kirkiles
+ * created on Mon Apr 03 2023
+ * 2023 the nobot space, 
+ */
 import {defineConfig, isDev} from 'sanity'
 import {visionTool} from '@sanity/vision'
 import {deskTool} from 'sanity/desk'
