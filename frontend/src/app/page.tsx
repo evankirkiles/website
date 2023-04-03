@@ -19,6 +19,7 @@ export default function Home() {
           <ul className={s.links}>
             <li>Work</li>
             <li>Projects</li>
+            <li>Designs</li>
             <li>About</li>
             <li>Play</li>
           </ul>
@@ -52,7 +53,7 @@ export default function Home() {
       </section>
       <section className={s.column}>
         <h1 className={s.projects}>
-          <span className={s.projects_inner}>Projects</span>
+          <span className={s.projects_inner}>Gallery</span>
         </h1>
         <Card
           item={{

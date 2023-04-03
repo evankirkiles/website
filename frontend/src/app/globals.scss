@@ -17,5 +17,6 @@ body {
 }
 
 ::selection {
-  background-color: color("blue");
+  background-color: color('blue');
+  color: color('white');
 }

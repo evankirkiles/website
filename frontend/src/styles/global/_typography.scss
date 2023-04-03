@@ -41,11 +41,11 @@ body,
   }
 
   @include media('xxl') {
-    font-size: pxToRem(32);
+    font-size: pxToRem(24);
   }
 
   @include media('xxxl') {
-    font-size: 7vh;
+    font-size: pxToRem(32);
   }
 }
 

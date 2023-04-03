@@ -4,10 +4,9 @@
  * created on Mon Apr 03 2023
  * 2023 the nobot space, 
  */
- @import "@/styles/utils";
+@import '@/styles/utils';
 
-
- @keyframes fade-slide-right {
+@keyframes fade-slide-right {
   from {
     opacity: 0;
     transform: translateX(10px);
@@ -22,9 +21,9 @@ $num-iters: 3;
 $iter-offset: 0.3s;
 .container {
   display: grid;
-  grid-template: 
-    "c c" auto
-    "t d" auto / 1fr auto;
+  grid-template:
+    'c c' auto
+    't d' auto / 1fr auto;
   gap: 0.3em;
 
   animation: fade-slide-right 0.5s ease-in-out;
@@ -39,8 +38,8 @@ $iter-offset: 0.3s;
 
 .image {
   grid-area: c;
-  background-color: color("white");
-  border: 1px solid color("darkestgray");
+  background-color: color('white');
+  border: 1px solid color('darkestgray');
   transition: filter 0.3s ease-in-out;
   filter: grayscale(1) brightness(0.4);
   z-index: 0;
@@ -48,6 +47,7 @@ $iter-offset: 0.3s;
   object-fit: contain;
   width: 100%;
   height: auto;
+  border: 1px solid color('darkestgray');
 
   &:hover {
     filter: grayscale(0) brightness(1);
