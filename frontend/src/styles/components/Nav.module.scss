@@ -1,0 +1,116 @@
+/*
+ * NavBar.module.scss
+ * author: evan kirkiles
+ * created on Mon Apr 03 2023
+ * 2023 evan's website 
+ */
+@import "@/styles/utils";
+
+.container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  z-index: 0;
+  width: 100%;
+  // height: max(80vh, 900px);
+  height: auto;
+  background-color: rgba(255, 255, 255, 0.5);
+  pointer-events: none;
+  background: linear-gradient(#ffffffff 50%, #ffffff00);
+  color: color("black");
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: all 0.3s ease-out;
+
+  &_active {
+    pointer-events: all;
+    transform: translateY(0px);
+    opacity: 1;
+  }
+
+  &:before {
+    content: ' ';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 1;
+    // backdrop-filter: blur(10px);
+    background-size: 1em 1em;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+    mask: linear-gradient(black 60%, transparent);
+    // transition: 1s;
+  }
+}
+
+@keyframes fade-slide-left {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
+
+.links {
+  position: relative;
+  font-size: 2em;
+  font-weight: 100;
+  margin-bottom: 40vh;
+
+  & li {
+    display: flex;
+    flex-direction: row;
+    max-width: 6.1em;
+    justify-content: space-between;
+    & div {
+      font-weight: 400;
+      color: color("gray");
+    }
+  }
+
+  &::after {
+    content: ' ';
+    position: absolute;
+    top: -0.7em;
+    left: -0.25em;
+    height: calc(100% + 0.5em);
+    width: 1px;
+    background-color: color('black');
+    transform-origin: 50% 0%;
+  }
+}
+
+.link {
+  transition: transform 0.1s ease-in-out;
+
+  &:hover {
+    transform: translateX(5px);
+    font-weight: 700;
+  }
+}
+
+.contents {
+  padding: 1.45em;
+  padding-left: 1.9em;
+  width: 100%;
+  z-index: 1;
+}
+
+.button {
+  color: color("white");
+  background-color: color("black");
+  padding: 0.1em 0.3em;
+  padding-top: 0.3em;
+  position: fixed;
+  top: 1em;
+  right: 1em;
+  z-index: 1;
+}

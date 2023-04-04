@@ -5,7 +5,7 @@
  * 2023 the nobot space,
  */
 
-import {defineField } from 'sanity'
+import {defineField} from 'sanity'
 
 export const Title = defineField({
   name: 'title',
@@ -13,7 +13,8 @@ export const Title = defineField({
   title: 'Title',
   description: 'Main title to apply to the entity.',
   validation: (Rule) => Rule.required(),
-})
+  codegen: {required: true},
+} as SanityCodegenField)
 
 export const Company = defineField({
   name: 'company',
@@ -21,7 +22,17 @@ export const Company = defineField({
   title: 'Company',
   description: 'The company this entity refers to.',
   validation: (Rule) => Rule.required(),
-})
+  codegen: {required: true},
+} as SanityCodegenField)
+
+export const Slug = defineField({
+  name: 'slug',
+  type: 'slug',
+  title: 'Slug',
+  description: 'URL slug to access this resource under.',
+  validation: (Rule) => Rule.required(),
+  codegen: {required: true},
+} as SanityCodegenField)
 
 export const Location = defineField({
   name: 'location',
@@ -35,7 +46,7 @@ export const StartDate = defineField({
   type: 'date',
   title: 'Start Date',
   description: 'When did this entity start?',
-});
+})
 
 export const EndDate = defineField({
   name: 'endDate',
@@ -57,4 +68,12 @@ export const ToolsUsed = defineField({
   of: [{type: 'string'}],
   name: 'toolsUsed',
   title: 'Tools Used',
+})
+
+export const Description = defineField({
+  type: 'array',
+  of: [{type: 'block'}],
+  description: 'When did this entity end? (if ever)',
+  name: 'description',
+  title: 'Description',
 })

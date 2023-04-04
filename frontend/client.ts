@@ -9,5 +9,6 @@ import { createClient } from "@sanity/client";
 export default createClient({
   projectId: '1jimvdbv',
   dataset: 'production',
-  useCdn: true
+  apiVersion: '2023-04-04',
+  useCdn: false
 })

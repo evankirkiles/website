@@ -23,7 +23,9 @@
     color: color('black');
     flex: 1;
     min-height: 100vh;
-    max-height: 100vh;
+    // max-height: 100vh;
+    height: 100vh;
+    // height: -webkit-fill-available;
     padding-bottom: 2em;
     padding: 1.1em;
 
@@ -56,4 +58,16 @@
     background: color('black');
     color: color('white');
   }
+}
+
+.pageNumber {
+  font-size: 1.5em;
+  font-weight: 100;
+}
+
+.title {
+  font-size: 5em;
+  font-weight: 700;
+  margin-left: -0.08em;
+  animation: fade-slide-right 1s ease-in-out;
 }

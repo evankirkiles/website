@@ -30,19 +30,12 @@
   }
 }
 
-.column {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  min-height: -webkit-fill-available;
-  padding: 1.1em;
-  gap: 1em;
-
-  &:last-of-type {
-    background: color('black');
-    color: color('white');
-  }
+.columnMeta {
+  display: grid;
+  grid-template:
+    'a . b' auto
+    's s s' 1fr
+    'c c c' auto / auto 1fr auto;
 }
 
 .mainLayout {
@@ -107,15 +100,12 @@
 .title {
   font-size: 5em;
   font-weight: 700;
-  // margin-bottom: em;
   margin-left: -0.08em;
-  animation: fade-slide-right 1s ease-in-out;
 }
 
 .projects {
   position: sticky;
   top: 1rem;
-  z-index: 1;
 
   &_inner {
     color: color('white');
@@ -127,18 +117,24 @@
 }
 
 $num-iters: 5;
-$base-offset: 0.6s;
+$base-offset: 0.0s;
 $iter-offset: 0.2s;
 .links {
-  position: absolute;
-  top: 1.7em;
-  right: 0;
+  position: fixed;
+  top: 2.7em;
+  right: 1em;
   text-align: right;
   padding-right: 0.4em;
   font-weight: 100;
 
+  & li {
+    font-size: 1.5em;
+  }
+
   @include media('lg') {
+    position: absolute;
     top: 0em;
+    right: 0em;
   }
 
   animation-delay: $num-iters * $iter-offset;

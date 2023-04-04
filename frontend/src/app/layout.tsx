@@ -7,8 +7,10 @@
 
 import { AkzidenzGrotesk } from '@/fonts/fonts';
 import './globals.scss';
-import NavBar from '@/components/NavBar';
+import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
+import NavContents from '@/components/Nav/NavContents';
+import { SwitchTransition } from 'react-transition-group';
 
 export const metadata = {
   title: 'Create Next App',
@@ -18,16 +20,21 @@ export const metadata = {
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactElement;
 }) {
   return (
     <html lang="en">
       <head>
-        <meta name="theme-color" content="#000000" />
+        <meta name="theme-color" content="#ffffff" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content="Evan Kirkiles" />
       </head>
       <body className={AkzidenzGrotesk.variable}>
-        <NavBar />
         {children}
+        <Nav>
+          {/* @ts-expect-error Server Component */}
+          <NavContents />
+        </Nav>
         <Footer />
       </body>
     </html>

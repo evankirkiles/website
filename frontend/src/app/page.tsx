@@ -16,7 +16,7 @@ export default function Home() {
   return (
     <main className={ps.container}>
       <section className={ps.columnMeta}>
-        {/* <div style={{ gridArea: 'a', fontWeight: 800 }}>EK</div> */}
+        <div style={{ gridArea: 'a' }} className={ps.pageNumber}>1/6</div>
         <div style={{ gridArea: 'b', position: 'relative' }}>
           <ul className={s.links}>
             <li>

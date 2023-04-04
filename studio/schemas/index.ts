@@ -5,8 +5,9 @@
  * 2023 evan's website
  */
 import Design from './design'
+import Page from './page'
 import Play from './play'
 import Project from './project'
 import Work from './work'
 
-export const schemaTypes = [Project, Work, Design, Play]
+export default [Page, Project, Work, Design, Play]
