@@ -10,9 +10,10 @@ import s from '@/styles/components/Nav.module.scss';
 import classNames from 'classnames';
 import { usePathname, useRouter } from 'next/navigation';
 import { PropsWithChildren, useEffect, useState } from 'react';
+import { GiHamburgerMenu } from 'react-icons/gi';
+import { TfiClose } from 'react-icons/tfi';
 
 export default function Nav({ children }: PropsWithChildren) {
-
   // close the menu when route changes
   const pathname = usePathname();
   useEffect(() => {
@@ -23,7 +24,17 @@ export default function Nav({ children }: PropsWithChildren) {
   return (
     <>
       <button className={s.button} onClick={() => setNavOpen(!navOpen)}>
-        {navOpen ? 'Close' : 'Menu'}
+        {navOpen ? (
+          <>
+            <TfiClose />
+            <span>Close</span>
+          </>
+        ) : (
+          <>
+            <GiHamburgerMenu />
+            <span>Menu</span>
+          </>
+        )}
       </button>
       <nav
         className={classNames(s.container, {

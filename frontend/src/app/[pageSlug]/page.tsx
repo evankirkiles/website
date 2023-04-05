@@ -24,9 +24,9 @@ const pagesBySlug = groq`
 
 /**
  * A generated page, corresponding to a Sanity "Page" entry.
- * 
- * @param param0 
- * @returns 
+ *
+ * @param param0
+ * @returns
  */
 export default async function PagePage({ params }: PageProps) {
   const pages = await client.fetch<Schema.Page[]>(listPages);
@@ -39,30 +39,20 @@ export default async function PagePage({ params }: PageProps) {
   return (
     <main className={s.container}>
       <section className={s.columnMeta}>
-        <Link href={`/${prevSlug}`} style={{ gridArea: 'a' }}>
-          ← Back
-        </Link>
-        <div
-          style={{
-            position: 'absolute',
-            bottom: '1em',
-            right: '0.3em',
-            overflow: 'hidden',
-            height: '15em',
-            width: '16em',
-            opacity: 0.1,
-            pointerEvents: 'none',
-          }}
-        >
-          <span
-            style={{ position: 'absolute', fontSize: '20em', top: 0, right: 0 }}
-          >
-            {page.pageNum}
-          </span>
+        <div className={s.links}>
+          <Link href={`/`}>
+            <strong>Evan Kirkiles</strong>
+          </Link>
+          <Link href={`/${prevSlug}`} className={s.navButton}>
+            Prev ← <span>({page.pageNum - 1})</span>
+          </Link>
+          <Link href={`/${nextSlug}`} className={s.navButton}>
+            Next → <span>({page.pageNum + 1})</span>
+          </Link>
         </div>
-        <Link href={`/${nextSlug}`} style={{ gridArea: 'b' }}>
-          Next →
-        </Link>
+        <div className={s.pageNum}>
+          <span>{page.pageNum}</span>
+        </div>
         <div style={{ gridArea: 's', marginTop: '3em' }}>
           <h1 className={s.title}>{page.title}</h1>
           <PortableText value={page.description || []} />

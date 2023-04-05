@@ -31,10 +31,9 @@ export default function Home() {
               rel="noopener noreferrer"
               href="https://channel.studio"
             >
-              <strong>Channel Studio</strong>
+              Channel Studio
             </a>
-            , and will work this summer as an intern at the{' '}
-            <strong>New York Times</strong>.
+            , and will work this summer as an intern at the New York Times.
           </p>
           <br />
           <p>His practices, in no specific order, are:</p>
