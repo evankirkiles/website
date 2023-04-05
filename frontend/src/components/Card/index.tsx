@@ -27,7 +27,7 @@ export default function Card<T extends EntityType>({
 }: CardProps<T>) {
   const imageProps = useNextSanityImage(client, item.cover);
   return (
-    <Link href={`/${entitySlug}/${item.slug}`} className={s.container}>
+    <Link href={`/${entitySlug}/${item.slug.current}`} className={s.container}>
       <Image
         {...imageProps}
         // placeholder="blur"

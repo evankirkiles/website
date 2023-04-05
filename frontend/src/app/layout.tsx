@@ -9,12 +9,10 @@ import { AkzidenzGrotesk } from '@/fonts/fonts';
 import './globals.scss';
 import Nav from '@/components/Nav';
 import NavContents from '@/components/Nav/NavContents';
+import { PropsWithChildren } from 'react';
+import Footer from '@/components/Footer';
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: PropsWithChildren) {
   return (
     <html lang="en">
       <head>
@@ -29,6 +27,7 @@ export default function RootLayout({
           {/* @ts-expect-error Server Component */}
           <NavContents />
         </Nav>
+        <Footer />
       </body>
     </html>
   );

@@ -1,0 +1,70 @@
+/*
+ * styles.module.scss
+ * author: evan kirkiles
+ * created on Wed Apr 05 2023
+ * 2023 the nobot space, 
+ */
+
+@import '@/styles/utils';
+
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  @include media('lg') {
+    flex-direction: row;
+  }
+}
+
+.pageColumn {
+  position: sticky;
+  top: 0;
+  left: 0;
+  background-color: color("white");
+  color: color("black");
+  font-size: 4em;
+  padding: 0.1em;
+  margin-bottom: -0.2em;
+  font-weight: 700;
+  overflow: hidden;
+  height: 1em;
+
+  @include media('lg') {
+    writing-mode: vertical-lr;
+    margin-left: -0.2em;
+    margin-bottom: unset;
+    overflow: hidden;
+    height: unset;
+    width: 1.2em;
+    left: -0.2em;
+  }
+}
+
+.content {
+  background-color: color("black");
+  color: color("white");
+  flex: 1;
+  min-height: 100vh;
+  padding: 0.9em;
+  padding-left: 1em;
+  padding-top: 1.9em;
+
+  background-size: 1em 1em;
+  background-image: linear-gradient(to right, #101010 1px, transparent 1px),
+    linear-gradient(to bottom, #101010 1px, transparent 1px);
+
+  @include media('lg') {
+    padding-top: 0.9em;
+  }
+}
+
+.title {
+  font-size: 4em;
+  font-weight: 700;
+}
+
+.subtitle {
+  font-size: 1.5em;
+  opacity: 0.5;
+}
