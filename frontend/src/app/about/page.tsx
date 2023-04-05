@@ -17,10 +17,11 @@ export default function About() {
           <p>Beyond his work, Evan is just a boy split between New {"{Haven, York}"}.</p>
         </div>
         <div style={{ gridArea: 'c' }}>
-          Select design domains:
+          Contact information:
           <ul>
-            <li>– Yale Experiment Programmers Organization</li>
-            <li>– Yale University Art Gallery</li>
+            <li>– Email: evan.kirkiles@yale.edu</li>
+            <li>– Instagram: @evankirkiles</li>
+            <li>– GitHub: @evankirkiles</li>
           </ul>
         </div>
       </section>

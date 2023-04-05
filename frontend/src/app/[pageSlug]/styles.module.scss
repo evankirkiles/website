@@ -29,8 +29,8 @@
     padding: 1.1em;
 
     background-size: 1em 1em;
-    background-image: linear-gradient(to right, #f9f9f9 1px, transparent 1px),
-      linear-gradient(to bottom, #f9f9f9 1px, transparent 1px);
+    background-image: linear-gradient(to right, #f0f0f0 1px, transparent 1px),
+      linear-gradient(to bottom, #f0f0f0 1px, transparent 1px);
 
     @include media('lg') {
       position: sticky;
@@ -48,14 +48,15 @@
 
   &Content {
     flex: 1;
-    display: flex;
-    flex-direction: column;
     min-height: 100vh;
     min-height: -webkit-fill-available;
     padding: 1.1em;
     gap: 1em;
     background: color('black');
     color: color('white');
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   }
 }
 
@@ -90,6 +91,11 @@
   & span {
     opacity: 0.1;
   }
+}
+
+.inner {
+  grid-area: s;
+  margin-top: 3.5em;
 }
 
 .pageNum {

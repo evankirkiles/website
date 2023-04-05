@@ -103,6 +103,18 @@ export interface Project extends SanityDocument {
   location?: string;
 
   /**
+   * Cover Image — `image`
+   *
+   * Cover image to show for this entity.
+   */
+  cover: {
+    _type: "image";
+    asset: SanityReference<SanityImageAsset>;
+    crop?: SanityImageCrop;
+    hotspot?: SanityImageHotspot;
+  };
+
+  /**
    * Start Date — `date`
    *
    * When did this entity start?
@@ -152,6 +164,18 @@ export interface Work extends SanityDocument {
    * The company this entity refers to.
    */
   company: string;
+
+  /**
+   * Cover Image — `image`
+   *
+   * Cover image to show for this entity.
+   */
+  cover: {
+    _type: "image";
+    asset: SanityReference<SanityImageAsset>;
+    crop?: SanityImageCrop;
+    hotspot?: SanityImageHotspot;
+  };
 
   /**
    * Location — `string`
@@ -247,6 +271,18 @@ export interface Play extends SanityDocument {
    * Main title to apply to the entity.
    */
   title: string;
+
+  /**
+   * Cover Image — `image`
+   *
+   * Cover image to show for this entity.
+   */
+  cover: {
+    _type: "image";
+    asset: SanityReference<SanityImageAsset>;
+    crop?: SanityImageCrop;
+    hotspot?: SanityImageHotspot;
+  };
 
   /**
    * Location — `string`

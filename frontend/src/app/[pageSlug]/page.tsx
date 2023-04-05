@@ -29,16 +29,32 @@ const pagesBySlug = groq`
  * @returns
  */
 export default async function PagePage({ params }: PageProps) {
+  // figure out page metadata and titling
   const pages = await client.fetch<Schema.Page[]>(listPages);
   const page = (await client.fetch<Schema.Page[]>(pagesBySlug, params))[0];
-  const prevSlug =
+  const prevSlug =  
     page.pageNum === 1 ? '' : pages[page.pageNum - 2].slug.current;
   const nextSlug =
     page.pageNum === pages.length ? 'about' : pages[page.pageNum].slug.current;
   if (!page) return null;
+
+  // get all of the projects specified by the page.
+  
+
   return (
     <main className={s.container}>
       <section className={s.columnMeta}>
+        <div className={s.inner}>
+          <h1 className={s.title}>{page.title}</h1>
+          <PortableText value={page.description || []} />
+        </div>
+        <div style={{ gridArea: 'c' }}>
+          Select positions:
+          <ul>
+            <li>– The New York Times</li>
+            <li>– Channel Studio</li>
+          </ul>
+        </div>
         <div className={s.links}>
           <Link href={`/`}>
             <strong>Evan Kirkiles</strong>
@@ -53,19 +69,10 @@ export default async function PagePage({ params }: PageProps) {
         <div className={s.pageNum}>
           <span>{page.pageNum}</span>
         </div>
-        <div style={{ gridArea: 's', marginTop: '3em' }}>
-          <h1 className={s.title}>{page.title}</h1>
-          <PortableText value={page.description || []} />
-        </div>
-        <div style={{ gridArea: 'c' }}>
-          Select positions:
-          <ul>
-            <li>– The New York Times</li>
-            <li>– Channel Studio</li>
-          </ul>
-        </div>
       </section>
-      <section className={s.columnContent}>Sort By:</section>
+      <section className={s.columnContent}>
+
+      </section>
     </main>
   );
 }
