@@ -14,6 +14,7 @@ import ScrollThemeColorChanger from '@/hooks/useScrollThemeColor';
 import { HiOutlineArrowLeft } from 'react-icons/hi2';
 import Link from 'next/link';
 import { PortableText } from '@portabletext/react';
+import EntityImage from '@/app/[pageSlug]/[entitySlug]/image';
 
 interface EntityPageProps {
   params: {
@@ -27,7 +28,13 @@ const pagesBySlug = groq`
 `;
 
 const entityByTypeSlug = groq`
-*[_type == $type && slug.current == $slug] { ... }
+*[_type == $type && slug.current == $slug] {
+  ...,
+  cover {
+    ...,
+    "metadata": asset->metadata
+  }
+}
 `;
 
 export default async function EntityPageLayout<T extends SchemaEntityType>({
@@ -97,10 +104,11 @@ export default async function EntityPageLayout<T extends SchemaEntityType>({
         </div>
         <div className={s.contents}>
           <section className={s.contents_text}>
+            <EntityImage image={entity.cover as any as Schema.SanityImageAsset} hideCaption />
             <PortableText value={entity.description || []} />
           </section>
           <section className={s.contents_pictures}>
-            
+            <EntityImage image={entity.cover as any as Schema.SanityImageAsset} hideCaption />
           </section>
         </div>
       </article>

@@ -29,6 +29,7 @@
   font-weight: 700;
   overflow: hidden;
   height: 1.2em;
+  z-index: zIndex("medium");
 
   & a {
     display: flex;
@@ -117,8 +118,11 @@
 
   & h2 {
     display: inline-block;
-    margin-right: 3em;
     white-space: break-spaces;
+
+    @include media("lg") {
+      margin-right: 3em;
+    }
   }
 
   &_subinfo {
@@ -153,15 +157,54 @@
     flex: 2;
     font-size: 1.5em;
     opacity: 0.8;
+
+    & figure {
+      margin-bottom: 0.7em;
+      @include media("sm") {
+        display: none;
+      }
+    }
   }
 
   &_pictures {
     flex: 1;
     display: flex;
     flex-direction: column;
+
+    & figure:first-of-type {
+      display: none;
+      @include media("sm") {
+        display: flex;
+      }
+    }
   }
 
   & p {
     margin-bottom: 1em;
+  }
+}
+
+.image {
+  border: 1px solid color('darkestgray');
+  z-index: 0;
+  cursor: pointer;
+  width: 100%;
+  height: auto;
+  min-width: 0px;
+  border: 1px solid color('darkestgray');
+
+  &_outer {
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    height: auto;
+    gap: 0.5em;
+  }
+
+  &_caption {
+    width: 100%;
+    text-align: center;
+    opacity: 0.5;
+    font-size: 0.6em;
   }
 }

@@ -41,6 +41,14 @@ export const Cover = defineField({
   title: 'Cover Image',
   description: 'Cover image to show for this entity.',
   validation: (Rule) => Rule.required(),
+  fields: [
+    {
+      name: 'caption',
+      type: 'string',
+      title: 'Caption',
+      description: 'A caption for the image, also to be used as alt text.'
+    }
+  ],
   codegen: { required: true },
   options: {
     metadata: [

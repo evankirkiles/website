@@ -30,10 +30,10 @@ export default function Card<T extends EntityType>({
     <Link href={`/${entitySlug}/${item.slug.current}`} className={s.container}>
       <Image
         {...imageProps}
-        // placeholder="blur"
         // sizes="(max-width: 800px) 100vw, 800px"
-        // blurDataURL={(item.cover as any).metadata.lqip}
-        alt={`Cover image of ${item.slug}`}
+        placeholder="blur"
+        blurDataURL={(item.cover as any as Schema.SanityImageAsset).metadata.lqip}
+        alt={(item.cover as any).caption}
         className={s.image}
       />
       <div className={s.titleArea}>

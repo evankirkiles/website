@@ -26,7 +26,11 @@ const pagesBySlug = groq`
 
 const entitiesByPage = groq`
 *[_type == $type] | order(startDate desc) {
-  ...
+  ...,
+  cover {
+    ...,
+    "metadata": asset->metadata
+  }
 }
 `;
 
