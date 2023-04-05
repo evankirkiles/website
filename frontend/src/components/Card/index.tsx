@@ -2,7 +2,7 @@
  * Work.tsx
  * author: evan kirkiles
  * created on Wed Apr 05 2023
- * 2023 the nobot space,
+ * 2023 evan's personal website,
  */
 'use client';
 

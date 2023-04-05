@@ -2,7 +2,7 @@
  * project.ts
  * author: evan kirkiles
  * created on Mon Apr 03 2023
- * 2023 the nobot space,
+ * 2023 evan's personal website,
  */
 
 import {SchemaTypeDefinition} from 'sanity'

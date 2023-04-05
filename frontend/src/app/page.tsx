@@ -9,10 +9,12 @@ import ps from '@/app/[pageSlug]/styles.module.scss';
 import s from '@/app/styles.module.scss';
 import Link from 'next/link';
 import HomeLinks from '@/app/links';
+import ScrollThemeColorChanger from '@/hooks/useScrollThemeColor';
 
 export default function Home() {
   return (
     <main className={ps.container}>
+      <ScrollThemeColorChanger color={'#000000'} scrollFrac={1} />
       <section className={ps.columnMeta}>
         <div style={{ gridArea: 'b', position: 'relative' }}>
           {/* @ts-expect-error Server Component */}

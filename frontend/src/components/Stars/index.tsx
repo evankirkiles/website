@@ -2,7 +2,7 @@
  * index.tsx
  * author: evan kirkiles
  * created on Tue Apr 04 2023
- * 2023 the nobot space, 
+ * 2023 evan's personal website, 
  */
 "use client";
 

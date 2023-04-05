@@ -2,7 +2,7 @@
  * page.tsx
  * author: evan kirkiles
  * created on Mon Apr 03 2023
- * 2023 the nobot space,
+ * 2023 evan's personal website,
  */
 import * as Schema from '@/cms/schema';
 import { listPages } from '@/components/Nav/NavContents';
@@ -12,6 +12,7 @@ import groq from 'groq';
 import Link from 'next/link';
 import client from '@/cms/client';
 import Card from '@/components/Card';
+import ScrollThemeColorChanger from '@/hooks/useScrollThemeColor';
 
 interface PageProps {
   params: {
@@ -54,6 +55,7 @@ export default async function PagePage({ params }: PageProps) {
 
   return (
     <main className={s.container}>
+      <ScrollThemeColorChanger color={'#000000'} scrollFrac={1} />
       <section className={s.columnMeta}>
         <div className={s.inner}>
           <h1 className={s.title}>{page.title}</h1>
@@ -88,6 +90,24 @@ export default async function PagePage({ params }: PageProps) {
             entity._type === 'design' ? null : (
               <Card
                 key={entity._id}
+                entitySlug={page.slug.current}
+                item={entity}
+              />
+            )
+          )}
+          {projectsByPage.map((entity) =>
+            entity._type === 'design' ? null : (
+              <Card
+                key={`${entity._id}1`}
+                entitySlug={page.slug.current}
+                item={entity}
+              />
+            )
+          )}
+          {projectsByPage.map((entity) =>
+            entity._type === 'design' ? null : (
+              <Card
+                key={`${entity._id}2`}
                 entitySlug={page.slug.current}
                 item={entity}
               />
