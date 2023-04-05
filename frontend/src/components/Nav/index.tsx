@@ -23,7 +23,9 @@ export default function Nav({ children }: PropsWithChildren) {
   const [navOpen, setNavOpen] = useState(false);
   return (
     <>
-      <button className={s.button} onClick={() => setNavOpen(!navOpen)}>
+      <button className={classNames(s.button, {
+        [s.button_offset]: pathname && pathname.split('/').length > 1
+      })} onClick={() => setNavOpen(!navOpen)}>
         {navOpen ? (
           <>
             <TfiClose />

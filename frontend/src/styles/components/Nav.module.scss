@@ -142,4 +142,11 @@
       display: block;
     }
   }
+
+  &_offset {
+    @include media("md-down") {
+      top: 0.1em;
+      right: 0.1em;
+    }
+  }
 }

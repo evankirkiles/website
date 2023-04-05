@@ -6,12 +6,13 @@
  */
 
 import client from '@/cms/client';
-import s from "@/app/[pageSlug]/[entitySlug]/styles.module.scss";
+import s from '@/app/[pageSlug]/[entitySlug]/styles.module.scss';
 import { SchemaEntityType } from '@/cms/helpers';
 import * as Schema from '@/cms/schema';
 import groq from 'groq';
 import ScrollThemeColorChanger from '@/hooks/useScrollThemeColor';
-import { PortableText } from '@portabletext/react';
+import { HiOutlineArrowLeft } from 'react-icons/hi2';
+import Link from 'next/link';
 
 interface EntityPageProps {
   params: {
@@ -44,21 +45,27 @@ export default async function EntityPageLayout<T extends SchemaEntityType>({
   return (
     <main className={s.container}>
       <ScrollThemeColorChanger color={'#000000'} scrollFrac={0.05} />
-      <section className={s.pageColumn}>
-        <h1>{page.title}</h1>
-      </section>
+      <nav className={s.pageColumn}>
+        <h2>
+          <Link href={`/${page.slug.current}`}>
+            <HiOutlineArrowLeft />
+            {page.title}
+          </Link>
+        </h2>
+      </nav>
       <article className={s.content}>
         {entity._type === 'work' ? (
           <>
-          <h1 className={s.title}>{entity.company}</h1>
-          <h2 className={s.subtitle}>{entity.role}</h2>
+            <h1 className={s.title}>{entity.company}</h1>
+            <h2 className={s.subtitle}>{entity.role}</h2>
           </>
-        ) : <>
-          <h1 className={s.title}>{entity.title}</h1>
-        </>}
+        ) : (
+          <>
+            <h1 className={s.title}>{entity.title}</h1>
+          </>
+        )}
         {/* <PortableText value={page.description || []} /> */}
-
       </article>
     </main>
-  )
+  );
 }
