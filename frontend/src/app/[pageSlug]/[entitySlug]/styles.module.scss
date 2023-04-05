@@ -81,7 +81,7 @@
   min-height: 100vh;
   padding: 0.9em;
   padding-left: 1em;
-  padding-top: 1.5em;
+  padding-top: 10em;
   display: flex;
   flex-direction: column;
 
@@ -146,6 +146,7 @@
   flex: 1;
   display: flex;
   flex-direction: column;
+  gap: 0.5em;
   margin-top: 1em;
   width: 100%;
 
@@ -155,12 +156,13 @@
 
   &_text {
     flex: 2;
-    font-size: 1.5em;
+    font-size: 1em;
     opacity: 0.8;
+    max-width: 30em;
 
     & figure {
-      margin-bottom: 0.7em;
-      @include media("sm") {
+      margin-bottom: 1em;
+      @include media("lg") {
         display: none;
       }
     }
@@ -173,7 +175,7 @@
 
     & figure:first-of-type {
       display: none;
-      @include media("sm") {
+      @include media("lg") {
         display: flex;
       }
     }

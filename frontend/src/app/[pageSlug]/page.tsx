@@ -59,7 +59,7 @@ export default async function PagePage({ params }: PageProps) {
 
   return (
     <main className={s.container}>
-      <ScrollThemeColorChanger color={'#000000'} scrollFrac={0.95} />
+      <ScrollThemeColorChanger color={'#000000'} scrollFrac={1} />
       <section className={s.columnMeta}>
         <div className={s.inner}>
           <h1 className={s.title}>{page.title}</h1>
@@ -73,7 +73,7 @@ export default async function PagePage({ params }: PageProps) {
           </ul>
         </div>
         <div className={s.links}>
-          <Link href={`/`}>
+          <Link href={`/`} className={s.link_home}>
             <strong>Evan Kirkiles</strong>
           </Link>
           <Link href={`/${prevSlug}`} className={s.navButton}>

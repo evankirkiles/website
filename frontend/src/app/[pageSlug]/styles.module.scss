@@ -101,6 +101,15 @@
   grid-area: a;
 }
 
+.link_home {
+  display: inline-block;
+  transform-origin: 0% 50%;
+  transition: transform 0.1s ease-in-out;
+  &:hover {
+    transform: translateX(0.3em);
+  }
+}
+
 .navButton {
   display: block;
   transition: transform 0.1s ease-in-out;
