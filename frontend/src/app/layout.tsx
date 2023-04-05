@@ -10,7 +10,6 @@ import './globals.scss';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import NavContents from '@/components/Nav/NavContents';
-import { SwitchTransition } from 'react-transition-group';
 
 export const metadata = {
   title: 'Create Next App',

@@ -23,9 +23,8 @@
     color: color('black');
     flex: 1;
     min-height: 100vh;
-    // max-height: 100vh;
+    position: relative;
     height: 100vh;
-    // height: -webkit-fill-available;
     padding-bottom: 2em;
     padding: 1.1em;
 
@@ -42,7 +41,7 @@
 
     display: grid;
     grid-template:
-      'a . b' auto
+      'a n b' auto
       's s s' 1fr
       'c c c' auto / auto 1fr auto;
   }

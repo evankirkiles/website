@@ -16,8 +16,7 @@
     "groq": "^3.8.2",
     "next": "13.0.4",
     "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "react-transition-group": "^4.4.5"
+    "react-dom": "18.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.21.4",
@@ -27,14 +26,12 @@
     "@types/node": "18.15.11",
     "@types/react": "18.0.33",
     "@types/react-dom": "18.0.11",
-    "@types/react-transition-group": "^4.4.5",
     "eslint": "8.37.0",
     "eslint-config-next": "13.0.4",
     "jsdom": "^21.1.1",
     "prettier": "^2.8.7",
     "sanity-codegen": "^0.9.8",
     "sass": "^1.60.0",
-    "sharp": "^0.32.0",
     "typescript": "5.0.3"
   },
   "resolutions": {

@@ -6,16 +6,6 @@
  */
 @import '@/styles/utils';
 
-.container {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-
-  @include media('lg') {
-    flex-direction: row;
-  }
-}
-
 .main {
   grid-area: c;
 }
@@ -27,42 +17,6 @@
   &_inner {
     width: 100%;
     height: 100%;
-  }
-}
-
-.columnMeta {
-  display: grid;
-  grid-template:
-    'a . b' auto
-    's s s' 1fr
-    'c c c' auto / auto 1fr auto;
-}
-
-.mainLayout {
-  background-color: color('white');
-  color: color('black');
-  flex: 1;
-  display: grid;
-  min-height: 100vh;
-  padding-bottom: 2em;
-  // min-height: -webkit-fill-available;
-  max-height: 100vh;
-  // max-height: -webkit-fill-available;
-  padding: 1.1em;
-  grid-template:
-    'a . b' auto
-    's s s' 1fr
-    'c c c' auto / auto 1fr auto;
-
-  background-size: 1em 1em;
-  background-image: linear-gradient(to right, #f9f9f9 1px, transparent 1px),
-    linear-gradient(to bottom, #f9f9f9 1px, transparent 1px);
-
-  @include media('lg') {
-    position: sticky;
-    top: 0;
-    bottom: 0;
-    max-width: 24em;
   }
 }
 
@@ -95,12 +49,6 @@
   to {
     transform: scaleY(1);
   }
-}
-
-.title {
-  font-size: 5em;
-  font-weight: 700;
-  margin-left: -0.08em;
 }
 
 .projects {

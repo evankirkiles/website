@@ -9,9 +9,9 @@ import * as Schema from '@/cms/schema';
 import s from '@/styles/components/Nav.module.scss';
 import groq from 'groq';
 import Link from 'next/link';
-import client from '../../../client';
+import client from '@/cms/client';
 
-const listPages = groq`
+export const listPages = groq`
 *[_type == 'page'] | order(pageNum asc) { slug, title, pageNum }
 `;
 
@@ -41,7 +41,7 @@ export default async function NavContents() {
             <Link href={`/${slug}`} className={s.link}>
               {title}
             </Link>
-            <div>{pageNum + 1}</div>
+            <div>{pageNum}</div>
           </li>
         ))}
       </ul>
