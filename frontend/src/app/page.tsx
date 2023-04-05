@@ -49,7 +49,6 @@ export default function Home() {
         <h1 className={s.projects}>
           <span className={s.projects_inner}>Gallery</span>
         </h1>
-        <div>See more in the Projects section {'->'}</div>
       </section>
     </main>
   );

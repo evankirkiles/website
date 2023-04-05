@@ -18,13 +18,15 @@
 }
 
 $num-iters: 3;
-$iter-offset: 0.3s;
+$iter-offset: 0.2s;
 .container {
   display: grid;
   grid-template:
     'c c' auto
     't d' auto / 1fr auto;
   gap: 0.3em;
+  height: fit-content;
+  width: 100%;
 
   animation: fade-slide-right 0.5s ease-in-out;
   animation-fill-mode: backwards;
@@ -34,34 +36,37 @@ $iter-offset: 0.3s;
       animation-delay: $i * $iter-offset;
     }
   }
+
+  transition: transform 0.1s ease-in-out;
+
+  &:hover {
+    transform: scale(0.95);
+  }
 }
 
 .image {
   grid-area: c;
-  background-color: color('white');
   border: 1px solid color('darkestgray');
-  transition: filter 0.3s ease-in-out;
-  filter: grayscale(1) brightness(0.4);
   z-index: 0;
   cursor: pointer;
-  object-fit: contain;
   width: 100%;
   height: auto;
+  min-width: 0px;
   border: 1px solid color('darkestgray');
+}
 
-  &:hover {
-    filter: grayscale(0) brightness(1);
-  }
+.titleArea {
+  grid-area: t;
 }
 
 .title {
-  grid-area: t;
   font-size: 0.8em;
   font-weight: 100;
 }
 
-.date {
+.dateArea {
   grid-area: d;
   font-size: 0.6em;
   font-weight: 100;
+  text-align: right;
 }

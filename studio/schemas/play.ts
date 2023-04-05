@@ -12,7 +12,8 @@ const Play: SchemaTypeDefinition<'document'> = {
   name: 'play',
   type: 'document',
   title: 'Play',
-  fields: [F.Title, F.Cover, F.Location, F.StartDate, F.EndDate],
+  fields: [F.Title,
+    F.Slug, F.Cover, F.Location, F.StartDate, F.EndDate],
 }
 
 export default Play

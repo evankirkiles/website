@@ -13,7 +13,7 @@
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-  z-index: 0;
+  z-index: zIndex("high");
   width: 100%;
   // height: max(80vh, 900px);
   height: auto;
@@ -105,14 +105,15 @@
 }
 
 .button {
-  color: color("black");
+  color: color("white");
+  background-color: color("black");
   // background-color: color("black");
   padding: 0.1em 0.3em;
   padding-top: 0.3em;
   position: fixed;
   top: 0.5em;
   right: 0.5em;
-  z-index: 1;
+  z-index: zIndex("high") + 1;
   font-size: 1.5em;
   font-weight: 700;
   display: flex;
@@ -121,12 +122,13 @@
   align-items: center;
   gap: 0.2em;
 
+  mix-blend-mode: difference;
+
   border: 1px solid transparent;
-  transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out;
+  transition: opacity 0.1s ease-in-out;
 
   &:hover {
-    background-color: color("black");
-    color: color("white");
+    opacity: 0.5;
   }
 
   & svg {
@@ -138,18 +140,6 @@
 
     @include media("xs") {
       display: block;
-    }
-  }
-
-
-  @include media("lg") {
-    color: color("white");
-    background-color: color("black");
-
-    &:hover {
-      background-color: color("white");
-      color: color("black");
-      border-color: color("black");
     }
   }
 }

@@ -12,7 +12,17 @@ const Work: SchemaTypeDefinition<'document'> = {
   name: 'work',
   type: 'document',
   title: 'Work',
-  fields: [F.Title, F.Company, F.Cover, F.Location, F.StartDate, F.EndDate, F.TechStack, F.ToolsUsed],
+  fields: [
+    F.Role,
+    F.Slug,
+    F.Company,
+    F.Cover,
+    F.Location,
+    F.StartDate,
+    F.EndDate,
+    F.TechStack,
+    F.ToolsUsed,
+  ],
 }
 
 export default Work

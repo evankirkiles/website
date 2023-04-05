@@ -16,6 +16,16 @@ export const Title = defineField({
   codegen: {required: true},
 } as SanityCodegenField)
 
+
+export const Role = defineField({
+  name: 'role',
+  type: 'string',
+  title: 'Role',
+  description: 'The role this entity refers to.',
+  validation: (Rule) => Rule.required(),
+  codegen: {required: true},
+} as SanityCodegenField)
+
 export const Company = defineField({
   name: 'company',
   type: 'string',
@@ -31,7 +41,13 @@ export const Cover = defineField({
   title: 'Cover Image',
   description: 'Cover image to show for this entity.',
   validation: (Rule) => Rule.required(),
-  codegen: { required: true }
+  codegen: { required: true },
+  options: {
+    metadata: [
+      'blurhash',
+      'lqip'
+    ]
+  }
 } as SanityCodegenField)
 
 export const Slug = defineField({

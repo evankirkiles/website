@@ -9,7 +9,7 @@ import s from '@/styles/components/Footer.module.scss';
 export default function Footer() {
   return (
     <footer className={s.container}>
-      © 2023 Evan Kirkiles. Font on this website: Akzidenz Grotesk.
+      <small>© 2023 Evan Kirkiles. Font on this website: Akzidenz Grotesk.</small>
     </footer>
   );
 }

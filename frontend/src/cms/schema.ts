@@ -78,6 +78,13 @@ export interface Page extends SanityDocument {
    * What type of data is shown on this page?
    */
   entityType: string;
+
+  /**
+   * Entity Title — `string`
+   *
+   * Label to give the data shown on this page.
+   */
+  entityTitle: string;
 }
 
 /**
@@ -94,6 +101,13 @@ export interface Project extends SanityDocument {
    * Main title to apply to the entity.
    */
   title: string;
+
+  /**
+   * Slug — `slug`
+   *
+   * URL slug to access this resource under.
+   */
+  slug: { _type: "slug"; current: string };
 
   /**
    * Location — `string`
@@ -152,11 +166,18 @@ export interface Work extends SanityDocument {
   _type: "work";
 
   /**
-   * Title — `string`
+   * Role — `string`
    *
-   * Main title to apply to the entity.
+   * The role this entity refers to.
    */
-  title: string;
+  role: string;
+
+  /**
+   * Slug — `slug`
+   *
+   * URL slug to access this resource under.
+   */
+  slug: { _type: "slug"; current: string };
 
   /**
    * Company — `string`
@@ -229,6 +250,13 @@ export interface Design extends SanityDocument {
   title: string;
 
   /**
+   * Slug — `slug`
+   *
+   * URL slug to access this resource under.
+   */
+  slug: { _type: "slug"; current: string };
+
+  /**
    * Location — `string`
    *
    * Where this entity occurred.
@@ -271,6 +299,13 @@ export interface Play extends SanityDocument {
    * Main title to apply to the entity.
    */
   title: string;
+
+  /**
+   * Slug — `slug`
+   *
+   * URL slug to access this resource under.
+   */
+  slug: { _type: "slug"; current: string };
 
   /**
    * Cover Image — `image`

@@ -32,7 +32,15 @@ const Page: SchemaTypeDefinition<'document'> = {
       description: 'What type of data is shown on this page?',
       validation: (Rule) => Rule.required(),
       codegen: {required: true},
-    }  as SanityCodegenField)
+    }  as SanityCodegenField),
+    defineField({
+      type: 'string',
+      name: 'entityTitle',
+      title: 'Entity Title',
+      description: 'Label to give the data shown on this page.',
+      validation: (Rule) => Rule.required(),
+      codegen: {required: true},
+    }  as SanityCodegenField),
   ],
   orderings: [
     {

@@ -11,6 +11,7 @@ import { PortableText } from '@portabletext/react';
 import groq from 'groq';
 import Link from 'next/link';
 import client from '@/cms/client';
+import Card from '@/components/Card';
 
 interface PageProps {
   params: {
@@ -22,6 +23,14 @@ const pagesBySlug = groq`
 *[_type == 'page' && slug.current == $pageSlug] { ... }
 `;
 
+const entitiesByPage = groq`
+*[_type == $type] | order(startDate desc) {
+  ...
+}
+`;
+
+type SchemaEntity = Schema.Work | Schema.Project | Schema.Design | Schema.Play;
+
 /**
  * A generated page, corresponding to a Sanity "Page" entry.
  *
@@ -32,14 +41,16 @@ export default async function PagePage({ params }: PageProps) {
   // figure out page metadata and titling
   const pages = await client.fetch<Schema.Page[]>(listPages);
   const page = (await client.fetch<Schema.Page[]>(pagesBySlug, params))[0];
-  const prevSlug =  
+  const prevSlug =
     page.pageNum === 1 ? '' : pages[page.pageNum - 2].slug.current;
   const nextSlug =
     page.pageNum === pages.length ? 'about' : pages[page.pageNum].slug.current;
   if (!page) return null;
 
   // get all of the projects specified by the page.
-  
+  const projectsByPage = await client.fetch<SchemaEntity[]>(entitiesByPage, {
+    type: page.entityType,
+  });
 
   return (
     <main className={s.container}>
@@ -71,7 +82,18 @@ export default async function PagePage({ params }: PageProps) {
         </div>
       </section>
       <section className={s.columnContent}>
-
+        <h2 className={s.columnContent_label}>{page.entityTitle}</h2>
+        <div className={s.columnContent_inner}>
+          {projectsByPage.map((entity) =>
+            entity._type === 'design' ? null : (
+              <Card
+                key={entity._id}
+                entitySlug={page.slug.current}
+                item={entity}
+              />
+            )
+          )}
+        </div>
       </section>
     </main>
   );
