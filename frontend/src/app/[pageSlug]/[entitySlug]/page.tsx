@@ -13,6 +13,7 @@ import groq from 'groq';
 import ScrollThemeColorChanger from '@/hooks/useScrollThemeColor';
 import { HiOutlineArrowLeft } from 'react-icons/hi2';
 import Link from 'next/link';
+import { PortableText } from '@portabletext/react';
 
 interface EntityPageProps {
   params: {
@@ -53,18 +54,55 @@ export default async function EntityPageLayout<T extends SchemaEntityType>({
           </Link>
         </h2>
       </nav>
-      <article className={s.content}>
+      <article className={s.inner}>
         {entity._type === 'work' ? (
           <>
             <h1 className={s.title}>{entity.company}</h1>
-            <h2 className={s.subtitle}>{entity.role}</h2>
           </>
         ) : (
           <>
             <h1 className={s.title}>{entity.title}</h1>
           </>
         )}
-        {/* <PortableText value={page.description || []} /> */}
+        <div className={s.dateRow}>
+          {entity._type === 'work' && (
+            <h2 className={s.subtitle}>{entity.role}</h2>
+          )}
+          <span className={s.dateRow_subinfo}>
+            <span>
+              {entity.startDate
+                ? new Date(Date.parse(entity.startDate)).toLocaleString(
+                    'default',
+                    {
+                      month: 'long',
+                      year: 'numeric',
+                    }
+                  )
+                : null}
+              {entity.endDate
+                ? ' - ' +
+                  new Date(Date.parse(entity.endDate)).toLocaleString(
+                    'default',
+                    {
+                      month: 'long',
+                      year: 'numeric',
+                    }
+                  )
+                : entity.startDate
+                ? ' - Present'
+                : null}
+            </span>
+            {entity.location && <span>{entity.location}</span>}
+          </span>
+        </div>
+        <div className={s.contents}>
+          <section className={s.contents_text}>
+            <PortableText value={entity.description || []} />
+          </section>
+          <section className={s.contents_pictures}>
+            
+          </section>
+        </div>
       </article>
     </main>
   );

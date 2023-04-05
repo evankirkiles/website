@@ -98,7 +98,7 @@ export const ToolsUsed = defineField({
 export const Description = defineField({
   type: 'array',
   of: [{type: 'block'}],
-  description: 'When did this entity end? (if ever)',
+  description: 'Describe this entity.',
   name: 'description',
   title: 'Description',
 })

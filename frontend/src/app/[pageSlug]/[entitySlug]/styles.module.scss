@@ -73,7 +73,7 @@
   }
 }
 
-.content {
+.inner {
   background-color: color("black");
   color: color("white");
   flex: 1;
@@ -81,10 +81,12 @@
   padding: 0.9em;
   padding-left: 1em;
   padding-top: 1.5em;
+  display: flex;
+  flex-direction: column;
 
   background-size: 1em 1em;
-  background-image: linear-gradient(to right, #101010 1px, transparent 1px),
-    linear-gradient(to bottom, #101010 1px, transparent 1px);
+  background-image: linear-gradient(to right, #080808 1px, transparent 1px),
+    linear-gradient(to bottom, #080808 1px, transparent 1px);
 
   @include media('lg') {
     padding-top: 0.9em;
@@ -106,6 +108,60 @@
 }
 
 .subtitle {
-  font-size: 1.3em;
-  opacity: 0.5;
+  font-size: 1.7em;
+  opacity: 0.8;
+}
+
+.dateRow {
+  width: 100%;
+
+  & h2 {
+    display: inline-block;
+    margin-right: 3em;
+    white-space: break-spaces;
+  }
+
+  &_subinfo {
+    font-size: 1.3em;
+    display: inline-block;
+
+    & span {
+      display: inline-block;
+      white-space: nowrap;
+      margin-right: 2em;
+      opacity: 0.5;
+  
+      &:last-of-type {
+        margin-right: 0;
+      }
+    }
+  }
+}
+
+.contents {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-top: 1em;
+  width: 100%;
+
+  @include media("lg") {
+    flex-direction: row;
+  }
+
+  &_text {
+    flex: 2;
+    font-size: 1.5em;
+    opacity: 0.8;
+  }
+
+  &_pictures {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  & p {
+    margin-bottom: 1em;
+  }
 }

@@ -12,8 +12,17 @@ const Project: SchemaTypeDefinition<'document'> = {
   name: 'project',
   type: 'document',
   title: 'Project',
-  fields: [F.Title, 
-    F.Slug, F.Location, F.Cover, F.StartDate, F.EndDate, F.TechStack, F.ToolsUsed],
+  fields: [
+    F.Title,
+    F.Slug,
+    F.Location,
+    F.Cover,
+    F.StartDate,
+    F.EndDate,
+    F.Description,
+    F.TechStack,
+    F.ToolsUsed,
+  ],
 }
 
 export default Project

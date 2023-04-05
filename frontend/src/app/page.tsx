@@ -48,9 +48,7 @@ export default function Home() {
         </div>
       </section>
       <section className={ps.columnContent}>
-        <h1 className={s.projects}>
-          <span className={s.projects_inner}>Gallery</span>
-        </h1>
+        <h2 className={ps.columnContent_label}>Gallery</h2>
       </section>
     </main>
   );

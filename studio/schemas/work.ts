@@ -20,6 +20,7 @@ const Work: SchemaTypeDefinition<'document'> = {
     F.Location,
     F.StartDate,
     F.EndDate,
+    F.Description,
     F.TechStack,
     F.ToolsUsed,
   ],

@@ -54,7 +54,7 @@ export interface Page extends SanityDocument {
   /**
    * Description — `array`
    *
-   * When did this entity end? (if ever)
+   * Describe this entity.
    */
   description?: Array<SanityKeyed<SanityBlock>>;
 
@@ -143,6 +143,13 @@ export interface Project extends SanityDocument {
   endDate?: string;
 
   /**
+   * Description — `array`
+   *
+   * Describe this entity.
+   */
+  description?: Array<SanityKeyed<SanityBlock>>;
+
+  /**
    * Tech Stack — `array`
    *
    * When did this entity end? (if ever)
@@ -220,6 +227,13 @@ export interface Work extends SanityDocument {
   endDate?: string;
 
   /**
+   * Description — `array`
+   *
+   * Describe this entity.
+   */
+  description?: Array<SanityKeyed<SanityBlock>>;
+
+  /**
    * Tech Stack — `array`
    *
    * When did this entity end? (if ever)
@@ -269,6 +283,13 @@ export interface Design extends SanityDocument {
    * When did this entity start?
    */
   startDate?: string;
+
+  /**
+   * Description — `array`
+   *
+   * Describe this entity.
+   */
+  description?: Array<SanityKeyed<SanityBlock>>;
 
   /**
    * Tech Stack — `array`
@@ -325,6 +346,13 @@ export interface Play extends SanityDocument {
    * Where this entity occurred.
    */
   location?: string;
+
+  /**
+   * Description — `array`
+   *
+   * Describe this entity.
+   */
+  description?: Array<SanityKeyed<SanityBlock>>;
 
   /**
    * Start Date — `date`

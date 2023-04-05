@@ -51,6 +51,7 @@
     min-height: 100vh;
     min-height: -webkit-fill-available;
     padding: 1.1em;
+    padding-top: 0;
     gap: 0.5em;
     background: color('black');
     color: color('white');
@@ -61,9 +62,12 @@
       font-size: 2em;
       font-weight: 700;
       position: sticky;
-      top: 0.55em;
+      top: 0;
       z-index: 1;
       background-color: color("black");
+      padding: 0.55em 0;
+      padding-bottom: 0.1em;
+      box-shadow: 0px 10px 10px color("black");
     }
 
     &_inner {

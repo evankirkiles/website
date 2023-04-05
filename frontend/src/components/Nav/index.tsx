@@ -24,7 +24,7 @@ export default function Nav({ children }: PropsWithChildren) {
   return (
     <>
       <button className={classNames(s.button, {
-        [s.button_offset]: pathname && pathname.split('/').length > 1
+        [s.button_offset]: pathname && pathname.split('/').length > 2
       })} onClick={() => setNavOpen(!navOpen)}>
         {navOpen ? (
           <>

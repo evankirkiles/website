@@ -12,7 +12,7 @@ const Design: SchemaTypeDefinition<'document'> = {
   name: 'design',
   type: 'document',
   title: 'Design',
-  fields: [F.Title, F.Slug, F.Location, F.StartDate, F.TechStack, F.ToolsUsed],
+  fields: [F.Title, F.Slug, F.Location, F.StartDate, F.Description, F.TechStack, F.ToolsUsed],
 }
 
 export default Design
