@@ -29,7 +29,6 @@ export default function Nav({ children }: PropsWithChildren) {
 
   return (
     <>
-      <MetaThemeColor color={'#ffffff'} disabled={!navOpen} priority />
       <button
         className={classNames(s.button, {
           [s.button_offset]: pathname && pathname.split('/').length > 2,

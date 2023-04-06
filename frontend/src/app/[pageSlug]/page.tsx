@@ -60,7 +60,6 @@ export default async function PagePage({ params }: PageProps) {
 
   return (
     <main className={s.container}>
-      <MetaThemeColor color={'#000000'} scrollFrac={1} />
       <section className={s.columnMeta}>
         <div className={s.inner}>
           <h1 className={s.title}>{page.title}</h1>

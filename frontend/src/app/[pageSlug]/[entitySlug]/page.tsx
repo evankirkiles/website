@@ -52,7 +52,6 @@ export default async function EntityPageLayout<T extends SchemaEntityType>({
 
   return (
     <main className={s.container}>
-      <ScrollThemeColorChanger color={'#000000'} scrollFrac={0.4} />
       <nav className={s.pageColumn}>
         <h2>
           <Link href={`/${page.slug.current}`}>

@@ -12,7 +12,6 @@ import { MetaThemeColor } from '@/contexts/ThemeColorContext';
 export default function Home() {
   return (
     <main className={ps.container}>
-      <MetaThemeColor color={'#000000'} scrollFrac={1} />
       <section className={ps.columnMeta}>
         <div style={{ gridArea: 'b', position: 'relative' }}>
           {/* @ts-expect-error Server Component */}
