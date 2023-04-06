@@ -13,6 +13,7 @@ import Link from 'next/link';
 import client from '@/cms/client';
 import Card from '@/components/Card';
 import ScrollThemeColorChanger from '@/hooks/useScrollThemeColor';
+import { MetaThemeColor } from '@/contexts/ThemeColorContext';
 
 interface PageProps {
   params: {
@@ -59,7 +60,7 @@ export default async function PagePage({ params }: PageProps) {
 
   return (
     <main className={s.container}>
-      <ScrollThemeColorChanger color={'#000000'} scrollFrac={1} />
+      <MetaThemeColor color={'#000000'} scrollFrac={1} />
       <section className={s.columnMeta}>
         <div className={s.inner}>
           <h1 className={s.title}>{page.title}</h1>
@@ -68,8 +69,8 @@ export default async function PagePage({ params }: PageProps) {
         <div style={{ gridArea: 'c' }}>
           Select positions:
           <ul>
-            <li>– The New York Times</li>
             <li>– Channel Studio</li>
+            <li>– YUAG Graphic Design Assistant</li>
           </ul>
         </div>
         <div className={s.links}>

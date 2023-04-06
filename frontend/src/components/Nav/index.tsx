@@ -6,6 +6,10 @@
  */
 'use client';
 
+import {
+  MetaThemeColor,
+  useMetaThemeColor,
+} from '@/contexts/ThemeColorContext';
 import s from '@/styles/components/Nav.module.scss';
 import classNames from 'classnames';
 import { usePathname, useRouter } from 'next/navigation';
@@ -20,12 +24,18 @@ export default function Nav({ children }: PropsWithChildren) {
     setNavOpen(false);
   }, [pathname]);
 
+  // control menu open state
   const [navOpen, setNavOpen] = useState(false);
+
   return (
     <>
-      <button className={classNames(s.button, {
-        [s.button_offset]: pathname && pathname.split('/').length > 2
-      })} onClick={() => setNavOpen(!navOpen)}>
+      <MetaThemeColor color={'#ffffff'} disabled={!navOpen} priority />
+      <button
+        className={classNames(s.button, {
+          [s.button_offset]: pathname && pathname.split('/').length > 2,
+        })}
+        onClick={() => setNavOpen(!navOpen)}
+      >
         {navOpen ? (
           <>
             <TfiClose />

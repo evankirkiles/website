@@ -4,17 +4,15 @@
  * created on Mon Apr 03 2023
  * 2023 evan's website
  */
-import Card from '@/components/Card';
 import ps from '@/app/[pageSlug]/styles.module.scss';
 import s from '@/app/styles.module.scss';
-import Link from 'next/link';
 import HomeLinks from '@/app/links';
-import ScrollThemeColorChanger from '@/hooks/useScrollThemeColor';
+import { MetaThemeColor } from '@/contexts/ThemeColorContext';
 
 export default function Home() {
   return (
     <main className={ps.container}>
-      <ScrollThemeColorChanger color={'#000000'} scrollFrac={1} />
+      <MetaThemeColor color={'#000000'} scrollFrac={1} />
       <section className={ps.columnMeta}>
         <div style={{ gridArea: 'b', position: 'relative' }}>
           {/* @ts-expect-error Server Component */}
@@ -35,7 +33,7 @@ export default function Home() {
             >
               Channel Studio
             </a>
-            , and will work this summer as an intern at the New York Times.
+            .
           </p>
           <br />
           <p>His practices, in no specific order, are:</p>
