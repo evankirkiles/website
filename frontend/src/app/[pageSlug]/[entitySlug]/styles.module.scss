@@ -30,6 +30,7 @@
   overflow: hidden;
   height: 1.2em;
   z-index: zIndex("medium");
+  border-bottom: 1px solid color("darkestgray");
 
   & a {
     display: flex;
@@ -71,7 +72,8 @@
     height: unset;
     width: 1.4em;
     left: -0.2em;
-    border-right: 1px solid color("white");
+    border-bottom: unset;
+    border-right: 1px solid color("darkestgray");
   }
 }
 
