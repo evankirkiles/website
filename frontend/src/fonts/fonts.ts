@@ -11,17 +11,17 @@ export const AkzidenzGrotesk = localFont({
   variable: '--akzidenz-font',
   src: [
     {
-      path: './akzidenz-grotesk/Akzidenz-grotesk-roman.ttf',
+      path: './akzidenz-grotesk/akzidenz-grotesk-roman-webfont.woff',
       weight: '400',
       style: 'normal',
     },
     {
-      path: './akzidenz-grotesk/Akzidenz-grotesk-bold.ttf',
+      path: './akzidenz-grotesk/akzidenz-grotesk-bold-webfont.woff',
       weight: '700',
       style: 'normal',
     },
     {
-      path: './akzidenz-grotesk/Akzidenz-grotesk-light.ttf',
+      path: './akzidenz-grotesk/akzidenz-grotesk-light-webfont.woff',
       weight: '100',
       style: 'normal',
     },

@@ -25,8 +25,8 @@
     min-height: 100vh;
     min-height: -webkit-fill-available;
     position: relative;
-    padding-bottom: 2em;
-    padding: 1.1em;
+    padding: 0.9em 0.94em;
+    padding-top: 0.75em;
 
     background-size: 1em 1em;
     background-image: linear-gradient(to right, #f0f0f0 1px, transparent 1px),
@@ -52,7 +52,7 @@
     flex: 1;
     min-height: 100vh;
     min-height: -webkit-fill-available;
-    padding: 1.1em;
+    padding: 1em;
     padding-top: 0;
     gap: 0.5em;
     background: color('black');
@@ -67,7 +67,7 @@
       top: 0;
       z-index: 1;
       background-color: color("black");
-      padding: 0.55em 0;
+      padding: 0.5em 0;
       padding-bottom: 0.1em;
       box-shadow: 0px 10px 10px color("black");
     }
@@ -94,7 +94,8 @@
 .title {
   font-size: 5em;
   font-weight: 700;
-  margin-left: -0.08em;
+  margin-left: -0.04em;
+  margin-bottom: 0.08em;
   animation: fade-slide-right 1s ease-in-out;
 }
 
@@ -135,10 +136,10 @@
 
 .pageNum {
   position: absolute;
-  bottom: 1em;
-  right: 0.3em;
+  bottom: 0.5em;
+  right: 0.1em;
   overflow: hidden;
-  height: 15em;
+  height: 17em;
   width: 16em;
   opacity: 0.1;
   pointer-events: none;
