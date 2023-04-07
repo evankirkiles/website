@@ -51,7 +51,6 @@ export const ScrollThemeColorProvider = ({
   timeout,
 }: PropsWithChildren<IThemeColorProviderProps>) => {
   // read in the existing DOM meta tag and its color, if it exists
-  const themeColorTag = useRef<HTMLMetaElement | null>(null);
   const baseColor = useRef<string | null>(initialColor ?? null);
   const colorContexts = useRef<Record<string, IColorContext>>({});
   const [activeContext, setActiveContext] = useState<IColorContext | null>(
@@ -60,16 +59,14 @@ export const ScrollThemeColorProvider = ({
 
   // lifecycle DOM selectors
   useEffect(() => {
-    // find the theme color tag on mount
-    themeColorTag.current = document.querySelector('meta[name="theme-color"]');
-    baseColor.current = initialColor ?? themeColorTag.current?.content ?? null;
-    if (themeColorTag.current && baseColor.current)
-      themeColorTag.current.content = baseColor.current;
+    // find the theme color tag on mount, save its color, and remove it
+    const metaTag = document.querySelector<HTMLMetaElement>(
+      'meta[name="theme-color"]'
+    );
+    baseColor.current = initialColor ?? metaTag?.content ?? null;
+    if (metaTag) metaTag.remove();
     return () => {
-      // reset the theme color tag on dismount
-      if (themeColorTag.current && baseColor.current)
-        themeColorTag.current.content = baseColor.current;
-      // and remove the background-color body style we added
+      // remove the background-color body style we added
       window.document.body.style.removeProperty('background-color');
     };
   }, [initialColor]);
@@ -101,31 +98,9 @@ export const ScrollThemeColorProvider = ({
 
   // transition effect between active contexts
   useEffect(() => {
-    if (!themeColorTag.current) return;
-    let startColor = themeColorTag.current.content;
     let endColor = activeContext?.color ?? baseColor.current;
-    if (!startColor || !endColor) return;
+    if (!endColor) return;
     window.document.body.style.backgroundColor = endColor;
-
-    // tween the meta tag between the two colors
-    let startTime: number;
-    let animationFrame: number;
-    function tick(timestep: number) {
-      if (!themeColorTag.current || !endColor) return;
-      if (themeColorTag.current.content === endColor) return;
-      if (!startTime) startTime = timestep;
-      const p = Math.min(1, (timestep - startTime) / timeout);
-      // update color of theme-color tag
-      themeColorTag.current.content = colorInterp(endColor, startColor, p);
-      // run the function until complete
-      if (p !== 1) animationFrame = window.requestAnimationFrame(tick);
-    }
-    animationFrame = window.requestAnimationFrame(tick);
-
-    // cancel any animation frame on dismount
-    return () => {
-      window.cancelAnimationFrame(animationFrame);
-    };
   }, [activeContext, initialColor, timeout]);
 
   return (
@@ -214,9 +189,9 @@ export const useMetaThemeColor = (
 
 /**
  * Component wrapper allows use of client component in server component.
- * 
- * @param param0 
- * @returns 
+ *
+ * @param param0
+ * @returns
  */
 export const MetaThemeColor = function ({
   color,

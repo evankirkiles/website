@@ -22,7 +22,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
         <meta name="title" content="Evan Kirkiles" />
         <meta name="description" content="Programmer, designer, and artist." />
       </head>
-      <ScrollThemeColorProvider timeout={300}>
+      <ScrollThemeColorProvider initialColor="#ffffff" timeout={300}>
         <body className={AkzidenzGrotesk.variable}>
           {children}
           <Nav>

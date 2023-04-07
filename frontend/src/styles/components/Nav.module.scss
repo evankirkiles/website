@@ -4,7 +4,7 @@
  * created on Mon Apr 03 2023
  * 2023 evan's website 
  */
-@import "@/styles/utils";
+@import '@/styles/utils';
 
 .container {
   position: fixed;
@@ -13,14 +13,32 @@
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-  z-index: zIndex("high");
+  z-index: zIndex('high');
   width: 100%;
   // height: max(80vh, 900px);
   height: auto;
   background-color: rgba(255, 255, 255, 0.5);
   pointer-events: none;
-  background: linear-gradient(#ffffffff 60%, #ffffff00);
-  color: color("black");
+  background: linear-gradient(
+    to bottom,
+    hsl(0, 0%, 0%) 0%,
+    hsla(0, 0%, 0%, 0.982) 14.4%,
+    hsla(0, 0%, 0%, 0.942) 27.1%,
+    hsla(0, 0%, 0%, 0.884) 38.4%,
+    hsla(0, 0%, 0%, 0.812) 48.4%,
+    hsla(0, 0%, 0%, 0.727) 57%,
+    hsla(0, 0%, 0%, 0.635) 64.6%,
+    hsla(0, 0%, 0%, 0.538) 71.1%,
+    hsla(0, 0%, 0%, 0.44) 76.7%,
+    hsla(0, 0%, 0%, 0.343) 81.5%,
+    hsla(0, 0%, 0%, 0.253) 85.6%,
+    hsla(0, 0%, 0%, 0.171) 89.2%,
+    hsla(0, 0%, 0%, 0.101) 92.3%,
+    hsla(0, 0%, 0%, 0.047) 95%,
+    hsla(0, 0%, 0%, 0.012) 97.6%,
+    hsla(0, 0%, 0%, 0) 100%
+  );
+  color: color('white');
   opacity: 0;
   transform: translateY(-20px);
   transition: opacity 0.3s ease-out, transform 0.3s ease-in-out;
@@ -41,8 +59,12 @@
     opacity: 1;
     // backdrop-filter: blur(10px);
     background-size: 1em 1em;
-    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+    background-image: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0.05) 1px,
+        transparent 1px
+      ),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
     mask: linear-gradient(black 60%, transparent);
     // transition: 1s;
   }
@@ -72,7 +94,7 @@
     justify-content: space-between;
     & div {
       font-weight: 400;
-      color: color("gray");
+      color: color('gray');
     }
   }
 
@@ -83,7 +105,7 @@
     left: -0.25em;
     height: calc(100% + 0.5em);
     width: 1px;
-    background-color: color('black');
+    background-color: color('white');
     transform-origin: 50% 0%;
   }
 }
@@ -105,13 +127,13 @@
 }
 
 .button {
-  color: color("white");
+  color: color('white');
   padding: 0.1em 0.3em;
   padding-top: 0.3em;
   position: fixed;
   top: 0.5em;
   right: 0.5em;
-  z-index: zIndex("high") + 1;
+  z-index: zIndex('high') + 1;
   font-size: 1.5em;
   font-weight: 700;
   display: flex;
@@ -136,13 +158,13 @@
   & span {
     display: none;
 
-    @include media("xs") {
+    @include media('xs') {
       display: block;
     }
   }
 
   &_offset {
-    @include media("md-down") {
+    @include media('md-down') {
       top: 0.1em;
       right: 0.1em;
     }

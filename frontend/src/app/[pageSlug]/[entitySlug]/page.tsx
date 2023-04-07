@@ -10,11 +10,11 @@ import s from '@/app/[pageSlug]/[entitySlug]/styles.module.scss';
 import { SchemaEntityType } from '@/cms/helpers';
 import * as Schema from '@/cms/schema';
 import groq from 'groq';
-import ScrollThemeColorChanger from '@/hooks/useScrollThemeColor';
 import { HiOutlineArrowLeft } from 'react-icons/hi2';
 import Link from 'next/link';
 import { PortableText } from '@portabletext/react';
 import EntityImage from '@/app/[pageSlug]/[entitySlug]/image';
+import { MetaThemeColor } from '@/contexts/ThemeColorContext';
 
 interface EntityPageProps {
   params: {
@@ -52,7 +52,7 @@ export default async function EntityPageLayout<T extends SchemaEntityType>({
 
   return (
     <main className={s.container}>
-      <ScrollThemeColorChanger color={'#000000'} scrollFrac={0.4} />
+    <MetaThemeColor color={'#000000'} scrollFrac={0.9} />
       <nav className={s.pageColumn}>
         <h2>
           <Link href={`/${page.slug.current}`}>
