@@ -28,11 +28,6 @@
     padding-bottom: 2em;
     padding: 1.1em;
 
-    @include media("sm") {
-      height: 100vh;
-      min-height: 100vh;
-    }
-
     background-size: 1em 1em;
     background-image: linear-gradient(to right, #f0f0f0 1px, transparent 1px),
       linear-gradient(to bottom, #f0f0f0 1px, transparent 1px);
@@ -42,6 +37,8 @@
       top: 0;
       bottom: 0;
       max-width: 24em;
+      height: 100vh;
+      min-height: 100vh;
     }
 
     display: grid;
