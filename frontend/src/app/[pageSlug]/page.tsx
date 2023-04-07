@@ -12,7 +12,6 @@ import groq from 'groq';
 import Link from 'next/link';
 import client from '@/cms/client';
 import Card from '@/components/Card';
-import ScrollThemeColorChanger from '@/hooks/useScrollThemeColor';
 import { MetaThemeColor } from '@/contexts/ThemeColorContext';
 
 interface PageProps {
