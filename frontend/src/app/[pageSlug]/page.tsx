@@ -47,11 +47,11 @@ export default async function PagePage({ params }: PageProps) {
   // figure out page metadata and titling
   const pages = await client.fetch<Schema.Page[]>(listPages);
   const page = (await client.fetch<Schema.Page[]>(pagesBySlug, params))[0];
+  if (!page) return null;
   const prevSlug =
     page.pageNum === 1 ? '' : pages[page.pageNum - 2].slug.current;
   const nextSlug =
     page.pageNum === pages.length ? 'about' : pages[page.pageNum].slug.current;
-  if (!page) return null;
 
   // get all of the projects specified by the page.
   const projectsByPage = await client.fetch<SchemaEntity[]>(entitiesByPage, {
@@ -60,7 +60,7 @@ export default async function PagePage({ params }: PageProps) {
 
   return (
     <main className={s.container}>
-      <MetaThemeColor color={'#000000'} scrollFrac={1} />
+      <MetaThemeColor color={'#000000'} scrollFrac={0.9} />
       <section className={s.columnMeta}>
         <div className={s.inner}>
           <h1 className={s.title}>{page.title}</h1>

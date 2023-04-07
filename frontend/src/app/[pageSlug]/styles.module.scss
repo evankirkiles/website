@@ -23,10 +23,15 @@
     color: color('black');
     flex: 1;
     min-height: 100vh;
+    min-height: -webkit-fill-available;
     position: relative;
-    height: 100vh;
     padding-bottom: 2em;
     padding: 1.1em;
+
+    @include media("sm") {
+      height: 100vh;
+      min-height: 100vh;
+    }
 
     background-size: 1em 1em;
     background-image: linear-gradient(to right, #f0f0f0 1px, transparent 1px),

@@ -25,10 +25,5 @@ export const AkzidenzGrotesk = localFont({
       weight: '100',
       style: 'normal',
     },
-    {
-      path: './akzidenz-grotesk/Akzidenz-grotesk-black.ttf',
-      weight: '900',
-      style: 'normal',
-    },
   ],
 });

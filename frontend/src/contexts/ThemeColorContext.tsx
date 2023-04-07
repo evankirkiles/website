@@ -76,7 +76,6 @@ export const ScrollThemeColorProvider = ({
 
   // scroll listener for updating the "activeContext" item
   const onScrollChange = useCallback(() => {
-    if (!themeColorTag.current) return;
     setActiveContext(
       Object.values(colorContexts.current).reduce<IColorContext | null>(
         (prev, context) => {
