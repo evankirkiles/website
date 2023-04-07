@@ -21,8 +21,8 @@
   position: sticky;
   top: 0;
   left: 0;
-  background-color: color("white");
-  color: color("black");
+  background-color: color("black");
+  color: color("white");
   font-size: 2em;
   padding: 0.2em;
   margin-bottom: -0.2em;
@@ -71,6 +71,7 @@
     height: unset;
     width: 1.4em;
     left: -0.2em;
+    border-right: 1px solid color("white");
   }
 }
 
