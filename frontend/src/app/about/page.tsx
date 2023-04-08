@@ -24,6 +24,18 @@ export default function About() {
             Beyond his work, Evan is just a boy split between New{' '}
             {'{Haven, York}'}.
           </p>
+          <br />
+          <p>
+            The making of this website brought about two helper components which
+            one might find useful in their own work:
+          </p>
+          <ul>
+            <li>– A dynamic theme-color meta tag</li>
+            <li>– Em grid-adjusted padding on box elements</li>
+          </ul>
+          <p>
+            View more information about these in the &quot;Bits&quot; tab of my website.
+          </p>
         </div>
         <div style={{ gridArea: 'c' }}>
           Contact information:

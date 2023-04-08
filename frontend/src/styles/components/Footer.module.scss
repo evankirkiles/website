@@ -10,6 +10,11 @@
   width: 100%;
   border-top: 1px solid color("darkestgray");
   background-color: color("black");
-  color: color("white");
+  color: color("gray");
   padding: 0.5em;
+
+  span {
+    display: inline-block;
+    margin-right: 0.3em;
+  }
 }

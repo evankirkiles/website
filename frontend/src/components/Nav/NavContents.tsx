@@ -59,7 +59,7 @@ export default async function NavContents() {
         <li>socials: @evankirkiles</li>
         <li className={s.media}>
           <a
-            href="https://instagram.com/evankirkiles"
+            href="https://www.instagram.com/evankirkiles"
             rel="noopener noreferrer"
             target="_blank"
           >

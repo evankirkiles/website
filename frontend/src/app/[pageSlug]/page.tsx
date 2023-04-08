@@ -123,11 +123,3 @@ export default async function PagePage({ params }: PageProps) {
     </main>
   );
 }
-
-
-// export async function generateStaticParams() {
-//   const pages = await client.fetch<Schema.Page[]>(listPages);
-//   return pages.map((page) => ({
-//     pageSlug: page.slug.current
-//   }));
-// }
