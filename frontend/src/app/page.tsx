@@ -8,12 +8,13 @@ import ps from '@/app/[pageSlug]/styles.module.scss';
 import s from '@/app/styles.module.scss';
 import HomeLinks from '@/app/links';
 import { MetaThemeColor } from '@/contexts/ThemeColorContext';
+import EmPadder from '@/components/EmPadder/EmPadder';
 
 export default function Home() {
   return (
     <main className={ps.container}>
       <MetaThemeColor color={'#000000'} scrollFrac={1} />
-      <section className={ps.columnMeta}>
+      <EmPadder className={ps.columnMeta}>
         <div style={{ gridArea: 'b', position: 'relative' }}>
           {/* @ts-expect-error Server Component */}
           <HomeLinks />
@@ -44,7 +45,7 @@ export default function Home() {
             <li>– Design</li>
           </ul>
         </div>
-      </section>
+      </EmPadder>
       <section className={ps.columnContent}>
         <h2 className={ps.columnContent_label}>Gallery</h2>
       </section>

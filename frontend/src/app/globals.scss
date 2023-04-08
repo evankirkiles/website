@@ -8,6 +8,10 @@
 @import '@/styles/utils';
 @import '@/styles/globals';
 
+:root {
+  --shf: 4.9406564584124654e-324;
+}
+
 html,
 body {
   background-color: color('white');

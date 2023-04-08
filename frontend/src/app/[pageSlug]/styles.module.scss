@@ -8,6 +8,7 @@
 @import '@/styles/utils';
 
 .container {
+  min-height: 100vh;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -21,12 +22,9 @@
   &Meta {
     background-color: color('white');
     color: color('black');
-    flex: 1;
-    min-height: 100vh;
-    min-height: -webkit-fill-available;
+    height: 85vh;
     position: relative;
-    padding: 0.9em 0.94em;
-    padding-top: 0.75em;
+    padding: 1em 0.94em;
 
     background-size: 1em 1em;
     background-image: linear-gradient(to right, #f0f0f0 1px, transparent 1px),
@@ -39,6 +37,7 @@
       max-width: 24em;
       height: 100vh;
       min-height: 100vh;
+      flex: 1;
     }
 
     display: grid;
@@ -131,7 +130,7 @@
 
 .inner {
   grid-area: s;
-  margin-top: 3.5em;
+  margin-top: 3.25em;
 }
 
 .pageNum {

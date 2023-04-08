@@ -13,6 +13,7 @@ import Link from 'next/link';
 import client from '@/cms/client';
 import Card from '@/components/Card';
 import { MetaThemeColor } from '@/contexts/ThemeColorContext';
+import EmPadder from '@/components/EmPadder/EmPadder';
 
 interface PageProps {
   params: {
@@ -60,7 +61,7 @@ export default async function PagePage({ params }: PageProps) {
   return (
     <main className={s.container}>
       <MetaThemeColor color={'#000000'} scrollFrac={0.9} />
-      <section className={s.columnMeta}>
+      <EmPadder className={s.columnMeta}>
         <div className={s.inner}>
           <h1 className={s.title}>{page.title}</h1>
           <PortableText value={page.description || []} />
@@ -86,7 +87,7 @@ export default async function PagePage({ params }: PageProps) {
         <div className={s.pageNum}>
           <span>{page.pageNum}</span>
         </div>
-      </section>
+      </EmPadder>
       <section className={s.columnContent}>
         <h2 className={s.columnContent_label}>{page.entityTitle}</h2>
         <div className={s.columnContent_inner}>
