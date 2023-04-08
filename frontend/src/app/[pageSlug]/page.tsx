@@ -123,15 +123,3 @@ export default async function PagePage({ params }: PageProps) {
     </main>
   );
 }
-
-/**
- * Pre-generate static parameters for the dynamic route.
- * 
- * @returns 
- */
-export async function generateStaticParams() {
-  const pages = await client.fetch<Schema.Page[]>(listPages);
-  return pages.map((page) => ({
-    pageSlug: page.slug
-  }));
-}

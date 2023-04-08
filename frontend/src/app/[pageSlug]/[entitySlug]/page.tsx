@@ -17,7 +17,7 @@ import EntityImage from '@/app/[pageSlug]/[entitySlug]/image';
 import { MetaThemeColor } from '@/contexts/ThemeColorContext';
 
 interface EntityPageProps {
-  params: {
+  params?: {
     pageSlug: string;
     entitySlug: string;
   };
@@ -41,6 +41,7 @@ export default async function EntityPageLayout<T extends SchemaEntityType>({
   params,
 }: EntityPageProps) {
   // figure out page metadata and titling
+  if (!params) return null;
   const page = (await client.fetch<Schema.Page[]>(pagesBySlug, params))[0];
   // retrieve the entity found on this page
   const entity = (
@@ -52,7 +53,7 @@ export default async function EntityPageLayout<T extends SchemaEntityType>({
 
   return (
     <main className={s.container}>
-    <MetaThemeColor color={'#000000'} scrollFrac={-1} />
+      <MetaThemeColor color={'#000000'} scrollFrac={-1} />
       <nav className={s.pageColumn}>
         <h2>
           <Link href={`/${page.slug.current}`}>
@@ -104,14 +105,50 @@ export default async function EntityPageLayout<T extends SchemaEntityType>({
         </div>
         <div className={s.contents}>
           <section className={s.contents_text}>
-            <EntityImage image={entity.cover as any as Schema.SanityImageAsset} hideCaption />
+            <EntityImage
+              image={entity.cover as any as Schema.SanityImageAsset}
+              hideCaption
+            />
             <PortableText value={entity.description || []} />
           </section>
           <section className={s.contents_pictures}>
-            <EntityImage image={entity.cover as any as Schema.SanityImageAsset} hideCaption />
+            <EntityImage
+              image={entity.cover as any as Schema.SanityImageAsset}
+              hideCaption
+            />
           </section>
         </div>
       </article>
     </main>
   );
+}
+
+const entitiesByPage = groq`
+*[_type == $type] | order(startDate desc) {
+  ...,
+  cover {
+    ...,
+    "metadata": asset->metadata
+  }
+}
+`;
+
+/**
+ * Pre-generate static parameters for the dynamic route.
+ *
+ * @returns
+ */
+export async function generateStaticParams(props: EntityPageProps | undefined) {
+  if (!props || !props.params) return [];
+  const { params } = props;
+  // retrieve the entity found on this page
+  const page = (await client.fetch<Schema.Page[]>(pagesBySlug, params))[0];
+  // get all of the projects specified by the page.
+  const projectsByPage = await client.fetch<SchemaEntityType[]>(entitiesByPage, {
+    type: page.entityType,
+  });
+  return projectsByPage.map(({ slug }) => ({
+    pageSlug: params.pageSlug,
+    entitySlug: slug.current
+  }));
 }
