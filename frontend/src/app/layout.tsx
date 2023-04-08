@@ -17,23 +17,25 @@ export default function RootLayout({ children }: PropsWithChildren) {
   return (
     <html lang="en">
       <head>
-        <meta id="themecolor" name="theme-color" content="#ffffff" />
+        {/* <meta id="themecolor" name="theme-color" content="#ffffff" /> */}
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="title" content="Evan Kirkiles" />
         <meta name="description" content="Programmer, designer, and artist." />
       </head>
-      <ScrollThemeColorBody
-        className={AkzidenzGrotesk.variable}
-        initialColor="#ffffff"
-        timeout={300}
-      >
+      <body className={AkzidenzGrotesk.variable}>
         {children}
         <Nav>
           {/* @ts-expect-error Server Component */}
           <NavContents />
         </Nav>
         <Footer />
-      </ScrollThemeColorBody>
+      </body>
+      {/* <ScrollThemeColorBody
+        className={AkzidenzGrotesk.variable}
+        initialColor="#ffffff"
+        timeout={300}
+      >
+      </ScrollThemeColorBody> */}
     </html>
   );
 }

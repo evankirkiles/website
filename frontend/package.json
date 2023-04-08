@@ -9,13 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@next/font": "13.0.4",
     "@portabletext/react": "^2.0.2",
     "@sanity/client": "^5.4.1",
     "@sanity/image-url": "^1.0.2",
     "classnames": "^2.3.2",
     "groq": "^3.8.2",
-    "next": "13.0.4",
+    "next": "13.3.0",
     "next-sanity-image": "^6.0.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
@@ -30,7 +29,7 @@
     "@types/react": "18.0.33",
     "@types/react-dom": "18.0.11",
     "eslint": "8.37.0",
-    "eslint-config-next": "13.0.4",
+    "eslint-config-next": "13.3.0",
     "jsdom": "^21.1.1",
     "prettier": "^2.8.7",
     "sanity-codegen": "^0.9.8",

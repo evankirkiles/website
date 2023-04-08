@@ -5,7 +5,7 @@
  * 2023 evan's website
  */
 
-import localFont from '@next/font/local';
+import localFont from 'next/font/local';
 
 export const AkzidenzGrotesk = localFont({
   variable: '--akzidenz-font',

@@ -15,7 +15,7 @@ export default function Home() {
   return (
     <main className={ps.container}>
       <MetaThemeColor color={'#000000'} scrollFrac={1} />
-      <EmPadder className={ps.columnMeta}>
+      <section className={ps.columnMeta}>
         <div style={{ gridArea: 'b', position: 'relative' }}>
           {/* @ts-expect-error Server Component */}
           <HomeLinks />
@@ -58,7 +58,7 @@ export default function Home() {
             </a>
           </div> */}
         </div>
-      </EmPadder>
+      </section>
       <section className={ps.columnContent}>
         <h2 className={ps.columnContent_label}>Gallery</h2>
       </section>

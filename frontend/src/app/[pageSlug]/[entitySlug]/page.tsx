@@ -17,7 +17,7 @@ import EntityImage from '@/app/[pageSlug]/[entitySlug]/image';
 import { MetaThemeColor } from '@/contexts/ThemeColorContext';
 
 interface EntityPageProps {
-  params?: {
+  params: {
     pageSlug: string;
     entitySlug: string;
   };
@@ -41,7 +41,6 @@ export default async function EntityPageLayout<T extends SchemaEntityType>({
   params,
 }: EntityPageProps) {
   // figure out page metadata and titling
-  if (!params) return null;
   const page = (await client.fetch<Schema.Page[]>(pagesBySlug, params))[0];
   // retrieve the entity found on this page
   const entity = (
@@ -138,9 +137,7 @@ const entitiesByPage = groq`
  *
  * @returns
  */
-export async function generateStaticParams(props: EntityPageProps | undefined) {
-  if (!props || !props.params) return [];
-  const { params } = props;
+export async function generateStaticParams({ params }: EntityPageProps) {
   // retrieve the entity found on this page
   const page = (await client.fetch<Schema.Page[]>(pagesBySlug, params))[0];
   // get all of the projects specified by the page.
