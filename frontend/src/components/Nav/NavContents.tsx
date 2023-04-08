@@ -8,6 +8,7 @@
 import * as Schema from '@/cms/schema';
 import s from '@/styles/components/Nav.module.scss';
 import groq from 'groq';
+import { IoLogoGithub, IoLogoInstagram, IoLogoLinkedin } from 'react-icons/io';
 import Link from 'next/link';
 import client from '@/cms/client';
 
@@ -44,6 +45,30 @@ export default async function NavContents() {
             <div>{pageNum}</div>
           </li>
         ))}
+      </ul>
+      <ul className={s.contact}>
+        <li style={{ fontWeight: 700, marginBottom: '1em' }}>
+          Contact
+        </li>
+        <li>email:{" "}
+          <a href="mailto:kirkilese@gmail.com">
+            kirkilese@gmail.com
+          </a>
+        </li>
+        <li>
+          socials: @evankirkiles
+        </li>
+        <li className={s.media}>
+          <a href="https://instagram.com/evankirkiles" rel="noopener noreferrer" target="_blank">
+            <IoLogoInstagram />
+          </a>
+          <a href="https://github.com/evankirkiles" rel="noopener noreferrer" target="_blank">
+            <IoLogoGithub />
+          </a>
+          <a href="https://linkedin.com/en/evankirkiles" rel="noopener noreferrer" target="_blank">
+            <IoLogoLinkedin />
+          </a>
+        </li>
       </ul>
     </div>
   );

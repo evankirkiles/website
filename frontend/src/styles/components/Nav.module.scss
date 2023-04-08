@@ -85,12 +85,12 @@
   position: relative;
   font-size: 2em;
   font-weight: 100;
-  margin-bottom: 40vh;
+  margin-right: 10vw;
 
   & li {
     display: flex;
     flex-direction: row;
-    max-width: 6.1em;
+    width: 6.1em;
     justify-content: space-between;
     & div {
       font-weight: 400;
@@ -124,6 +124,10 @@
   padding-left: 1.9em;
   width: 100%;
   z-index: 1;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding-bottom: 40vh;
 }
 
 .button {
@@ -169,4 +173,31 @@
       right: 0.1em;
     }
   }
+}
+
+.contact {
+  font-size: 1em;
+  font-weight: 100;
+  margin-top: 1.8em;
+
+  a {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.1em;
+    text-decoration-skip-ink: auto;
+    transition: color 0.1s ease-in-out;
+    &:hover {
+      color: color("blue");
+    }
+  }
+}
+
+.media {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 0.47em;
+  font-size: 2em;
+  gap: 0.45em;
 }

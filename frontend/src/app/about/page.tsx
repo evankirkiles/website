@@ -5,16 +5,25 @@
  * 2023 evan's personal website,
  */
 import s from '@/app/[pageSlug]/styles.module.scss';
+import EmPadder from '@/components/EmPadder/EmPadder';
+import Link from 'next/link';
 
 export default function About() {
   return (
     <main className={s.container}>
-      <section className={s.columnMeta} style={{ maxWidth: 'unset' }}>
-        <div style={{ gridArea: 'a' }}>← 6</div>
+      <EmPadder className={s.columnMeta} style={{ maxWidth: 'unset' }}>
+        <div className={s.links}>
+          <Link href={`/`} className={s.link_home}>
+            <strong>Evan Kirkiles</strong>
+          </Link>
+        </div>
         <div style={{ gridArea: 'b' }}></div>
-        <div style={{ gridArea: 's', marginTop: '3em' }}>
+        <div style={{ gridArea: 's', marginTop: '3.25em' }}>
           <h1 className={s.title}>About</h1>
-          <p>Beyond his work, Evan is just a boy split between New {"{Haven, York}"}.</p>
+          <p>
+            Beyond his work, Evan is just a boy split between New{' '}
+            {'{Haven, York}'}.
+          </p>
         </div>
         <div style={{ gridArea: 'c' }}>
           Contact information:
@@ -24,7 +33,7 @@ export default function About() {
             <li>– GitHub: @evankirkiles</li>
           </ul>
         </div>
-      </section>
+      </EmPadder>
     </main>
   );
 }
