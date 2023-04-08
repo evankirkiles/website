@@ -11,7 +11,7 @@ import Nav from '@/components/Nav';
 import NavContents from '@/components/Nav/NavContents';
 import { PropsWithChildren } from 'react';
 import Footer from '@/components/Footer';
-import { ScrollThemeColorProvider } from '@/contexts/ThemeColorContext';
+import { ScrollThemeColorBody } from '@/contexts/ThemeColorContext';
 
 export default function RootLayout({ children }: PropsWithChildren) {
   return (
@@ -22,16 +22,18 @@ export default function RootLayout({ children }: PropsWithChildren) {
         <meta name="title" content="Evan Kirkiles" />
         <meta name="description" content="Programmer, designer, and artist." />
       </head>
-      <ScrollThemeColorProvider initialColor="#ffffff" timeout={300}>
-        <body className={AkzidenzGrotesk.variable}>
-          {children}
-          <Nav>
-            {/* @ts-expect-error Server Component */}
-            <NavContents />
-          </Nav>
-          <Footer />
-        </body>
-      </ScrollThemeColorProvider>
+      <ScrollThemeColorBody
+        className={AkzidenzGrotesk.variable}
+        initialColor="#ffffff"
+        timeout={300}
+      >
+        {children}
+        <Nav>
+          {/* @ts-expect-error Server Component */}
+          <NavContents />
+        </Nav>
+        <Footer />
+      </ScrollThemeColorBody>
     </html>
   );
 }

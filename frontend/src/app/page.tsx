@@ -7,6 +7,7 @@
 import ps from '@/app/[pageSlug]/styles.module.scss';
 import s from '@/app/styles.module.scss';
 import HomeLinks from '@/app/links';
+import { VscMail } from 'react-icons/vsc';
 import { MetaThemeColor } from '@/contexts/ThemeColorContext';
 import EmPadder from '@/components/EmPadder/EmPadder';
 
@@ -44,6 +45,18 @@ export default function Home() {
             <li>– Photogrammetry</li>
             <li>– Design</li>
           </ul>
+          {/* <div
+            style={{ 
+              position: 'absolute',
+              bottom: '0',
+              right: '0.5em',
+              fontSize: '2em',
+            }}
+          >
+            <a href="mailto:kirkilese@gmail.com">
+              <VscMail />
+            </a>
+          </div> */}
         </div>
       </EmPadder>
       <section className={ps.columnContent}>

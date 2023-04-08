@@ -6,11 +6,10 @@
  */
 'use client';
 
-import { colorInterp } from '@/utils/colors';
 import {
   createContext,
+  HTMLProps,
   MutableRefObject,
-  PropsWithChildren,
   useCallback,
   useContext,
   useEffect,
@@ -46,12 +45,13 @@ interface IThemeColorProviderProps {
   timeout?: number;
 }
 
-export const ScrollThemeColorProvider = ({
-  children,
+export const ScrollThemeColorBody = ({
   initialColor,
   timeout = 0,
-}: PropsWithChildren<IThemeColorProviderProps>) => {
+  ...props
+}: HTMLProps<HTMLBodyElement> & IThemeColorProviderProps) => {
   // read in the existing DOM meta tag and its color, if it exists
+  const bodyRef = useRef<HTMLBodyElement>(null);
   const baseColor = useRef<string | null>(initialColor ?? null);
   const colorContexts = useRef<Record<string, IColorContext>>({});
   const [activeContext, setActiveContext] = useState<IColorContext | null>(
@@ -64,12 +64,12 @@ export const ScrollThemeColorProvider = ({
     const metaTag = document.querySelector<HTMLMetaElement>(
       'meta[name="theme-color"]'
     );
-    baseColor.current = initialColor ?? metaTag?.content ?? null;
+    baseColor.current =
+      initialColor ??
+      metaTag?.content ??
+      bodyRef?.current?.style.backgroundColor ??
+      null;
     if (metaTag) metaTag.remove();
-    return () => {
-      // remove the background-color body style we added
-      window.document.body.style.removeProperty('background-color');
-    };
   }, [initialColor]);
 
   // scroll listener for updating the "activeContext" item
@@ -97,17 +97,6 @@ export const ScrollThemeColorProvider = ({
     return () => window.removeEventListener('scroll', onScrollChange, false);
   }, [onScrollChange]);
 
-  // transition effect between active contexts
-  useEffect(() => {
-    const endColor = activeContext?.color ?? baseColor.current;
-    const usedTimeout = activeContext?.timeout ?? timeout;
-    if (!endColor) return;
-    window.document.body.style.transition = `background-color ${
-      usedTimeout / 1000
-    }s ease-in-out`;
-    window.document.body.style.backgroundColor = endColor;
-  }, [activeContext, initialColor, timeout]);
-
   return (
     <ThemeColorContext.Provider
       value={{
@@ -115,7 +104,18 @@ export const ScrollThemeColorProvider = ({
         onScrollChange,
       }}
     >
-      {children}
+      <body
+        {...props}
+        style={{
+          ...props.style,
+          transition: `background-color ${
+            activeContext?.timeout ?? timeout / 1000
+          }s ease-in-out`,
+          backgroundColor:
+            activeContext?.color ?? baseColor.current ?? undefined,
+        }}
+        ref={bodyRef}
+      ></body>
     </ThemeColorContext.Provider>
   );
 };
@@ -144,7 +144,7 @@ export const useMetaThemeColor = (
     disabled = false,
     scrollFrac = 0,
     nodeRef,
-    timeout
+    timeout,
   }: IScrollThemeColorHookOptions
 ) => {
   const id = useId();
@@ -161,7 +161,7 @@ export const useMetaThemeColor = (
       priority,
       disabled,
       top,
-      timeout
+      timeout,
     };
     onScrollChange();
     // remove color context on dismount
