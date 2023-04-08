@@ -23,6 +23,7 @@ interface IColorContext {
   id: string;
   color: string;
   top: number;
+  timeout?: number;
   disabled?: boolean;
   priority?: boolean;
 }
@@ -42,13 +43,13 @@ const ThemeColorContext = createContext<IThemeColorContext>({
 
 interface IThemeColorProviderProps {
   initialColor?: string;
-  timeout: number;
+  timeout?: number;
 }
 
 export const ScrollThemeColorProvider = ({
   children,
   initialColor,
-  timeout,
+  timeout = 0,
 }: PropsWithChildren<IThemeColorProviderProps>) => {
   // read in the existing DOM meta tag and its color, if it exists
   const baseColor = useRef<string | null>(initialColor ?? null);
@@ -98,8 +99,12 @@ export const ScrollThemeColorProvider = ({
 
   // transition effect between active contexts
   useEffect(() => {
-    let endColor = activeContext?.color ?? baseColor.current;
+    const endColor = activeContext?.color ?? baseColor.current;
+    const usedTimeout = activeContext?.timeout ?? timeout;
     if (!endColor) return;
+    window.document.body.style.transition = `background-color ${
+      usedTimeout / 1000
+    }s ease-in-out`;
     window.document.body.style.backgroundColor = endColor;
   }, [activeContext, initialColor, timeout]);
 
@@ -121,6 +126,7 @@ interface IScrollThemeColorHookOptions {
   priority?: boolean;
   disabled?: boolean;
   scrollFrac?: number;
+  timeout?: number;
   nodeRef?: MutableRefObject<HTMLElement>;
 }
 
@@ -138,6 +144,7 @@ export const useMetaThemeColor = (
     disabled = false,
     scrollFrac = 0,
     nodeRef,
+    timeout
   }: IScrollThemeColorHookOptions
 ) => {
   const id = useId();
@@ -154,6 +161,7 @@ export const useMetaThemeColor = (
       priority,
       disabled,
       top,
+      timeout
     };
     onScrollChange();
     // remove color context on dismount
@@ -168,6 +176,7 @@ export const useMetaThemeColor = (
     scrollFrac,
     nodeRef,
     disabled,
+    timeout,
     colorContexts,
     onScrollChange,
   ]);
