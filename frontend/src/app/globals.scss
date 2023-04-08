@@ -12,10 +12,13 @@
   --shf: 4.9406564584124654e-324;
 }
 
-html,
-body {
+html {
   background-color: color('white');
   color: color('black');
+}
+
+html,
+body {
   transition: background-color 0.3s ease-in-out;
   width: 100%;
   font-family: var(--akzidenz-font);
