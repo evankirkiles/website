@@ -11,6 +11,7 @@ import groq from 'groq';
 import { IoLogoGithub, IoLogoInstagram, IoLogoLinkedin } from 'react-icons/io';
 import Link from 'next/link';
 import client from '@/cms/client';
+import NavLink from '@/components/NavLink';
 
 export const listPages = groq`
 *[_type == 'page'] | order(pageNum asc) { slug, title, pageNum }
@@ -39,33 +40,43 @@ export default async function NavContents() {
           },
         ].map(({ slug: { current: slug }, title, pageNum }) => (
           <li key={slug}>
-            <Link href={`/${slug}`} className={s.link}>
+            <NavLink
+              href={`/${slug}`}
+              className={s.link}
+              classNameActive={s.linkActive}
+            >
               {title}
-            </Link>
+            </NavLink>
             <div>{pageNum}</div>
           </li>
         ))}
       </ul>
       <ul className={s.contact}>
-        <li style={{ fontWeight: 700, marginBottom: '1em' }}>
-          Contact
-        </li>
-        <li>email:{" "}
-          <a href="mailto:kirkilese@gmail.com">
-            kirkilese@gmail.com
-          </a>
-        </li>
+        <li style={{ fontWeight: 700, marginBottom: '1em' }}>Contact</li>
         <li>
-          socials: @evankirkiles
+          email: <a href="mailto:kirkilese@gmail.com">kirkilese@gmail.com</a>
         </li>
+        <li>socials: @evankirkiles</li>
         <li className={s.media}>
-          <a href="https://instagram.com/evankirkiles" rel="noopener noreferrer" target="_blank">
+          <a
+            href="https://instagram.com/evankirkiles"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
             <IoLogoInstagram />
           </a>
-          <a href="https://github.com/evankirkiles" rel="noopener noreferrer" target="_blank">
+          <a
+            href="https://github.com/evankirkiles"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
             <IoLogoGithub />
           </a>
-          <a href="https://linkedin.com/en/evankirkiles" rel="noopener noreferrer" target="_blank">
+          <a
+            href="https://linkedin.com/en/evankirkiles"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
             <IoLogoLinkedin />
           </a>
         </li>

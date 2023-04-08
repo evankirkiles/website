@@ -42,6 +42,7 @@
   opacity: 0;
   transform: translateY(-20px);
   transition: opacity 0.3s ease-out, transform 0.3s ease-in-out;
+  will-change: opacity, transform;
 
   &_active {
     pointer-events: all;
@@ -112,11 +113,27 @@
 }
 
 .link {
+  position: relative;
   transition: transform 0.1s ease-in-out;
 
-  &:hover {
+  &:not(&Active):hover {
     transform: translateX(5px);
     font-weight: 700;
+  }
+
+  &Active {
+    font-weight: 700;
+    cursor: default;
+
+    &:before {
+      position: absolute;
+      left: -0.5em;
+      top: 0.5em;
+      content: " ";
+      height: 1px;
+      width: 0.25em;
+      background-color: color("white");
+    }
   }
 }
 
