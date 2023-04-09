@@ -21,6 +21,7 @@ import {
   metaTitle,
   metaTwitter,
 } from '@/app/(main)/metaInfo';
+import GTMAnalytics from '@/components/GTMAnalytics';
 
 export default function RootLayout({ children }: PropsWithChildren) {
   return (
@@ -38,6 +39,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
         <Footer />
       </ScrollThemeColorBody>
       <Analytics />
+      <GTMAnalytics />
     </html>
   );
 }
