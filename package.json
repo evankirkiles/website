@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "postbuild": "next-sitemap --config next-sitemap.config.js",
     "start": "next start",
     "lint": "next lint"
   },
@@ -21,6 +22,7 @@
     "next": "13.3.0",
     "next-sanity": "^4.1.6",
     "next-sanity-image": "^6.0.0",
+    "next-sitemap": "^4.0.6",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.8.0",

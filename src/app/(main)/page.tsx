@@ -53,8 +53,3 @@ export default function Home() {
     </main>
   );
 }
-
-export const metadata: Metadata = {
-  title: 'Evan Kirkiles',
-  description: 'Evan Kirkiles is a student in his junior year at Yale University.'
-}
