@@ -12,12 +12,11 @@ import * as Schema from '@/lib/sanity.schema';
 import groq from 'groq';
 import { HiOutlineArrowLeft } from 'react-icons/hi2';
 import Link from 'next/link';
-import { PortableText, toPlainText } from '@portabletext/react';
+import { PortableText } from '@portabletext/react';
 import EntityImage from '@/app/(main)/[pageSlug]/[entitySlug]/image';
 import { MetaThemeColor } from '@/contexts/ThemeColorContext';
-import { Metadata } from 'next';
 
-interface EntityPageProps {
+export interface EntityPageProps {
   params: {
     pageSlug: string;
     entitySlug: string;
@@ -120,62 +119,4 @@ export default async function EntityPageLayout<
       </article>
     </main>
   );
-}
-
-const entitiesByPage = groq`
-*[_type == $type] | order(startDate desc) {
-  ...,
-  cover {
-    ...,
-    "metadata": asset->metadata
-  }
-}
-`;
-
-/**
- * Pre-generate static parameters for the dynamic route.
- *
- * @returns
- */
-export async function generateStaticParams({ params }: EntityPageProps) {
-  // retrieve the entity found on this page
-  const page = (await client.fetch<Schema.Page[]>(pagesBySlug, params))[0];
-  // get all of the projects specified by the page.
-  const projectsByPage = await client.fetch<SchemaEntity[]>(entitiesByPage, {
-    type: page.entityType,
-  });
-  return projectsByPage.map(({ slug }) => ({
-    pageSlug: params.pageSlug,
-    entitySlug: slug.current.split('/')[1],
-  }));
-}
-
-export async function generateMetadata<
-  T extends Exclude<SchemaEntity, Schema.Design>
->({ params }: EntityPageProps): Promise<Metadata> {
-  const entity = (
-    await client.fetch<T[]>(entityBySlug, {
-      slug: `${params.pageSlug}/${params.entitySlug}`,
-    })
-  )[0];
-  const description = entity.description && toPlainText(entity.description);
-  const title = `${
-    entity._type === 'work' ? entity.company : entity.title
-  } | Evan Kirkiles`;
-  const descriptionF =
-    description && description.length > 152
-      ? description.substring(0, 152) + '...'
-      : description;
-  return {
-    title,
-    description: descriptionF,
-    openGraph: {
-      title,
-      description: descriptionF,
-    },
-    twitter: {
-      title,
-      description: descriptionF,
-    },
-  };
 }

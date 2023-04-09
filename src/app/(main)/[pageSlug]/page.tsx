@@ -115,27 +115,3 @@ export default async function PagePage({ params }: PageProps) {
     </main>
   );
 }
-
-export async function generateMetadata({
-  params,
-}: PageProps): Promise<Metadata> {
-  const page = (await client.fetch<Schema.Page[]>(pagesBySlug, params))[0];
-  const description = page.description && toPlainText(page.description);
-  const title = `${page.title} | Evan Kirkiles`;
-  const descriptionF =
-    description && description.length > 152
-      ? description.substring(0, 152) + '...'
-      : description;
-  return {
-    title,
-    description: descriptionF,
-    openGraph: {
-      title,
-      description: descriptionF,
-    },
-    twitter: {
-      title,
-      description: descriptionF,
-    },
-  };
-}

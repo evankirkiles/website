@@ -13,6 +13,13 @@ import { PropsWithChildren } from 'react';
 import Footer from '@/components/Footer';
 import { ScrollThemeColorBody } from '@/contexts/ThemeColorContext';
 import { Metadata } from 'next';
+import {
+  metaDescription,
+  metaOG,
+  metaSite,
+  metaTitle,
+  metaTwitter,
+} from '@/app/(main)/metaInfo';
 
 export default function RootLayout({ children }: PropsWithChildren) {
   return (
@@ -34,52 +41,62 @@ export default function RootLayout({ children }: PropsWithChildren) {
 }
 
 export const metadata: Metadata = {
-  title: 'Evan Kirkiles',
-  description:
-    'Evan Kirkiles is a programmer, artist, and designer in his junior year at Yale University.',
-  authors: { name: 'Evan Kirkiles', url: 'https://evankirkil.es' },
+  title: metaTitle,
+  description: metaDescription,
+  authors: { name: 'Evan Kirkiles', url: metaSite },
   themeColor: '#ffffff',
+  manifest: '/site.webmanifest',
   viewport: { width: 'device-width', initialScale: 1 },
-  keywords: [
-    "programmer",
-    "art",
-    "design",
-    "programming",
-    "industry",
-    "software",
-    "software engineer",
-    "evan",
-    "kirkiles",
-    "intern",
-    "developer",
-    "computers",
-    "computer",
-    "science",
-    "terraform",
-    "typescript",
-    "nextjs",
-    "react",
-    "nextjs 13",
-    "c++",
-    "javascript",
-    "html",
-    "css"
-  ],
-  openGraph: {
-    type: 'website',
-    url: 'https://evankirkil.es',
-    siteName: 'Evan Kirkiles',
-    title: 'Evan Kirkiles',
-    description: 'Evan Kirkiles is a programmer, artist, and designer in his junior year at Yale University.',
-    emails:[ "kirkilese@gmail.com", "evan.kirkiles@yale.edu"],
-    locale: "en-US",
-    images: []
+  openGraph: metaOG,
+  twitter: metaTwitter,
+  other: { 'msapplication-TileColor': '#da532c' },
+  icons: {
+    icon: [
+      {
+        url: '/favicon-32x32.png',
+        type: 'image/png',
+        sizes: '32x32',
+      },
+      {
+        url: '/favicon-16x16.png',
+        type: 'image/png',
+        sizes: '16x16',
+      },
+    ],
+    apple: {
+      url: '/apple-touch-icon.png',
+      sizes: '180x180',
+    },
+    other: [
+      {
+        rel: 'mask-icon',
+        url: '/safari-pinned-tab.svg',
+      },
+    ],
   },
-  twitter: {
-    title: 'Evan Kirkiles',
-    description: 'Evan Kirkiles is a programmer, artist, and designer in his junior year at Yale University.',
-    card: 'summary_large_image',
-    site: "https://evankirkil.es",
-    creator: '@evankirkiles',
-  }
+  keywords: [
+    'programmer',
+    'art',
+    'design',
+    'programming',
+    'industry',
+    'software',
+    'software engineer',
+    'evan',
+    'kirkiles',
+    'intern',
+    'developer',
+    'computers',
+    'computer',
+    'science',
+    'terraform',
+    'typescript',
+    'nextjs',
+    'react',
+    'nextjs 13',
+    'c++',
+    'javascript',
+    'html',
+    'css',
+  ],
 };
