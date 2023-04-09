@@ -33,7 +33,7 @@ export default function Nav({ children }: PropsWithChildren) {
     <>
       <MetaThemeColor
         color={'#000000'}
-        disabled={!isMounted}
+        disabled={!isEnter}
         timeout={0}
         priority
       />
@@ -44,7 +44,7 @@ export default function Nav({ children }: PropsWithChildren) {
         aria-label="Menu"
         onClick={() => toggle()}
       >
-        {isMounted ? (
+        {isEnter ? (
           <>
             <TfiClose />
             <span>Close</span>
