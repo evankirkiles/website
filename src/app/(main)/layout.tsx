@@ -26,6 +26,9 @@ import GTMAnalytics from '@/components/GTMAnalytics';
 export default function RootLayout({ children }: PropsWithChildren) {
   return (
     <html lang="en">
+      <head>
+        <meta name="theme-color" content="#ffffff" />
+      </head>
       <ScrollThemeColorBody
         className={AkzidenzGrotesk.variable}
         initialColor="#ffffff"
@@ -48,7 +51,6 @@ export const metadata: Metadata = {
   title: metaTitle,
   description: metaDescription,
   authors: { name: 'Evan Kirkiles', url: metaSite },
-  themeColor: '#ffffff',
   manifest: '/site.webmanifest',
   viewport: { width: 'device-width', initialScale: 1 },
   openGraph: metaOG,
