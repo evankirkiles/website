@@ -148,6 +148,6 @@ export async function generateStaticParams({ params }: EntityPageProps) {
   );
   return projectsByPage.map(({ slug }) => ({
     pageSlug: params.pageSlug,
-    entitySlug: slug.current,
+    entitySlug: slug.current.split('/')[1],
   }));
 }
