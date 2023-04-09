@@ -13,6 +13,7 @@ import { PropsWithChildren } from 'react';
 import Footer from '@/components/Footer';
 import { ScrollThemeColorBody } from '@/contexts/ThemeColorContext';
 import { Metadata } from 'next';
+import { Analytics } from '@vercel/analytics/react';
 import {
   metaDescription,
   metaOG,
@@ -36,6 +37,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
         </Nav>
         <Footer />
       </ScrollThemeColorBody>
+      <Analytics />
     </html>
   );
 }
