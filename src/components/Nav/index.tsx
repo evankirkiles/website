@@ -13,22 +13,27 @@ import { usePathname } from 'next/navigation';
 import { PropsWithChildren, useEffect, useState } from 'react';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { TfiClose } from 'react-icons/tfi';
+import useTransition from 'react-transition-state';
 
 export default function Nav({ children }: PropsWithChildren) {
+  // control menu open state
+  const [{ isMounted, isEnter }, toggle] = useTransition({
+    timeout: 300,
+    mountOnEnter: true,
+    unmountOnExit: true,
+  });
+
   // close the menu when route changes
   const pathname = usePathname();
   useEffect(() => {
-    setNavOpen(false);
+    toggle(false);
   }, [pathname]);
-
-  // control menu open state
-  const [navOpen, setNavOpen] = useState(false);
 
   return (
     <>
       <MetaThemeColor
         color={'#000000'}
-        disabled={!navOpen}
+        disabled={!isMounted}
         timeout={0}
         priority
       />
@@ -36,9 +41,10 @@ export default function Nav({ children }: PropsWithChildren) {
         className={classNames(s.button, {
           [s.button_offset]: pathname && pathname.split('/').length > 2,
         })}
-        onClick={() => setNavOpen(!navOpen)}
+        aria-label="Menu"
+        onClick={() => toggle()}
       >
-        {navOpen ? (
+        {isMounted ? (
           <>
             <TfiClose />
             <span>Close</span>
@@ -50,13 +56,15 @@ export default function Nav({ children }: PropsWithChildren) {
           </>
         )}
       </button>
-      <nav
-        className={classNames(s.container, {
-          [s.container_active]: navOpen,
-        })}
-      >
-        {children}
-      </nav>
+      {isMounted && (
+        <nav
+          className={classNames(s.container, {
+            [s.container_active]: isEnter,
+          })}
+        >
+          {children}
+        </nav>
+      )}
     </>
   );
 }
