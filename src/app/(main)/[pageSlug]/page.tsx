@@ -15,7 +15,8 @@ import Card from '@/components/Card';
 import { MetaThemeColor } from '@/contexts/ThemeColorContext';
 import EmPadder from '@/components/EmPadder/EmPadder';
 import { SchemaEntity } from '@/lib/helpers';
-import { previewData } from 'next/dist/client/components/headers';
+import { Metadata } from 'next';
+import { toPlainText } from '@portabletext/react';
 
 interface PageProps {
   params: {
@@ -113,4 +114,28 @@ export default async function PagePage({ params }: PageProps) {
       </section>
     </main>
   );
+}
+
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
+  const page = (await client.fetch<Schema.Page[]>(pagesBySlug, params))[0];
+  const description = page.description && toPlainText(page.description);
+  const title = `${page.title} | Evan Kirkiles`;
+  const descriptionF =
+    description && description.length > 152
+      ? description.substring(0, 152) + '...'
+      : description;
+  return {
+    title,
+    description: descriptionF,
+    openGraph: {
+      title,
+      description: descriptionF,
+    },
+    twitter: {
+      title,
+      description: descriptionF,
+    },
+  };
 }

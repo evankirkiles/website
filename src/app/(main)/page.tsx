@@ -9,6 +9,7 @@ import s from '@/app/(main)/styles.module.scss';
 import HomeLinks from '@/app/(main)/links';
 import { MetaThemeColor } from '@/contexts/ThemeColorContext';
 import EmPadder from '@/components/EmPadder/EmPadder';
+import { Metadata } from 'next';
 
 export default function Home() {
   return (
@@ -51,4 +52,9 @@ export default function Home() {
       </section>
     </main>
   );
+}
+
+export const metadata: Metadata = {
+  title: 'Evan Kirkiles',
+  description: 'Evan Kirkiles is a student in his junior year at Yale University.'
 }

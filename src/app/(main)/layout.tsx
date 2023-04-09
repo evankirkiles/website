@@ -12,16 +12,11 @@ import NavContents from '@/components/Nav/NavContents';
 import { PropsWithChildren } from 'react';
 import Footer from '@/components/Footer';
 import { ScrollThemeColorBody } from '@/contexts/ThemeColorContext';
+import { Metadata } from 'next';
 
 export default function RootLayout({ children }: PropsWithChildren) {
   return (
     <html lang="en">
-      <head>
-        <meta id="themecolor" name="theme-color" content="#ffffff" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="title" content="Evan Kirkiles" />
-        <meta name="description" content="Programmer, designer, and artist." />
-      </head>
       <ScrollThemeColorBody
         className={AkzidenzGrotesk.variable}
         initialColor="#ffffff"
@@ -37,3 +32,54 @@ export default function RootLayout({ children }: PropsWithChildren) {
     </html>
   );
 }
+
+export const metadata: Metadata = {
+  title: 'Evan Kirkiles',
+  description:
+    'Evan Kirkiles is a programmer, artist, and designer in his junior year at Yale University.',
+  authors: { name: 'Evan Kirkiles', url: 'https://evankirkil.es' },
+  themeColor: '#ffffff',
+  viewport: { width: 'device-width', initialScale: 1 },
+  keywords: [
+    "programmer",
+    "art",
+    "design",
+    "programming",
+    "industry",
+    "software",
+    "software engineer",
+    "evan",
+    "kirkiles",
+    "intern",
+    "developer",
+    "computers",
+    "computer",
+    "science",
+    "terraform",
+    "typescript",
+    "nextjs",
+    "react",
+    "nextjs 13",
+    "c++",
+    "javascript",
+    "html",
+    "css"
+  ],
+  openGraph: {
+    type: 'website',
+    url: 'https://evankirkil.es',
+    siteName: 'Evan Kirkiles',
+    title: 'Evan Kirkiles',
+    description: 'Evan Kirkiles is a programmer, artist, and designer in his junior year at Yale University.',
+    emails:[ "kirkilese@gmail.com", "evan.kirkiles@yale.edu"],
+    locale: "en-US",
+    images: []
+  },
+  twitter: {
+    title: 'Evan Kirkiles',
+    description: 'Evan Kirkiles is a programmer, artist, and designer in his junior year at Yale University.',
+    card: 'summary_large_image',
+    site: "https://evankirkil.es",
+    creator: '@evankirkiles',
+  }
+};
