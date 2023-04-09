@@ -126,6 +126,13 @@ export interface Project extends SanityDocument {
     asset: SanityReference<SanityImageAsset>;
     crop?: SanityImageCrop;
     hotspot?: SanityImageHotspot;
+
+    /**
+     * Caption — `string`
+     *
+     * A caption for the image, also to be used as alt text.
+     */
+    caption?: string;
   };
 
   /**
@@ -203,6 +210,13 @@ export interface Work extends SanityDocument {
     asset: SanityReference<SanityImageAsset>;
     crop?: SanityImageCrop;
     hotspot?: SanityImageHotspot;
+
+    /**
+     * Caption — `string`
+     *
+     * A caption for the image, also to be used as alt text.
+     */
+    caption?: string;
   };
 
   /**
@@ -338,6 +352,13 @@ export interface Play extends SanityDocument {
     asset: SanityReference<SanityImageAsset>;
     crop?: SanityImageCrop;
     hotspot?: SanityImageHotspot;
+
+    /**
+     * Caption — `string`
+     *
+     * A caption for the image, also to be used as alt text.
+     */
+    caption?: string;
   };
 
   /**

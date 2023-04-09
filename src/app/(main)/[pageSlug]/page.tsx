@@ -14,6 +14,8 @@ import client from '@/lib/sanity.client';
 import Card from '@/components/Card';
 import { MetaThemeColor } from '@/contexts/ThemeColorContext';
 import EmPadder from '@/components/EmPadder/EmPadder';
+import { SchemaEntity } from '@/lib/helpers';
+import { previewData } from 'next/dist/client/components/headers';
 
 interface PageProps {
   params: {
@@ -34,8 +36,6 @@ const entitiesByPage = groq`
   }
 }
 `;
-
-type SchemaEntity = Schema.Work | Schema.Project | Schema.Design | Schema.Play;
 
 /**
  * A generated page, corresponding to a Sanity "Page" entry.
@@ -93,29 +93,17 @@ export default async function PagePage({ params }: PageProps) {
         <div className={s.columnContent_inner}>
           {projectsByPage.map((entity) =>
             entity._type === 'design' ? null : (
-              <Card
-                key={entity._id}
-                entitySlug={page.slug.current}
-                item={entity}
-              />
+              <Card key={entity._id} item={entity} />
             )
           )}
           {projectsByPage.map((entity) =>
             entity._type === 'design' ? null : (
-              <Card
-                key={`${entity._id}1`}
-                entitySlug={page.slug.current}
-                item={entity}
-              />
+              <Card key={`${entity._id}1`} item={entity} />
             )
           )}
           {projectsByPage.map((entity) =>
             entity._type === 'design' ? null : (
-              <Card
-                key={`${entity._id}2`}
-                entitySlug={page.slug.current}
-                item={entity}
-              />
+              <Card key={`${entity._id}2`} item={entity} />
             )
           )}
         </div>

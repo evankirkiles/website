@@ -7,7 +7,7 @@
 
 import client from '@/lib/sanity.client';
 import s from '@/app/(main)/[pageSlug]/[entitySlug]/styles.module.scss';
-import { SchemaEntityType } from '@/lib/helpers';
+import { SchemaEntity } from '@/lib/helpers';
 import * as Schema from '@/lib/sanity.schema';
 import groq from 'groq';
 import { HiOutlineArrowLeft } from 'react-icons/hi2';
@@ -27,8 +27,8 @@ const pagesBySlug = groq`
 *[_type == 'page' && slug.current == $pageSlug] { ... }
 `;
 
-const entityByTypeSlug = groq`
-*[_type == $type && slug.current == $slug] {
+const entityBySlug = groq`
+*[slug.current == $slug] {
   ...,
   cover {
     ...,
@@ -37,16 +37,15 @@ const entityByTypeSlug = groq`
 }
 `;
 
-export default async function EntityPageLayout<T extends SchemaEntityType>({
-  params,
-}: EntityPageProps) {
+export default async function EntityPageLayout<
+  T extends Exclude<SchemaEntity, Schema.Design>
+>({ params }: EntityPageProps) {
   // figure out page metadata and titling
   const page = (await client.fetch<Schema.Page[]>(pagesBySlug, params))[0];
   // retrieve the entity found on this page
   const entity = (
-    await client.fetch<T[]>(entityByTypeSlug, {
-      type: page.entityType,
-      slug: params.entitySlug,
+    await client.fetch<T[]>(entityBySlug, {
+      slug: `${params.pageSlug}/${params.entitySlug}`,
     })
   )[0];
 
@@ -141,11 +140,14 @@ export async function generateStaticParams({ params }: EntityPageProps) {
   // retrieve the entity found on this page
   const page = (await client.fetch<Schema.Page[]>(pagesBySlug, params))[0];
   // get all of the projects specified by the page.
-  const projectsByPage = await client.fetch<SchemaEntityType[]>(entitiesByPage, {
-    type: page.entityType,
-  });
+  const projectsByPage = await client.fetch<SchemaEntity[]>(
+    entitiesByPage,
+    {
+      type: page.entityType,
+    }
+  );
   return projectsByPage.map(({ slug }) => ({
     pageSlug: params.pageSlug,
-    entitySlug: slug.current
+    entitySlug: slug.current,
   }));
 }

@@ -44,18 +44,6 @@ export default function Home() {
             <li>– Photogrammetry</li>
             <li>– Design</li>
           </ul>
-          {/* <div
-            style={{ 
-              position: 'absolute',
-              bottom: '0',
-              right: '0.5em',
-              fontSize: '2em',
-            }}
-          >
-            <a href="mailto:kirkilese@gmail.com">
-              <VscMail />
-            </a>
-          </div> */}
         </div>
       </EmPadder>
       <section className={ps.columnContent}>

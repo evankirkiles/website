@@ -12,21 +12,18 @@ import * as Schema from '@/lib/sanity.schema';
 import client from '@/lib/sanity.client';
 import { useNextSanityImage } from 'next-sanity-image';
 import Link from 'next/link';
+import { SchemaEntity } from '@/lib/helpers';
 
-type EntityType = Schema.Work | Schema.Play | Schema.Project;
-
-interface CardProps<T extends EntityType> {
-  entitySlug: string;
+interface CardProps<T extends Exclude<SchemaEntity, Schema.Design>> {
   item: T;
 }
 
-export default function Card<T extends EntityType>({
-  entitySlug,
+export default function Card<T extends Exclude<SchemaEntity, Schema.Design>>({
   item,
 }: CardProps<T>) {
   const imageProps = useNextSanityImage(client, item.cover);
   return (
-    <Link href={`/${entitySlug}/${item.slug.current}`} className={s.container}>
+    <Link href={`/${item.slug.current}`} className={s.container}>
       <Image
         {...imageProps}
         // sizes="(max-width: 800px) 100vw, 800px"
