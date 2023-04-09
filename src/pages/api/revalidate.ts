@@ -29,11 +29,14 @@ export default async function revalidate(
       return;
     }
 
-    const staleRoute = `/${(body.slug as Slug).current}`;
-    await res.revalidate(staleRoute);
-    const message = `Updated route: ${staleRoute}`;
-    console.log(message);
-    return res.status(200).json({ message });
+    const elements = (body.slug as Slug).current.split('/');
+    let prevPath = "";
+    const revalidates = elements.map((curr) => {
+      prevPath += `/${curr}`;
+      return res.revalidate(prevPath);
+    });
+    await Promise.all(revalidates);
+    return res.status(200).json({ revalidated: revalidates.length });
   } catch (err) {
     console.error(err);
     return res

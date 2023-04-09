@@ -45,8 +45,11 @@ const entitiesByPage = groq`
  */
 export default async function PagePage({ params }: PageProps) {
   // figure out page metadata and titling
-  const pages = await client.fetch<Schema.Page[]>(listPages);
-  const page = (await client.fetch<Schema.Page[]>(pagesBySlug, params))[0];
+  const [pages, slugPages] = await Promise.all([
+    client.fetch<Schema.Page[]>(listPages),
+    client.fetch<Schema.Page[]>(pagesBySlug, params),
+  ]);
+  const page = slugPages[0];
   if (!page) return null;
   const prevSlug =
     page.pageNum === 1 ? '' : pages[page.pageNum - 2].slug.current;
