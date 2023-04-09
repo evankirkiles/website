@@ -9,7 +9,7 @@ import { AkzidenzGrotesk } from '@/fonts/fonts';
 import '@/app/(main)/globals.scss';
 import Nav from '@/components/Nav';
 import NavContents from '@/components/Nav/NavContents';
-import { PropsWithChildren } from 'react';
+import { PropsWithChildren, Suspense } from 'react';
 import Footer from '@/components/Footer';
 import { ScrollThemeColorBody } from '@/contexts/ThemeColorContext';
 import { Metadata } from 'next';
@@ -28,6 +28,9 @@ export default function RootLayout({ children }: PropsWithChildren) {
     <html lang="en">
       <head>
         <meta name="theme-color" content="#ffffff" />
+        <Suspense>
+          <GTMAnalytics />
+        </Suspense>
       </head>
       <ScrollThemeColorBody
         className={AkzidenzGrotesk.variable}
@@ -42,7 +45,6 @@ export default function RootLayout({ children }: PropsWithChildren) {
         <Footer />
       </ScrollThemeColorBody>
       <Analytics />
-      <GTMAnalytics />
     </html>
   );
 }
