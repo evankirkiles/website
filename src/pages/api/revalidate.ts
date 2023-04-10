@@ -16,6 +16,7 @@ export default async function revalidate(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+  let bodyJson;
   try {
     const { isValidSignature, body } = await parseBody(
       req,
@@ -29,6 +30,8 @@ export default async function revalidate(
       return;
     }
 
+    bodyJson = body;
+
     const elements = (body.slug as Slug).current.split('/');
     let prevPath = "";
     const revalidates = elements.map((curr) => {
@@ -41,6 +44,6 @@ export default async function revalidate(
     console.error(err);
     return res
       .status(500)
-      .json({ message: (err as { message: string }).message });
+      .json({ message: (err as { message: string }).message, reqBody: bodyJson });
   }
 }

@@ -14,7 +14,7 @@ import { Metadata } from 'next';
 export default function Home() {
   return (
     <main className={ps.container}>
-      <MetaThemeColor color={'#000000'} scrollFrac={1} />
+      <MetaThemeColor color={'#000000'} scrollFrac={0.05} />
       <EmPadder className={ps.columnMeta}>
         <div style={{ gridArea: 'b', position: 'relative' }}>
           {/* @ts-expect-error Server Component */}

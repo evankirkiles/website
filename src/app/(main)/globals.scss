@@ -22,6 +22,10 @@ body {
   transition: background-color 0.3s ease-in-out;
   width: 100%;
   font-family: var(--akzidenz-font);
+
+  @include media("lg") {
+    background-color: color('black') !important;
+  }
 }
 
 ::selection {
