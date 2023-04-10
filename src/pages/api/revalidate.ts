@@ -43,7 +43,7 @@ export default async function revalidate(
   } catch (err) {
     console.error(err);
     return res
-      .status(500)
+      .status(201)
       .json({ message: (err as { message: string }).message, reqBody: bodyJson });
   }
 }
