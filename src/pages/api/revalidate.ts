@@ -5,6 +5,9 @@
  * 2023 the nobot space,
  */
 
+import client from '@/lib/sanity.client';
+import { SanityDocument } from '@sanity/client';
+import groq from 'groq';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { parseBody } from 'next-sanity/webhook';
 import { Slug } from 'sanity';
@@ -29,12 +32,31 @@ export default async function revalidate(
       return;
     }
 
-    const elements = (body.slug as Slug).current.split('/');
-    let prevPath = "";
-    const revalidates = elements.map((curr) => {
-      prevPath += `/${curr}`;
-      return res.revalidate(prevPath);
-    });
+    // gather all slugs to be revalidated
+    const slugs = [];
+    if (body._type == 'sanity.imageAsset') {
+      const items = await client.fetch<{ slug: { current: string } }[]>(
+        groq`
+        *[defined(slug) && references($ref)]
+      `,
+        { ref: body._id }
+      );
+      items.forEach(({ slug }) => slugs.push(slug));
+    } else {
+      slugs.push((body.slug as Slug).current);
+    }
+
+    // accumulate all the unique paths that need to be revalidated
+    const revalidatePaths = new Set(
+      slugs.flatMap((slug) => {
+        let prevPath = '';
+        return slug.split('/').map((curr) => {
+          prevPath += `/${curr}`;
+          return prevPath;
+        });
+      })
+    );
+    const revalidates = [...revalidatePaths].map(() => res.revalidate);
     await Promise.all(revalidates);
     return res.status(200).json({ revalidated: revalidates.length });
   } catch (err) {
