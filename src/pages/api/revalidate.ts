@@ -6,7 +6,6 @@
  */
 
 import client from '@/lib/sanity.client';
-import { SanityDocument } from '@sanity/client';
 import groq from 'groq';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { parseBody } from 'next-sanity/webhook';
@@ -15,16 +14,25 @@ import { Slug } from 'sanity';
 // Export the config from next-sanity to enable validating the request body signature properly
 export { config } from 'next-sanity/webhook';
 
+/**
+ * Revalidates a path on the website using on-demand revalidation.
+ *
+ * @param req
+ * @param res
+ * @returns
+ */
 export default async function revalidate(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
   try {
+    // Parse the body and signature of the Sanity request
     const { isValidSignature, body } = await parseBody(
       req,
       process.env.SANITY_REVALIDATE_SECRET
     );
 
+    // Ensure signature is valid
     if (!isValidSignature) {
       const message = 'Invalid signature';
       console.warn(message);
@@ -32,33 +40,46 @@ export default async function revalidate(
       return;
     }
 
-    // gather all slugs to be revalidated
+    // Gather all slugs to be revalidated
     const slugs = [];
-    if (body._type == 'sanity.imageAsset') {
-      const items = await client.fetch<{ slug: { current: string } }[]>(
-        groq`
-        *[defined(slug) && references($ref)]
-      `,
-        { ref: body._id }
-      );
-      items.forEach(({ slug }) => slugs.push(slug));
-    } else {
-      slugs.push((body.slug as Slug).current);
+    switch (body._type) {
+      // Image assets require updating their references
+      case 'sanity.imageAsset':
+        const items = await client.fetch<{ slug: { current: string } }[]>(
+          groq`
+          *[defined(slug) && references($ref)]
+        `,
+          { ref: body._id }
+        );
+        items.forEach(({ slug }) => slugs.push(slug));
+        break;
+      // Validate anythig else with a slug
+      default:
+        const slug = body.slug as Slug | undefined;
+        if (slug) slugs.push(slug.current);
     }
 
-    // accumulate all the unique paths that need to be revalidated
-    const revalidatePaths = new Set(
-      slugs.flatMap((slug) => {
-        let prevPath = '';
-        return slug.split('/').map((curr) => {
-          prevPath += `/${curr}`;
-          return prevPath;
-        });
-      })
-    );
-    const revalidates = [...revalidatePaths].map(() => res.revalidate);
+    // Accumulate all the unique paths that need to be revalidated
+    const revalidatePaths = [
+      ...new Set(
+        slugs.flatMap((slug) => {
+          let prevPath = '';
+          return slug.split('/').map((curr) => {
+            prevPath += `/${curr}`;
+            return prevPath;
+          });
+        })
+      ),
+    ];
+
+    // And send the revalidation requests
+    const revalidates = revalidatePaths.map(() => res.revalidate);
     await Promise.all(revalidates);
-    return res.status(200).json({ revalidated: revalidates.length });
+    return res
+      .status(200)
+      .json({ n_revalidated: revalidatePaths.length, paths: revalidatePaths });
+
+  // In case of error, return 500 (will retry next time)
   } catch (err) {
     console.error(err);
     return res
