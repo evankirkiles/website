@@ -60,7 +60,8 @@ export default async function revalidate(
     }
 
     // Accumulate all the unique paths that need to be revalidated
-    const revalidatePaths = [
+    const stalePaths = [
+      '/',
       ...new Set(
         slugs.flatMap((slug) => {
           let prevPath = '';
@@ -73,13 +74,13 @@ export default async function revalidate(
     ];
 
     // And send the revalidation requests
-    const revalidates = revalidatePaths.map(() => res.revalidate);
+    const revalidates = stalePaths.map((route) => res.revalidate(route));
     await Promise.all(revalidates);
     return res
       .status(200)
-      .json({ n_revalidated: revalidatePaths.length, paths: revalidatePaths });
+      .json({ n_revalidated: stalePaths.length, paths: stalePaths });
 
-  // In case of error, return 500 (will retry next time)
+    // In case of error, return 500 (will retry next time)
   } catch (err) {
     console.error(err);
     return res
