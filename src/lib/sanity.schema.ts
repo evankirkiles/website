@@ -96,6 +96,13 @@ export interface Scopedcopy extends SanityDocument {
   _type: "scopedcopy";
 
   /**
+   * Comment — `string`
+   *
+   * A hint on what this copy does.
+   */
+  comment?: string;
+
+  /**
    * Content — `array`
    *
    * The contents of this block.
@@ -108,6 +115,13 @@ export interface Scopedcopy extends SanityDocument {
    * The slug where this copy is located.
    */
   slug: string;
+
+  /**
+   * Index — `number`
+   *
+   * A number to sort page text copy by.
+   */
+  index?: number;
 }
 
 /**
@@ -192,6 +206,13 @@ export interface Project extends SanityDocument {
    *
    */
   toolsUsed?: Array<SanityKeyed<string>>;
+
+  /**
+   * Gallery Priority — `number`
+   *
+   * Priority of this entity in the gallery (lower is first, undefined for none).
+   */
+  galleryPriority?: number;
 }
 
 /**
@@ -308,11 +329,37 @@ export interface Design extends SanityDocument {
   slug: { _type: "slug"; current: string };
 
   /**
+   * Cover Image — `image`
+   *
+   * Cover image to show for this entity.
+   */
+  cover: {
+    _type: "image";
+    asset: SanityReference<SanityImageAsset>;
+    crop?: SanityImageCrop;
+    hotspot?: SanityImageHotspot;
+
+    /**
+     * Caption — `string`
+     *
+     * A caption for the image, also to be used as alt text.
+     */
+    caption?: string;
+  };
+
+  /**
    * Location — `string`
    *
    * Where this entity occurred.
    */
   location?: string;
+
+  /**
+   * Description — `array`
+   *
+   * Describe this entity.
+   */
+  description?: Array<SanityKeyed<SanityBlock>>;
 
   /**
    * Start Date — `date`
@@ -322,11 +369,11 @@ export interface Design extends SanityDocument {
   startDate?: string;
 
   /**
-   * Description — `array`
+   * End Date — `date`
    *
-   * Describe this entity.
+   * When did this entity end? (if ever)
    */
-  description?: Array<SanityKeyed<SanityBlock>>;
+  endDate?: string;
 
   /**
    * Tech Stack — `array`

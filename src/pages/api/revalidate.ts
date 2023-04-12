@@ -76,6 +76,11 @@ export default async function revalidate(
       ),
     ];
 
+    // If gallery priority was set, we also need to revalidate the index
+    if (body.galleryPriority) {
+      stalePaths.push('/');
+    }
+
     // And send the revalidation requests
     const revalidates = stalePaths.map((route) => res.revalidate(route));
     await Promise.all(revalidates);

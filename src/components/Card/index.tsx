@@ -14,13 +14,11 @@ import { useNextSanityImage } from 'next-sanity-image';
 import Link from 'next/link';
 import { SchemaEntity } from '@/lib/helpers';
 
-interface CardProps<T extends Exclude<SchemaEntity, Schema.Design>> {
+interface CardProps<T extends SchemaEntity> {
   item: T;
 }
 
-export default function Card<T extends Exclude<SchemaEntity, Schema.Design>>({
-  item,
-}: CardProps<T>) {
+export default function Card<T extends SchemaEntity>({ item }: CardProps<T>) {
   const imageProps = useNextSanityImage(client, item.cover);
   return (
     <Link href={`/${item.slug.current}`} className={s.container}>
@@ -28,7 +26,9 @@ export default function Card<T extends Exclude<SchemaEntity, Schema.Design>>({
         {...imageProps}
         // sizes="(max-width: 800px) 100vw, 800px"
         placeholder="blur"
-        blurDataURL={(item.cover as any as Schema.SanityImageAsset).metadata.lqip}
+        blurDataURL={
+          (item.cover as any as Schema.SanityImageAsset).metadata.lqip
+        }
         alt={(item.cover as any).caption}
         className={s.image}
       />
@@ -38,9 +38,11 @@ export default function Card<T extends Exclude<SchemaEntity, Schema.Design>>({
             <h1 className={s.title}>{item.role}</h1>
             <h2>{item.company}</h2>
           </>
-        ) : <>
-          <h1 className={s.title}>{item.title}</h1>
-        </>}
+        ) : (
+          <>
+            <h1 className={s.title}>{item.title}</h1>
+          </>
+        )}
       </div>
       <div className={s.dateArea}>
         <div>
@@ -53,12 +55,13 @@ export default function Card<T extends Exclude<SchemaEntity, Schema.Design>>({
         </div>
         <div>
           {item.endDate
-            ? new Date(Date.parse(item.endDate)).toLocaleString('default', {
+            ? 'to ' +
+              new Date(Date.parse(item.endDate)).toLocaleString('default', {
                 month: 'long',
                 year: 'numeric',
               })
             : item.startDate
-            ? 'Present'
+            ? 'to Present'
             : null}
         </div>
       </div>

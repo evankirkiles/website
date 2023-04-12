@@ -60,9 +60,9 @@ export default function Layout({ children }: PropsWithChildren) {
   return <>{children}</>;
 }
 
-export async function generateMetadata<
-  T extends Exclude<SchemaEntity, Schema.Design>
->({ params }: EntityPageProps): Promise<Metadata> {
+export async function generateMetadata<T extends SchemaEntity>({
+  params,
+}: EntityPageProps): Promise<Metadata> {
   const entity = (
     await client.fetch<T[]>(entityBySlug, {
       slug: `${params.pageSlug}/${params.entitySlug}`,
@@ -83,13 +83,13 @@ export async function generateMetadata<
       ...metaOG,
       title,
       description: descriptionF,
-      url: `${metaSite}/${params.pageSlug}/${params.entitySlug}`
+      url: `${metaSite}/${params.pageSlug}/${params.entitySlug}`,
     },
     twitter: {
       ...metaTwitter,
       title,
       description: descriptionF,
-      site: `${metaSite}/${params.pageSlug}/${params.entitySlug}`
+      site: `${metaSite}/${params.pageSlug}/${params.entitySlug}`,
     },
   };
 }

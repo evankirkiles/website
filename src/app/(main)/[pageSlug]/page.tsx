@@ -95,21 +95,15 @@ export default async function PagePage({ params }: PageProps) {
       <section className={s.columnContent}>
         <h2 className={s.columnContent_label}>{page.entityTitle}</h2>
         <div className={s.columnContent_inner}>
-          {projectsByPage.map((entity) =>
-            entity._type === 'design' ? null : (
-              <Card key={entity._id} item={entity} />
-            )
-          )}
-          {projectsByPage.map((entity) =>
-            entity._type === 'design' ? null : (
-              <Card key={`${entity._id}1`} item={entity} />
-            )
-          )}
-          {projectsByPage.map((entity) =>
-            entity._type === 'design' ? null : (
-              <Card key={`${entity._id}2`} item={entity} />
-            )
-          )}
+          {projectsByPage.map((entity) => (
+            <Card key={entity._id} item={entity} />
+          ))}
+          {projectsByPage.map((entity) => (
+            <Card key={`${entity._id}1`} item={entity} />
+          ))}
+          {projectsByPage.map((entity) => (
+            <Card key={`${entity._id}2`} item={entity} />
+          ))}
         </div>
       </section>
     </main>

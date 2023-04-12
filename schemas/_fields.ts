@@ -120,3 +120,11 @@ export const Content = defineField({
   validation: (Rule) => Rule.required(),
   codegen: {required: true},
 } as SanityCodegenField) 
+
+
+export const GalleryPriority = defineField({
+  type: 'number',
+  description: 'Priority of this entity in the gallery (lower is first, undefined for none).',
+  name: 'galleryPriority',
+  title: 'Gallery Priority',
+} as SanityCodegenField) 

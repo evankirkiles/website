@@ -23,6 +23,7 @@ const Work: SchemaTypeDefinition<'document'> = {
     F.Description,
     F.TechStack,
     F.ToolsUsed,
+    F.GalleryPriority
   ],
 }
 

@@ -37,9 +37,9 @@ const entityBySlug = groq`
 }
 `;
 
-export default async function EntityPageLayout<
-  T extends Exclude<SchemaEntity, Schema.Design>
->({ params }: EntityPageProps) {
+export default async function EntityPageLayout<T extends SchemaEntity>({
+  params,
+}: EntityPageProps) {
   // figure out page metadata and titling
   const page = (await client.fetch<Schema.Page[]>(pagesBySlug, params))[0];
   // retrieve the entity found on this page

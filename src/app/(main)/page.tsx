@@ -14,13 +14,26 @@ import { Metadata } from 'next';
 import { groq } from 'next-sanity';
 import client from '@/lib/sanity.client';
 import { PortableText } from '@portabletext/react';
+import { SchemaEntity } from '@/lib/helpers';
+import Card from '@/components/Card';
 
 const indexPageCopy = groq`
   *[_type == 'scopedcopy' && slug == '/']
 `;
 
+const galleryEntites = groq`
+  *[defined(galleryPriority)] | order(galleryPriority asc) {
+    ...,
+    cover {
+      ...,
+      "metadata": asset->metadata
+    }
+  }
+`;
+
 export default async function Home() {
   const copy = (await client.fetch<Schema.Scopedcopy[]>(indexPageCopy))[0];
+  const gallery = (await client.fetch<SchemaEntity[]>(galleryEntites));
 
   return (
     <main className={ps.container}>
@@ -43,6 +56,11 @@ export default async function Home() {
       </EmPadder>
       <section className={ps.columnContent}>
         <h2 className={ps.columnContent_label}>Gallery</h2>
+        <div className={ps.columnContent_inner}>
+          {gallery.map((entity) => (
+            <Card key={entity._id} item={entity} />
+          ))}
+        </div>
       </section>
     </main>
   );

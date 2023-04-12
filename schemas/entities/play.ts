@@ -5,14 +5,23 @@
  * 2023 evan's personal website,
  */
 
-import {SchemaTypeDefinition} from 'sanity'
-import * as F from '../_fields'
+import { SchemaTypeDefinition } from 'sanity';
+import * as F from '../_fields';
 
 const Play: SchemaTypeDefinition<'document'> = {
   name: 'play',
   type: 'document',
   title: 'Play',
-  fields: [F.Title, F.Slug, F.Cover, F.Location, F.Description, F.StartDate, F.EndDate],
-}
+  fields: [
+    F.Title,
+    F.Slug,
+    F.Cover,
+    F.Location,
+    F.Description,
+    F.StartDate,
+    F.EndDate,
+    F.GalleryPriority,
+  ],
+};
 
-export default Play
+export default Play;
