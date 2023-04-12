@@ -18,6 +18,44 @@
   }
 }
 
+.logo {
+  grid-area: a;
+  position: absolute;
+  top: 0em;
+  left: 0em;
+  width: 3.55em;
+  opacity: 0.1;
+
+  & svg {
+    width: 100%;
+    height: auto;
+  }
+}
+
+.links_container {
+  grid-area: b;
+  position: fixed;
+  top: 0;
+  right: 0;
+  opacity: 1;
+  transform: translateX(0em);
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+
+  @include media("lg") {
+    position: relative;
+  }
+
+  &Hidden {
+    opacity: 0;
+    transform: translateX(10px);
+
+    @include media("lg") {
+      opacity: 1;
+      transform: unset;
+    }
+  }
+}
+
 .stars {
   grid-area: s;
   min-height: 0;
