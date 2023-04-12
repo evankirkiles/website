@@ -8,6 +8,14 @@
 
 .main {
   grid-area: c;
+
+  & p {
+    margin-top: 1em;
+
+    &:first-of-type {
+      margin-top: unset;
+    }
+  }
 }
 
 .stars {
@@ -121,12 +129,5 @@ $iter-offset: 0.2s;
 
   & span {
     opacity: 0.1;
-  }
-}
-
-.paragraph {
-  margin-top: 1em;
-  &:first-of-type {
-    margin-top: unset;
   }
 }

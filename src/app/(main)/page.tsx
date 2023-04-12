@@ -20,13 +20,15 @@ const indexPageCopy = groq`
 `;
 
 export default async function Home() {
-  // get content for the main index page
   const copy = (await client.fetch<Schema.Scopedcopy[]>(indexPageCopy))[0];
 
   return (
     <main className={ps.container}>
       <MetaThemeColor color={'#000000'} scrollFrac={0.05} />
       <EmPadder className={ps.columnMeta}>
+        {/* <div style={{ gridArea: 'a', position: 'absolute', top: '-1.4em', left: '-2.1em', width: '5em', height: '5em', opacity: 0.1 }}>
+          <img src="/safari-pinned-tab.svg" />
+        </div> */}
         <div style={{ gridArea: 'b', position: 'relative' }}>
           {/* @ts-expect-error Server Component */}
           <HomeLinks />
@@ -36,14 +38,7 @@ export default async function Home() {
         </div>
         <div className={s.main}>
           <h1 className={ps.title}>Evan Kirkiles</h1>
-          <PortableText
-            value={copy.content || []}
-            components={{
-              block: {
-                normal: ({ children }) => <p className={s.paragraph}>{children}</p>,
-              },
-            }}
-          />
+          <PortableText value={copy.content || []} />
         </div>
       </EmPadder>
       <section className={ps.columnContent}>

@@ -28,6 +28,12 @@ const Page: SchemaTypeDefinition<'document'> = {
       validation: (Rule) => Rule.required(),
       codegen: { required: true },
     } as SanityCodegenField),
+    defineField({
+      name: 'index',
+      type: 'number',
+      title: 'Index',
+      description: 'A number to sort page text copy by.',
+    }),
   ],
   orderings: [
     {
