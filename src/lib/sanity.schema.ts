@@ -88,6 +88,29 @@ export interface Page extends SanityDocument {
 }
 
 /**
+ * ScopedCopy
+ *
+ *
+ */
+export interface Scopedcopy extends SanityDocument {
+  _type: "scopedcopy";
+
+  /**
+   * Content — `array`
+   *
+   * The contents of this block.
+   */
+  content: Array<SanityKeyed<SanityBlock>>;
+
+  /**
+   * Scope Slug — `string`
+   *
+   * The slug where this copy is located.
+   */
+  slug: string;
+}
+
+/**
  * Project
  *
  *
@@ -390,4 +413,4 @@ export interface Play extends SanityDocument {
   endDate?: string;
 }
 
-export type Documents = Page | Project | Work | Design | Play;
+export type Documents = Page | Scopedcopy | Project | Work | Design | Play;

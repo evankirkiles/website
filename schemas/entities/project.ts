@@ -6,7 +6,7 @@
  */
 
 import {SchemaTypeDefinition} from 'sanity'
-import * as F from './_fields'
+import * as F from '../_fields'
 
 const Project: SchemaTypeDefinition<'document'> = {
   name: 'project',

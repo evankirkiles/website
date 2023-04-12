@@ -4,10 +4,13 @@
  * created on Mon Apr 03 2023
  * 2023 evan's website
  */
-import Design from './design'
+import Design from './entities/design'
+import Copy from './copy';
 import Page from './page'
-import Play from './play'
-import Project from './project'
-import Work from './work'
+import Play from './entities/play'
+import Project from './entities/project'
+import Work from './entities/work'
 
-export default [Page, Project, Work, Design, Play]
+const schemas =  [Page, Copy, Project, Work, Design, Play];
+
+export default schemas;

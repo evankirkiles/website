@@ -53,6 +53,10 @@ export default async function revalidate(
         );
         items.forEach(({ slug }) => slugs.push(slug));
         break;
+      // Scoped copy have a non-unique string as a slug
+      case 'scopedcopy':
+        slugs.push(body.slug as string);
+        break;
       // Validate anythig else with a slug
       default:
         const slug = body.slug as Slug | undefined;

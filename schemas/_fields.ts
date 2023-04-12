@@ -110,3 +110,13 @@ export const Description = defineField({
   name: 'description',
   title: 'Description',
 })
+
+export const Content = defineField({
+  type: 'array',
+  of: [{type: 'block'}],
+  description: 'The contents of this block.',
+  name: 'content',
+  title: 'Content',
+  validation: (Rule) => Rule.required(),
+  codegen: {required: true},
+} as SanityCodegenField) 
