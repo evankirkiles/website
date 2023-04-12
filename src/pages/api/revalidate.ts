@@ -61,7 +61,6 @@ export default async function revalidate(
 
     // Accumulate all the unique paths that need to be revalidated
     const stalePaths = [
-      '/',
       ...new Set(
         slugs.flatMap((slug) => {
           let prevPath = '';
