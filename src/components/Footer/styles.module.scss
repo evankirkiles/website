@@ -10,11 +10,47 @@
   width: 100%;
   border-top: 1px solid color("darkestgray");
   background-color: color("black");
-  color: color("gray");
   padding: 0.5em;
+  color: color("gray");
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: baseline;
 
   span {
     display: inline-block;
     margin-right: 0.3em;
+  }
+}
+
+.credits {
+  color: color("white");
+  font-size: 1.2em;
+}
+
+.credits_col {
+  flex: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding-right: 3em;
+
+  @include media("lg") {
+    flex: 1;
+    max-width: calc(24em - 0.5em);
+    border-right: 1px solid color("darkestgray");
+  }
+}
+
+.credits_buttons {
+  position: absolute;
+  top: 0em;
+  right: 0.5em;
+
+  a {
+    transition: color 0.1s ease-in-out;
+    &:hover {
+      color: color("white");
+    }
   }
 }
