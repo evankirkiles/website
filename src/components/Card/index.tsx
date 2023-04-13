@@ -16,19 +16,22 @@ import { SanityImageWithBlurhash, SchemaEntity } from '@/lib/helpers';
 
 interface CardProps<T extends SchemaEntity> {
   item: T;
+  priority?: boolean;
 }
 
-export default function Card<T extends SchemaEntity>({ item }: CardProps<T>) {
+export default function Card<T extends SchemaEntity>({ item, priority = false }: CardProps<T>) {
   const imageProps = useNextSanityImage(client, item.cover);
   return (
     <Link href={`/${item.slug.current}`} className={s.container}>
       <Image
         {...imageProps}
-        // sizes="(max-width: 800px) 100vw, 800px"
         placeholder="blur"
         blurDataURL={
           (item.cover as any as SanityImageWithBlurhash).metadata.blurHash
         }
+        priority={priority}
+        sizes='(min-width: 1024px) calc(100vw - 24em),
+                100vw'
         alt={(item.cover as any).caption}
         className={s.image}
       />

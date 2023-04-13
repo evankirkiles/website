@@ -71,8 +71,8 @@ export default async function Home() {
       <section className={ps.columnContent}>
         <h2 className={ps.columnContent_label}>Gallery</h2>
         <div className={ps.columnContent_inner}>
-          {gallery.map((entity) => (
-            <Card key={entity._id} item={entity} />
+          {gallery.map((entity, i) => (
+            <Card key={entity._id} item={entity} priority={i === 0} />
           ))}
         </div>
       </section>

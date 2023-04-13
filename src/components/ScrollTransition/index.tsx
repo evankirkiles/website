@@ -33,7 +33,7 @@ export default function ScrollTransition({
   }, [triggerFrac]);
 
   return (
-    <div
+    <nav
       {...props}
       className={classNames(
         props.className,
@@ -41,6 +41,6 @@ export default function ScrollTransition({
       )}
     >
       {children}
-    </div>
+    </nav>
   );
 }
