@@ -35,12 +35,12 @@ export default function Card<T extends SchemaEntity>({ item }: CardProps<T>) {
       <div className={s.titleArea}>
         {item._type === 'work' ? (
           <>
-            <h1 className={s.title}>{item.role}</h1>
-            <h2>{item.company}</h2>
+            <h2 className={s.title}>{item.role}</h2>
+            <h3>{item.company}</h3>
           </>
         ) : (
           <>
-            <h1 className={s.title}>{item.title}</h1>
+            <h2 className={s.title}>{item.title}</h2>
           </>
         )}
       </div>
