@@ -12,7 +12,7 @@ import * as Schema from '@/lib/sanity.schema';
 import client from '@/lib/sanity.client';
 import { useNextSanityImage } from 'next-sanity-image';
 import Link from 'next/link';
-import { SchemaEntity } from '@/lib/helpers';
+import { SanityImageWithBlurhash, SchemaEntity } from '@/lib/helpers';
 
 interface CardProps<T extends SchemaEntity> {
   item: T;
@@ -27,7 +27,7 @@ export default function Card<T extends SchemaEntity>({ item }: CardProps<T>) {
         // sizes="(max-width: 800px) 100vw, 800px"
         placeholder="blur"
         blurDataURL={
-          (item.cover as any as Schema.SanityImageAsset).metadata.lqip
+          (item.cover as any as SanityImageWithBlurhash).metadata.blurHash
         }
         alt={(item.cover as any).caption}
         className={s.image}

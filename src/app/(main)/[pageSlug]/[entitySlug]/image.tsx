@@ -2,15 +2,16 @@
  * image.tsx
  * author: evan kirkiles
  * created on Wed Apr 05 2023
- * 2023 the nobot space, 
+ * 2023 the nobot space,
  */
-"use client";
+'use client';
 
-import client from "@/lib/sanity.client";
+import client from '@/lib/sanity.client';
 import Image from 'next/image';
-import s from "@/app/(main)/[pageSlug]/[entitySlug]/styles.module.scss";
-import { useNextSanityImage } from "next-sanity-image";
-import { SanityImageAsset } from "sanity-codegen";
+import s from '@/app/(main)/[pageSlug]/[entitySlug]/styles.module.scss';
+import { useNextSanityImage } from 'next-sanity-image';
+import { SanityImageAsset } from 'sanity-codegen';
+import { SanityImageWithBlurhash } from '@/lib/helpers';
 
 interface IEntityImageProps {
   image: SanityImageAsset;
@@ -25,11 +26,15 @@ export default function EntityImage({ image, hideCaption }: IEntityImageProps) {
         {...imageProps}
         // sizes="(max-width: 800px) 100vw, 800px"
         placeholder="blur"
-        blurDataURL={image.metadata.lqip}
+        blurDataURL={(image as SanityImageWithBlurhash).metadata.blurHash}
         alt={(image as any).caption}
         className={s.image}
       />
-      {!hideCaption && <figcaption className={s.image_caption}>{(image as any).caption}</figcaption>}
+      {!hideCaption && (
+        <figcaption className={s.image_caption}>
+          {(image as any).caption}
+        </figcaption>
+      )}
     </figure>
-  )
+  );
 }
