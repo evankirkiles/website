@@ -44,7 +44,9 @@ export default function RootLayout({ children }: PropsWithChildren) {
         </Nav>
         <Footer />
       </ScrollThemeColorBody>
-      <Analytics />
+      <Analytics
+        beforeSend={(event) => (event.url.startsWith('/studio') ? null : event)}
+      />
     </html>
   );
 }
