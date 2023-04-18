@@ -13,7 +13,6 @@ import { PropsWithChildren, Suspense } from 'react';
 import Footer from '@/components/Footer';
 import { ScrollThemeColorBody } from '@/contexts/ThemeColorContext';
 import { Metadata } from 'next';
-import { Analytics } from '@vercel/analytics/react';
 import {
   metaDescription,
   metaOG,
@@ -21,7 +20,7 @@ import {
   metaTitle,
   metaTwitter,
 } from '@/app/(main)/metaInfo';
-import GTMAnalytics from '@/components/GTMAnalytics';
+import { GTMAnalytics, VercelAnalytics } from '@/components/Analytics';
 
 export default function RootLayout({ children }: PropsWithChildren) {
   return (
@@ -44,9 +43,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
         </Nav>
         <Footer />
       </ScrollThemeColorBody>
-      <Analytics
-        beforeSend={(event) => (event.url.startsWith('/studio') ? null : event)}
-      />
+      <VercelAnalytics />
     </html>
   );
 }
