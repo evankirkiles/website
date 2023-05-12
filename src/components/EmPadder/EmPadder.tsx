@@ -27,9 +27,13 @@ export default function EmPadder(props: HTMLProps<HTMLDivElement>) {
           const { width, height } = ref.current.getBoundingClientRect();
           let b = (height % (emSize)) / emSize;
           let r = (width % (emSize)) / emSize;
-          ref.current.style.paddingBottom = `${((b < 0.7 ? b + 1 : b) - 0.15) * emSize}px`;
-          ref.current.style.paddingRight = `${((r < 0.7 ? r + 1 : b) - 0.15) * emSize}px`;
+          const bPadding = `${((b < 0.7 ? b + 1 : b) - 0.15) * emSize}px`;
+          const rPadding = `${((r < 0.7 ? r + 1 : b) - 0.15) * emSize}px`;
+          ref.current.style.paddingBottom = bPadding;
+          ref.current.style.paddingRight = rPadding;
           ref.current.style.transition = `padding 0.1s ease-in-out`;
+          document.documentElement.style.setProperty("--bottom-padding", bPadding);
+          document.documentElement.style.setProperty("--right-padding", rPadding);
         }, timeout ? 100 : 0);
       }
       onResize();

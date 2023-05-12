@@ -25,6 +25,8 @@
     height: 85vh;
     position: relative;
     padding: 1em 0.94em;
+    padding-bottom: var(--bottom-padding);
+    padding-right: var(--right-padding);
 
     background-size: 1em 1em;
     background-image: linear-gradient(to right, #f0f0f0 1px, transparent 1px),
