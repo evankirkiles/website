@@ -18,19 +18,23 @@
   }
 }
 
+$gridColor: #f0f0f0;
 .column {
   &Meta {
     background-color: color('white');
     color: color('black');
     height: 85vh;
+    min-height: 500px;
     position: relative;
     padding: 1em 0.94em;
     padding-bottom: var(--bottom-padding);
+    // padding-bottom: mod(calc(85vh - 0.17em), 1em);
     padding-right: var(--right-padding);
 
     background-size: 1em 1em;
-    background-image: linear-gradient(to right, #f0f0f0 1px, transparent 1px),
-      linear-gradient(to bottom, #f0f0f0 1px, transparent 1px);
+    background-image: 
+      linear-gradient(to right, $gridColor 1px, transparent 1px),
+      linear-gradient(to bottom, $gridColor 1px, transparent 1px);
 
     @include media('lg') {
       position: sticky;
@@ -39,6 +43,7 @@
       max-width: 24em;
       height: 100vh;
       min-height: 100vh;
+      // padding-bottom: mod(calc(100vh - 0.13em), 1em);
       flex: 1;
     }
 

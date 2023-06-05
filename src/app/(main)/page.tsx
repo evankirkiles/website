@@ -40,7 +40,7 @@ export default async function Home() {
     <main className={ps.container}>
       <MetaThemeColor color={'#000000'} scrollFrac={0.8} />
       <EmPadder className={ps.columnMeta}>
-        {/* <div className={s.logo}>
+        <div className={s.logo}>
           <svg
             viewBox="0 0 80 103"
             fill="none"
@@ -51,7 +51,7 @@ export default async function Home() {
               fill="black"
             />
           </svg>
-        </div> */}
+        </div>
         <ScrollTransition
           className={s.links_container}
           triggerFrac={0.1}
