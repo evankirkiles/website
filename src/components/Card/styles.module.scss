@@ -28,19 +28,23 @@ $iter-offset: 0.2s;
   height: fit-content;
   width: 100%;
 
-  animation: fade-slide-right 0.5s ease-in-out;
-  animation-fill-mode: backwards;
-  animation-delay: $num-iters * $iter-offset;
-  @for $i from 0 through $num-iters {
-    &:nth-of-type(#{$i}) {
-      animation-delay: $i * $iter-offset;
-    }
-  }
+  // animation: fade-slide-right 0.5s ease-in-out;
+  // animation-fill-mode: backwards;
+  // animation-delay: $num-iters * $iter-offset;
+  // @for $i from 0 through $num-iters {
+  //   &:nth-of-type(#{$i}) {
+  //     animation-delay: $i * $iter-offset;
+  //   }
+  // }
 
   transition: transform 0.1s ease-in-out;
 
   &:hover {
-    transform: scale(0.95);
+    // transform: scale(0.99);
+    .image {
+      outline: 1px solid color("darkgray");
+      border-radius: 10px;
+    }
   }
 }
 
@@ -53,6 +57,8 @@ $iter-offset: 0.2s;
   height: auto;
   min-width: 0px;
   border: 1px solid color('darkestgray');
+  background-color: #101010;
+  transition: border-radius 0.1s ease-in-out;
 }
 
 .titleArea {

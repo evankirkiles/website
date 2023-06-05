@@ -41,7 +41,6 @@ export default function RootLayout({ children }: PropsWithChildren) {
           {/* @ts-expect-error Server Component */}
           <NavContents />
         </Nav>
-        <Footer />
       </ScrollThemeColorBody>
       <VercelAnalytics />
     </html>

@@ -10,7 +10,7 @@ import s from '@/app/(main)/styles.module.scss';
 import HomeLinks from '@/app/(main)/links';
 import { MetaThemeColor } from '@/contexts/ThemeColorContext';
 import EmPadder from '@/components/EmPadder/EmPadder';
-import { Metadata } from 'next';
+import Footer from '@/components/Footer';
 import { groq } from 'next-sanity';
 import client from '@/lib/sanity.client';
 import { PortableText } from '@portabletext/react';
@@ -75,6 +75,7 @@ export default async function Home() {
             <Card key={entity._id} item={entity} priority={i === 0} />
           ))}
         </div>
+        <Footer />
       </section>
     </main>
   );

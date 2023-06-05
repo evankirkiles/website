@@ -104,7 +104,6 @@
   position: relative;
   font-size: 2em;
   font-weight: 100;
-  margin-right: 10vw;
 
   & li {
     display: flex;
@@ -160,9 +159,14 @@
   width: 100%;
   z-index: 1;
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  flex-direction: column;
   padding-bottom: 40vh;
+  gap: 1.8em;
+
+  @include media("md") {
+    flex-direction: row;
+    gap: 4em;
+  }
 }
 
 .button {
@@ -197,7 +201,7 @@
   & span {
     display: none;
 
-    @include media('xs') {
+    @include media('sm') {
       display: block;
     }
   }
@@ -213,7 +217,7 @@
 .contact {
   font-size: 1em;
   font-weight: 100;
-  margin-top: 1.8em;
+  margin-left: 0.1em;
 
   a {
     text-decoration: underline;
@@ -224,6 +228,11 @@
     &:hover {
       color: color("blue");
     }
+  } 
+
+  @include media("md") {
+    margin-top: 3.9em;
+    margin-left: -0.1em;
   }
 }
 
@@ -232,7 +241,7 @@
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  margin-top: 0.47em;
+  margin-top: 0.43em;
   font-size: 2em;
-  gap: 0.45em;
+  gap: 0.5em;
 }

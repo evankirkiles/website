@@ -17,6 +17,7 @@ import EmPadder from '@/components/EmPadder/EmPadder';
 import { SchemaEntity } from '@/lib/helpers';
 import { Metadata } from 'next';
 import { toPlainText } from '@portabletext/react';
+import Footer from '@/components/Footer';
 
 interface PageProps {
   params: {
@@ -105,6 +106,7 @@ export default async function PagePage({ params }: PageProps) {
             <Card key={`${entity._id}2`} item={entity} />
           ))}
         </div>
+        <Footer />
       </section>
     </main>
   );

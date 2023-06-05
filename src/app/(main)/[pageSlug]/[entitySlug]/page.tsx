@@ -15,6 +15,7 @@ import Link from 'next/link';
 import { PortableText } from '@portabletext/react';
 import EntityImage from '@/app/(main)/[pageSlug]/[entitySlug]/image';
 import { MetaThemeColor } from '@/contexts/ThemeColorContext';
+import Footer from '@/components/Footer';
 
 export interface EntityPageProps {
   params: {
@@ -116,6 +117,7 @@ export default async function EntityPageLayout<T extends SchemaEntity>({
             />
           </section>
         </div>
+        <Footer />
       </article>
     </main>
   );
