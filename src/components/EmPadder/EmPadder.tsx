@@ -9,10 +9,12 @@
  */
 'use client';
 
+import { useMetaTheme } from 'meta-theme-swap';
 import { HTMLProps, useLayoutEffect, useRef } from 'react';
 
 export default function EmPadder(props: HTMLProps<HTMLDivElement>) {
   const ref = useRef<HTMLDivElement>(null);
+  useMetaTheme(ref, "#ffffff");
 
   // on window resize, adjust em padding
   if (typeof window !== "undefined") {

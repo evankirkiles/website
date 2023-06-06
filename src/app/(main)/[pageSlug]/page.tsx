@@ -18,6 +18,7 @@ import { SchemaEntity } from '@/lib/helpers';
 import { Metadata } from 'next';
 import { toPlainText } from '@portabletext/react';
 import Footer from '@/components/Footer';
+import PageContents from '@/app/(main)/contents';
 
 interface PageProps {
   params: {
@@ -65,7 +66,6 @@ export default async function PagePage({ params }: PageProps) {
 
   return (
     <main className={s.container}>
-      <MetaThemeColor color={'#000000'} scrollFrac={0.8} />
       <EmPadder className={s.columnMeta}>
         <div className={s.inner}>
           <h1 className={s.title}>{page.title}</h1>
@@ -93,7 +93,7 @@ export default async function PagePage({ params }: PageProps) {
           <span>{page.pageNum}</span>
         </div>
       </EmPadder>
-      <section className={s.columnContent}>
+      <PageContents className={s.columnContent}>
         <h2 className={s.columnContent_label}>{page.entityTitle}</h2>
         <div className={s.columnContent_inner}>
           {projectsByPage.map((entity) => (
@@ -107,7 +107,7 @@ export default async function PagePage({ params }: PageProps) {
           ))}
         </div>
         <Footer />
-      </section>
+      </PageContents>
     </main>
   );
 }

@@ -17,6 +17,9 @@ import { PortableText } from '@portabletext/react';
 import { SchemaEntity } from '@/lib/helpers';
 import Card from '@/components/Card';
 import ScrollTransition from '@/components/ScrollTransition';
+import { useRef } from 'react';
+import { useMetaTheme } from 'meta-theme-swap';
+import PageContents from '@/app/(main)/contents';
 
 const indexPageCopy = groq`
   *[_type == 'scopedcopy' && slug == '/']
@@ -38,7 +41,6 @@ export default async function Home() {
 
   return (
     <main className={ps.container}>
-      <MetaThemeColor color={'#000000'} scrollFrac={0.8} />
       <EmPadder className={ps.columnMeta}>
         <div className={s.logo}>
           <svg
@@ -68,7 +70,7 @@ export default async function Home() {
           <PortableText value={copy.content || []} />
         </div>
       </EmPadder>
-      <section className={ps.columnContent}>
+      <PageContents className={ps.columnContent}>
         <h2 className={ps.columnContent_label}>Gallery</h2>
         <div className={ps.columnContent_inner}>
           {gallery.map((entity, i) => (
@@ -76,7 +78,7 @@ export default async function Home() {
           ))}
         </div>
         <Footer />
-      </section>
+      </PageContents>
     </main>
   );
 }

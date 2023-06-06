@@ -6,10 +6,12 @@
  */
 'use client';
 
+import { MetaThemeProvider } from 'meta-theme-swap';
 import {
   createContext,
   HTMLProps,
   MutableRefObject,
+  PropsWithChildren,
   useCallback,
   useContext,
   useEffect,
@@ -210,3 +212,9 @@ export const MetaThemeColor = function ({
   useMetaThemeColor(color, options);
   return <></>;
 };
+
+export const MetaThemeProviderWrapper = function({ children}: PropsWithChildren) {
+  return <MetaThemeProvider>
+    {children}
+  </MetaThemeProvider>
+}
