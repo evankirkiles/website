@@ -74,6 +74,12 @@
   }
 }
 
+.outer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
 .inner {
   background-color: color("black");
   color: color("white");
@@ -81,7 +87,7 @@
   min-height: 100vh;
   padding: 0.9em;
   padding-left: 1em;
-  padding-top: 10em;
+  padding-top: 8.5em;
   display: flex;
   flex-direction: column;
 
@@ -90,7 +96,7 @@
     linear-gradient(to bottom, #080808 1px, transparent 1px);
 
   @include media('lg') {
-    padding-top: 0.9em;
+    padding-top: 0.6em;
   }
 }
 
@@ -98,13 +104,16 @@
   font-size: 3em;
   font-weight: 700;
   white-space: break-spaces;
+  margin-bottom: 0.05em;
 
   @include media('xs') {
     font-size: 4em;
+    margin-bottom: 0.1em;
   }
 
   @include media('lg') {
     padding-right: 1.5em;
+    margin-bottom: 0.08em;
   }
 }
 
@@ -209,4 +218,8 @@
     opacity: 0.5;
     font-size: 0.6em;
   }
+}
+
+.external_link {
+  color: color('darkestgray');
 }

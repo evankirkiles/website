@@ -154,6 +154,13 @@ export interface Project extends SanityDocument {
   location?: string;
 
   /**
+   * URL — `url`
+   *
+   * A link to view this project in your browser.
+   */
+  url?: string;
+
+  /**
    * Cover Image — `image`
    *
    * Cover image to show for this entity.
@@ -304,6 +311,13 @@ export interface Work extends SanityDocument {
    *
    */
   toolsUsed?: Array<SanityKeyed<string>>;
+
+  /**
+   * Gallery Priority — `number`
+   *
+   * Priority of this entity in the gallery (lower is first, undefined for none).
+   */
+  galleryPriority?: number;
 }
 
 /**
@@ -388,6 +402,13 @@ export interface Design extends SanityDocument {
    *
    */
   toolsUsed?: Array<SanityKeyed<string>>;
+
+  /**
+   * Gallery Priority — `number`
+   *
+   * Priority of this entity in the gallery (lower is first, undefined for none).
+   */
+  galleryPriority?: number;
 }
 
 /**
@@ -458,6 +479,13 @@ export interface Play extends SanityDocument {
    * When did this entity end? (if ever)
    */
   endDate?: string;
+
+  /**
+   * Gallery Priority — `number`
+   *
+   * Priority of this entity in the gallery (lower is first, undefined for none).
+   */
+  galleryPriority?: number;
 }
 
 export type Documents = Page | Scopedcopy | Project | Work | Design | Play;

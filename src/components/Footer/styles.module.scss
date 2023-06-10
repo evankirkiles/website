@@ -7,43 +7,85 @@
 @import "@/styles/utils";
 
 .container {
-  width: calc(100% - 2em);
+  width: 100%;
   background-color: color("black");
-  margin: 0.5em 1em;
   color: color("darkgray");
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
-  align-items: baseline;
+  justify-content: center;
+  align-items: center;
+  border-top: 1px solid color("darkestgray");
+  padding: 0.5em 1em;
+  margin-top: 0.5em;
+  font-weight: 100;
+  font-size: 0.75em;
+  position: relative;
+  gap: 0.5em;
 
   span {
     display: inline-block;
-    margin-right: 0.3em;
   }
 }
 
 .credits {
   color: color("gray");
-  font-size: 1.2em;
+  font-size: 1em;
 }
 
 .credits_col {
   flex: 1;
-  position: relative;
   display: flex;
   flex-direction: column;
   padding-right: 3em;
 }
 
 .credits_buttons {
-  position: absolute;
-  top: 0em;
-  right: 0em;
+  display: flex;
+  flex-direction: column;
 
   a {
     transition: color 0.1s ease-in-out;
+    font-size: 0.9em;
     &:hover {
       color: color("white");
+    }
+  }
+}
+
+.contact_button {
+  border: 1px solid color('darkestgray');
+  height: 3em;
+  position: relative;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  padding: 0 calc(15% - 1.4em);
+  transition: color 0.1s ease-in-out, border-color 0.1s ease-in-out;
+  cursor: pointer;
+
+  a {
+    z-index: 1;
+  }
+
+  &::before {
+    content: ' ';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: color("darkestgray");
+    transform-origin: 0% 50%;
+    transform: scaleX(0);
+    transition: transform 0.3s ease-in-out;
+    opacity: 0.3;
+  }
+
+  &:hover {
+    color: color('white');
+    border-color: color('darkgray');
+    &::before {
+      transform: scaleX(1);
     }
   }
 }

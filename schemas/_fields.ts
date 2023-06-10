@@ -128,3 +128,10 @@ export const GalleryPriority = defineField({
   name: 'galleryPriority',
   title: 'Gallery Priority',
 } as SanityCodegenField) 
+
+export const URL = defineField({
+  type: 'url',
+  description: 'A link to view this project in your browser.',
+  name: 'url',
+  title: 'URL',
+} as SanityCodegenField) 

@@ -61,64 +61,71 @@ export default async function EntityPageLayout<T extends SchemaEntity>({
           </Link>
         </h2>
       </nav>
-      <article className={s.inner}>
-        {entity._type === 'work' ? (
-          <>
-            <h1 className={s.title}>{entity.company}</h1>
-          </>
-        ) : (
-          <>
-            <h1 className={s.title}>{entity.title}</h1>
-          </>
-        )}
-        <div className={s.dateRow}>
-          {entity._type === 'work' && (
-            <h2 className={s.subtitle}>{entity.role}</h2>
+      <div className={s.outer}>
+        <article className={s.inner}>
+          {entity._type === 'work' ? (
+            <>
+              <h1 className={s.title}>{entity.company}</h1>
+            </>
+          ) : (
+            <>
+              <h1 className={s.title}>{entity.title}</h1>
+            </>
           )}
-          <span className={s.dateRow_subinfo}>
-            <span>
-              {entity.startDate
-                ? new Date(Date.parse(entity.startDate)).toLocaleString(
-                    'default',
-                    {
-                      month: 'long',
-                      year: 'numeric',
-                    }
-                  )
-                : null}
-              {entity.endDate
-                ? ' - ' +
-                  new Date(Date.parse(entity.endDate)).toLocaleString(
-                    'default',
-                    {
-                      month: 'long',
-                      year: 'numeric',
-                    }
-                  )
-                : entity.startDate
-                ? ' - Present'
-                : null}
+          <div className={s.dateRow}>
+            {entity._type === 'work' && (
+              <h2 className={s.subtitle}>{entity.role}</h2>
+            )}
+            <span className={s.dateRow_subinfo}>
+              <span>
+                {entity.startDate
+                  ? new Date(Date.parse(entity.startDate)).toLocaleString(
+                      'default',
+                      {
+                        month: 'long',
+                        year: 'numeric',
+                      }
+                    )
+                  : null}
+                {entity.endDate
+                  ? ' - ' +
+                    new Date(Date.parse(entity.endDate)).toLocaleString(
+                      'default',
+                      {
+                        month: 'long',
+                        year: 'numeric',
+                      }
+                    )
+                  : entity.startDate
+                  ? ' - Present'
+                  : null}
+              </span>
+              {entity.location && <span>{entity.location}</span>}
             </span>
-            {entity.location && <span>{entity.location}</span>}
-          </span>
-        </div>
-        <div className={s.contents}>
-          <section className={s.contents_text}>
-            <EntityImage
-              image={entity.cover as any as Schema.SanityImageAsset}
-              hideCaption
-            />
-            <PortableText value={entity.description || []} />
-          </section>
-          <section className={s.contents_pictures}>
-            <EntityImage
-              image={entity.cover as any as Schema.SanityImageAsset}
-              hideCaption
-            />
-          </section>
-        </div>
+          </div>
+          <div className={s.contents}>
+            <section className={s.contents_text}>
+              {/* {entity._type === "project" && entity.url && (
+              <a href={entity.url} target='_blank' rel="noopener noreferrer" className={s.external_link}>
+                Visit project
+              </a>
+            )} */}
+              <EntityImage
+                image={entity.cover as any as Schema.SanityImageAsset}
+                hideCaption
+              />
+              <PortableText value={entity.description || []} />
+            </section>
+            <section className={s.contents_pictures}>
+              <EntityImage
+                image={entity.cover as any as Schema.SanityImageAsset}
+                hideCaption
+              />
+            </section>
+          </div>
+        </article>
         <Footer />
-      </article>
+      </div>
     </main>
   );
 }

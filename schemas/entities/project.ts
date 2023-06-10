@@ -16,6 +16,7 @@ const Project: SchemaTypeDefinition<'document'> = {
     F.Title,
     F.Slug,
     F.Location,
+    F.URL,
     F.Cover,
     F.StartDate,
     F.EndDate,

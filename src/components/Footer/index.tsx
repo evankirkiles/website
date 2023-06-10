@@ -12,38 +12,41 @@ export default function Footer() {
     <div className={s.container}>
       <div className={s.credits_col}>
         <p className={s.credits}>© 2023 Evan Kirkiles.</p>
-        <p>Typeface: Akzidenz Grotesk.</p>
-        <p>Stack: Next.js 13, Sanity CMS.</p>
-        <ul className={s.credits_buttons}>
-          <li>
-            <a
-              href="https://www.instagram.com/evankirkiles"
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              <IoLogoInstagram />
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://github.com/evankirkiles"
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              <IoLogoGithub />
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://linkedin.com/en/evankirkiles"
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              <IoLogoLinkedin />
-            </a>
-          </li>
-        </ul>
+        <p>Typeface is Akzidenz Grotesk.</p>
+        <p>Stack is Next.js 13 &amp; Sanity CMS.</p>
       </div>
+      <div className={s.contact_button}>
+        <a href="mailto:kirkilese@gmail.com">Contact</a>
+      </div>
+      <ul className={s.credits_buttons}>
+        <li>
+          <a
+            href="https://www.instagram.com/evankirkiles"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            <IoLogoInstagram />
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://github.com/evankirkiles"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            <IoLogoGithub />
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://linkedin.com/en/evankirkiles"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            <IoLogoLinkedin />
+          </a>
+        </li>
+      </ul>
     </div>
   );
 }
