@@ -9,7 +9,7 @@
 .container {
   width: 100%;
   background-color: color("black");
-  color: color("darkgray");
+  color: color("gray");
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -28,7 +28,7 @@
 }
 
 .credits {
-  color: color("gray");
+  color: color("white");
   font-size: 1em;
 }
 

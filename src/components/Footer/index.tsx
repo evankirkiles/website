@@ -24,6 +24,7 @@ export default function Footer() {
             href="https://www.instagram.com/evankirkiles"
             rel="noopener noreferrer"
             target="_blank"
+            aria-label="Go to Evan's Instagram"
           >
             <IoLogoInstagram />
           </a>
@@ -33,6 +34,7 @@ export default function Footer() {
             href="https://github.com/evankirkiles"
             rel="noopener noreferrer"
             target="_blank"
+            aria-label="Go to Evan's GitHub"
           >
             <IoLogoGithub />
           </a>
@@ -42,6 +44,7 @@ export default function Footer() {
             href="https://linkedin.com/en/evankirkiles"
             rel="noopener noreferrer"
             target="_blank"
+            aria-label="Go to Evan's LinkedIn"
           >
             <IoLogoLinkedin />
           </a>
