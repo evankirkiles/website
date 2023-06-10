@@ -10,10 +10,30 @@ import { MetaThemeColor } from '@/contexts/ThemeColorContext';
 import s from './styles.module.scss';
 import classNames from 'classnames';
 import { usePathname } from 'next/navigation';
-import { PropsWithChildren, useEffect, useState } from 'react';
+import { PropsWithChildren, useEffect, useRef, useState } from 'react';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { TfiClose } from 'react-icons/tfi';
 import useTransition from 'react-transition-state';
+import { useMetaTheme } from 'meta-theme-swap';
+
+interface NavMenuProps {
+  isEnter: boolean;
+}
+
+function NavMenu({ children, isEnter }: PropsWithChildren<NavMenuProps>) {
+  const menuRef = useRef(null);
+  useMetaTheme(menuRef, { color: '#000000', priority: 1 });
+  return (
+    <nav
+      ref={menuRef}
+      className={classNames(s.container, {
+        [s.container_active]: isEnter,
+      })}
+    >
+      {children}
+    </nav>
+  );
+}
 
 export default function Nav({ children }: PropsWithChildren) {
   // control menu open state
@@ -56,15 +76,7 @@ export default function Nav({ children }: PropsWithChildren) {
           </>
         )}
       </button>
-      {isMounted && (
-        <nav
-          className={classNames(s.container, {
-            [s.container_active]: isEnter,
-          })}
-        >
-          {children}
-        </nav>
-      )}
+      {isMounted && <NavMenu isEnter={isEnter}>{children}</NavMenu>}
     </>
   );
 }

@@ -11,10 +11,7 @@ import Nav from '@/components/Nav';
 import NavContents from '@/components/Nav/NavContents';
 import { PropsWithChildren, Suspense } from 'react';
 import Footer from '@/components/Footer';
-import {
-  MetaThemeProviderWrapper,
-  ScrollThemeColorBody,
-} from '@/contexts/ThemeColorContext';
+import { MetaThemeProvider } from 'meta-theme-swap';
 import { Metadata } from 'next';
 import {
   metaDescription,
@@ -34,7 +31,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
           <GTMAnalytics />
         </Suspense>
       </head>
-      <MetaThemeProviderWrapper>
+      <MetaThemeProvider>
         <body className={AkzidenzGrotesk.variable}>
           {children}
           <Nav>
@@ -42,7 +39,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
             <NavContents />
           </Nav>
         </body>
-      </MetaThemeProviderWrapper>
+      </MetaThemeProvider>
       <VercelAnalytics />
     </html>
   );

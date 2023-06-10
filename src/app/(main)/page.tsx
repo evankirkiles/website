@@ -17,8 +17,6 @@ import { PortableText } from '@portabletext/react';
 import { SchemaEntity } from '@/lib/helpers';
 import Card from '@/components/Card';
 import ScrollTransition from '@/components/ScrollTransition';
-import { useRef } from 'react';
-import { useMetaTheme } from 'meta-theme-swap';
 import PageContents from '@/app/(main)/contents';
 
 const indexPageCopy = groq`

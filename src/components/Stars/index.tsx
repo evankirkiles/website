@@ -10,6 +10,6 @@ import { HTMLProps, useEffect, useRef } from 'react';
 
 export default function Stars(props: HTMLProps<HTMLCanvasElement>) {
   const canvasRef = useRef(null);
-  useEffect(() => {});
+  useEffect(() => {}, []);
   return <canvas {...props} ref={canvasRef} />;
 }

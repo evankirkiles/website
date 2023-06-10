@@ -12,7 +12,7 @@ import { HTMLProps, PropsWithChildren, useRef } from "react";
 
 export default function PageContents(props: HTMLProps<HTMLDivElement>) {
   const itemsRef = useRef<HTMLDivElement>(null);
-  useMetaTheme(itemsRef, "#000000");
+  useMetaTheme(itemsRef, { color: "#000000" });
   return (
     <section {...props} ref={itemsRef} />
   )
