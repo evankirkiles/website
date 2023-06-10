@@ -5163,10 +5163,10 @@ merge2@^1.2.3, merge2@^1.3.0, merge2@^1.4.1:
   resolved "https://registry.yarnpkg.com/merge2/-/merge2-1.4.1.tgz#4368892f885e907455a6fd7dc55c0c9d404990ae"
   integrity sha512-8q7VEgMJW4J8tcfVPy8g09NcQwZdbwFEqhe/WZkoIzjn/3TGDwtOCYtXGxA3O8tPzpczCCDgv+P2P5y00ZJOOg==
 
-meta-theme-swap@^0.0.7:
-  version "0.0.7"
-  resolved "https://registry.yarnpkg.com/meta-theme-swap/-/meta-theme-swap-0.0.7.tgz#cbf048c3237d9a0c711f0590690220cdc81f34cc"
-  integrity sha512-vW466wCIhlN1MbkJzBL0resKBmAXuymeyrDKYIayrt9rbDxfSjNmXmBoLLWT4nvMlQhsY4u/Id0Q4GwPMPHsHw==
+meta-theme-swap@^0.0.8:
+  version "0.0.8"
+  resolved "https://registry.yarnpkg.com/meta-theme-swap/-/meta-theme-swap-0.0.8.tgz#ae74652e36e460830ff8ef812cf8474efd9a16e9"
+  integrity sha512-+OLy5O1uPnGQ+X8qdEkvzf2tCnigQwVeF/aVgbs3bV/ZddK4mulEFDYm5w7IqUJqeUynbqzkWclWCqKMjSsN3A==
   dependencies:
     "@types/react" "^18.2.8"
     react "^18.2.0"
