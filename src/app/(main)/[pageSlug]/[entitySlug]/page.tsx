@@ -105,11 +105,6 @@ export default async function EntityPageLayout<T extends SchemaEntity>({
           </div>
           <div className={s.contents}>
             <section className={s.contents_text}>
-              {/* {entity._type === "project" && entity.url && (
-              <a href={entity.url} target='_blank' rel="noopener noreferrer" className={s.external_link}>
-                Visit project
-              </a>
-            )} */}
               <EntityImage
                 image={entity.cover as any as Schema.SanityImageAsset}
                 hideCaption
@@ -117,10 +112,23 @@ export default async function EntityPageLayout<T extends SchemaEntity>({
               <PortableText value={entity.description || []} />
             </section>
             <section className={s.contents_pictures}>
-              <EntityImage
-                image={entity.cover as any as Schema.SanityImageAsset}
-                hideCaption
-              />
+              <div className={s.contents_pictures_inner}>
+                <EntityImage
+                  image={entity.cover as any as Schema.SanityImageAsset}
+                  hideCaption
+                />
+              </div>
+              {entity._type === 'project' && entity.url && (
+                <div className={s.visit_button}>
+                  <a
+                    href={entity.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {entity.url}
+                  </a>
+                </div>
+              )}
             </section>
           </div>
         </article>
