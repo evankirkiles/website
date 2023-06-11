@@ -99,11 +99,20 @@ $gridColor: #f5f5f5;
 }
 
 .title {
-  font-size: 5em;
+  font-size: 4.5em;
   font-weight: 700;
   margin-left: -0.04em;
-  margin-bottom: 0.08em;
+  margin-bottom: 0.11em;
   animation: fade-slide-right 1s ease-in-out;
+
+  @include media('xxs') {
+    margin-bottom: 0.09em;
+  }
+
+  @include media('xs') {
+    font-size: 5em;
+    margin-bottom: 0.08em;
+  }
 }
 
 .links {
@@ -137,7 +146,15 @@ $gridColor: #f5f5f5;
 
 .inner {
   grid-area: s;
-  margin-top: 3.67em;
+  margin-top: 3em;
+
+  @include media('xxs') {
+    margin-top: 3.15em;
+  }
+
+  @include media('xs') {
+    margin-top: 3.67em;
+  }
 }
 
 .pageNum {
