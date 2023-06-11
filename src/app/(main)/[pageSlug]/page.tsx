@@ -56,8 +56,12 @@ export default async function PagePage({ params }: PageProps) {
   if (!page) return null;
   const prevSlug =
     page.pageNum === 1 ? '' : pages[page.pageNum - 2].slug.current;
+  const prevTitle =
+    page.pageNum === 1 ? 'Index' : pages[page.pageNum - 2].title;
   const nextSlug =
     page.pageNum === pages.length ? 'about' : pages[page.pageNum].slug.current;
+  const nextTitle =
+    page.pageNum === pages.length ? 'About' : pages[page.pageNum].title;
 
   // get all of the projects specified by the page.
   const projectsByPage = await client.fetch<SchemaEntity[]>(entitiesByPage, {
@@ -83,10 +87,10 @@ export default async function PagePage({ params }: PageProps) {
             <strong>Evan Kirkiles</strong>
           </Link>
           <Link href={`/${prevSlug}`} className={s.navButton}>
-            Prev ← <span>({page.pageNum - 1})</span>
+            ← <span>{prevTitle}</span>
           </Link>
           <Link href={`/${nextSlug}`} className={s.navButton}>
-            Next → <span>({page.pageNum + 1})</span>
+            → <span>{nextTitle}</span>
           </Link>
         </div>
         <div className={s.pageNum}>
@@ -98,12 +102,6 @@ export default async function PagePage({ params }: PageProps) {
         <div className={s.columnContent_inner}>
           {projectsByPage.map((entity) => (
             <Card key={entity._id} item={entity} />
-          ))}
-          {projectsByPage.map((entity) => (
-            <Card key={`${entity._id}1`} item={entity} />
-          ))}
-          {projectsByPage.map((entity) => (
-            <Card key={`${entity._id}2`} item={entity} />
           ))}
         </div>
         <Footer />

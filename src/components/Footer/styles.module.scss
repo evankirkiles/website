@@ -16,7 +16,6 @@
   align-items: center;
   border-top: 1px solid color("darkestgray");
   padding: 0.5em 1em;
-  margin-top: 0.5em;
   font-weight: 100;
   font-size: 0.75em;
   position: relative;
@@ -57,7 +56,7 @@
   border: 1px solid color('darkestgray');
   height: 3em;
   position: relative;
-  display: grid;
+  display: flex;
   justify-content: center;
   align-items: center;
   flex: 0.5;
@@ -70,7 +69,7 @@
     display: grid;
     justify-content: center;
     align-items: center;
-    width: 100%;
+    flex: 1;
     height: 100%;
   }
 

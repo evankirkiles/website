@@ -30,7 +30,7 @@ export default function EmPadder(props: HTMLProps<HTMLDivElement>) {
           let b = (height % (emSize)) / emSize;
           let r = (width % (emSize)) / emSize;
           const bPadding = `${((b < 0.7 ? b + 1 : b) - 0.15) * emSize}px`;
-          const rPadding = `${((r < 0.3 ? r + 1 : r) - 0.15) * emSize}px`;
+          const rPadding = `${((r < 0.7 ? r + 1 : r)) * emSize}px`;
           ref.current.style.paddingBottom = bPadding;
           ref.current.style.paddingRight = rPadding;
           ref.current.style.transition = `padding 0.1s ease-in-out`;

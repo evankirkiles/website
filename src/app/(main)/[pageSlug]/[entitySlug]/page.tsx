@@ -16,6 +16,7 @@ import { PortableText } from '@portabletext/react';
 import EntityImage from '@/app/(main)/[pageSlug]/[entitySlug]/image';
 import { MetaThemeColor } from '@/contexts/ThemeColorContext';
 import Footer from '@/components/Footer';
+import { GrLinkNext } from 'react-icons/gr';
 
 export interface EntityPageProps {
   params: {
@@ -120,6 +121,7 @@ export default async function EntityPageLayout<T extends SchemaEntity>({
               </div>
               {entity._type === 'project' && entity.url && (
                 <div className={s.visit_button}>
+                  <div className={s.visit_status}></div>
                   <a
                     href={entity.url}
                     target="_blank"
@@ -127,6 +129,7 @@ export default async function EntityPageLayout<T extends SchemaEntity>({
                   >
                     {entity.url}
                   </a>
+                  <GrLinkNext className={s.visit_icon}/>
                 </div>
               )}
             </section>
