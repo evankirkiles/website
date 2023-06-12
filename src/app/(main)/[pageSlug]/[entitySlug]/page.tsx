@@ -14,9 +14,9 @@ import { HiOutlineArrowLeft } from 'react-icons/hi2';
 import Link from 'next/link';
 import { PortableText } from '@portabletext/react';
 import EntityImage from '@/app/(main)/[pageSlug]/[entitySlug]/image';
-import { MetaThemeColor } from '@/contexts/ThemeColorContext';
 import Footer from '@/components/Footer';
 import { GrLinkNext } from 'react-icons/gr';
+import { ColorMain } from '@/components/ColorDiv';
 
 export interface EntityPageProps {
   params: {
@@ -52,8 +52,7 @@ export default async function EntityPageLayout<T extends SchemaEntity>({
   )[0];
 
   return (
-    <main className={s.container}>
-      <MetaThemeColor color={'#000000'} scrollFrac={-1} timeout={0} />
+    <ColorMain color="#000000" className={s.container}>
       <nav className={s.pageColumn}>
         <h2>
           <Link href={`/${page.slug.current}`}>
@@ -137,6 +136,6 @@ export default async function EntityPageLayout<T extends SchemaEntity>({
         </article>
         <Footer />
       </div>
-    </main>
+    </ColorMain>
   );
 }

@@ -12,11 +12,8 @@ import groq from 'groq';
 import Link from 'next/link';
 import client from '@/lib/sanity.client';
 import Card from '@/components/Card';
-import { MetaThemeColor } from '@/contexts/ThemeColorContext';
 import EmPadder from '@/components/EmPadder/EmPadder';
 import { SchemaEntity } from '@/lib/helpers';
-import { Metadata } from 'next';
-import { toPlainText } from '@portabletext/react';
 import Footer from '@/components/Footer';
 import PageContents from '@/app/(main)/contents';
 

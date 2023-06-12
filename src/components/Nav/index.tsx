@@ -6,11 +6,10 @@
  */
 'use client';
 
-import { MetaThemeColor } from '@/contexts/ThemeColorContext';
 import s from './styles.module.scss';
 import classNames from 'classnames';
 import { usePathname } from 'next/navigation';
-import { PropsWithChildren, useEffect, useRef, useState } from 'react';
+import { PropsWithChildren, useEffect, useRef } from 'react';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { TfiClose } from 'react-icons/tfi';
 import useTransition from 'react-transition-state';
@@ -51,12 +50,6 @@ export default function Nav({ children }: PropsWithChildren) {
 
   return (
     <>
-      <MetaThemeColor
-        color={'#000000'}
-        disabled={!isEnter}
-        timeout={0}
-        priority
-      />
       <button
         className={classNames(s.button, {
           [s.button_offset]: pathname && pathname.split('/').length > 2,

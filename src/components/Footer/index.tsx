@@ -4,12 +4,13 @@
  * created on Mon Apr 03 2023
  * 2023 evan's personal website,
  */
+import { ColorDiv } from '@/components/ColorDiv';
 import s from './styles.module.scss';
 import { IoLogoGithub, IoLogoInstagram, IoLogoLinkedin } from 'react-icons/io';
 
 export default function Footer() {
   return (
-    <div className={s.container}>
+    <ColorDiv color="#000000" className={s.container}>
       <div className={s.credits_col}>
         <p className={s.credits}>© 2023 Evan Kirkiles.</p>
         <p>Typeface is Akzidenz Grotesk.</p>
@@ -50,6 +51,6 @@ export default function Footer() {
           </a>
         </li>
       </ul>
-    </div>
+    </ColorDiv>
   );
 }

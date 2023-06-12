@@ -8,7 +8,6 @@ import * as Schema from '@/lib/sanity.schema';
 import ps from '@/app/(main)/[pageSlug]/styles.module.scss';
 import s from '@/app/(main)/styles.module.scss';
 import HomeLinks from '@/app/(main)/links';
-import { MetaThemeColor } from '@/contexts/ThemeColorContext';
 import EmPadder from '@/components/EmPadder/EmPadder';
 import Footer from '@/components/Footer';
 import { groq } from 'next-sanity';
