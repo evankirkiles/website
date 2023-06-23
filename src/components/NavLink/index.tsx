@@ -6,6 +6,7 @@
  */
 'use client';
 
+import PageLink from '@/components/PageLink';
 import classNames from 'classnames';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -21,7 +22,7 @@ export default function NavLink({
 }: ComponentProps<typeof Link> & INavLinkProps) {
   const path = usePathname();
   return (
-    <Link
+    <PageLink
       {...props}
       className={classNames(
         props.className,

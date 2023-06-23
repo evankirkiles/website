@@ -16,6 +16,7 @@ import EmPadder from '@/components/EmPadder/EmPadder';
 import { SchemaEntity } from '@/lib/helpers';
 import Footer from '@/components/Footer';
 import PageContents from '@/app/(main)/contents';
+import PageLink from '@/components/PageLink';
 
 interface PageProps {
   params: {
@@ -80,15 +81,15 @@ export default async function PagePage({ params }: PageProps) {
           </ul>
         </div>
         <div className={s.links}>
-          <Link href={`/`} className={s.link_home}>
+          <PageLink href={`/`} className={s.link_home}>
             <strong>Evan Kirkiles</strong>
-          </Link>
-          <Link href={`/${prevSlug}`} className={s.navButton}>
+          </PageLink>
+          <PageLink href={`/${prevSlug}`} className={s.navButton}>
             ← <span>{prevTitle}</span>
-          </Link>
-          <Link href={`/${nextSlug}`} className={s.navButton}>
+          </PageLink>
+          <PageLink href={`/${nextSlug}`} className={s.navButton}>
             → <span>{nextTitle}</span>
-          </Link>
+          </PageLink>
         </div>
         <div className={s.pageNum}>
           <span>{page.pageNum}</span>

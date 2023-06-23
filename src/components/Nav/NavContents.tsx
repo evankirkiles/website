@@ -12,6 +12,7 @@ import { IoLogoGithub, IoLogoInstagram, IoLogoLinkedin } from 'react-icons/io';
 import client from '@/lib/sanity.client';
 import NavLink from '@/components/NavLink';
 import Link from 'next/link';
+import PageLink from '@/components/PageLink';
 
 export const listPages = groq`
 *[_type == 'page'] | order(pageNum asc) { slug, title, pageNum }
@@ -24,7 +25,7 @@ export default async function NavContents() {
     <div className={s.contents}>
       <ul className={s.links}>
         <li style={{ fontWeight: 700, marginBottom: '0.55em' }}>
-          <Link href="/">Evan Kirkiles</Link>
+          <PageLink href="/">Evan Kirkiles</PageLink>
         </li>
         {[
           {
