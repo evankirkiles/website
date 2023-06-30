@@ -29,7 +29,7 @@ export default async function About() {
           </Link>
         </div>
         <div style={{ gridArea: 'b' }}></div>
-        <div style={{ gridArea: 's', marginTop: '3.25em' }}>
+        <div style={{ gridArea: 's', paddingTop: '2em' }}>
           <h1 className={s.title}>About</h1>
           <PortableText value={copy[0].content || []} />
         </div>
