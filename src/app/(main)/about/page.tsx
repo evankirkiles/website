@@ -5,7 +5,7 @@
  * 2023 evan's personal website,
  */
 import * as Schema from '@/lib/sanity.schema';
-import s from '@/app/(main)/[pageSlug]/styles.module.scss';
+import s from '@/app/(main)/[pageSlug]/Page.module.scss';
 import EmPadder from '@/components/EmPadder/EmPadder';
 import { PortableText } from '@portabletext/react';
 import Link from 'next/link';

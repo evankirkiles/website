@@ -27,23 +27,24 @@ $iter-offset: 0.2s;
   gap: 0.3em;
   height: fit-content;
   width: 100%;
-
-  // animation: fade-slide-right 0.5s ease-in-out;
-  // animation-fill-mode: backwards;
-  // animation-delay: $num-iters * $iter-offset;
-  // @for $i from 0 through $num-iters {
-  //   &:nth-of-type(#{$i}) {
-  //     animation-delay: $i * $iter-offset;
-  //   }
-  // }
-
   transition: transform 0.1s ease-in-out;
+  position: relative;
+
+  &::before {
+    content: '';
+    top: -10px;
+    bottom: -10px;
+    left: -10px;
+    right: -10px;
+    border-radius: 0.2em;
+    background-color: color("darkestgray");
+    opacity: 0;
+    position: absolute;
+  }
 
   &:hover {
-    // transform: scale(0.99);
-    .image {
-      outline: 1px solid color("darkgray");
-      border-radius: 10px;
+    &::before {
+      opacity: 0.8;
     }
   }
 }
@@ -58,11 +59,12 @@ $iter-offset: 0.2s;
   min-width: 0px;
   border: 1px solid color('darkestgray');
   background-color: #101010;
-  transition: border-radius 0.1s ease-in-out;
+  transition: border-color 0.1s ease-in-out;
 }
 
 .titleArea {
   grid-area: t;
+  position: relative;
 }
 
 .title {
@@ -75,4 +77,5 @@ $iter-offset: 0.2s;
   font-size: 0.6em;
   font-weight: 100;
   text-align: right;
+  position: relative;
 }

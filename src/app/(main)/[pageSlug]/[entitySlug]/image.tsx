@@ -8,7 +8,7 @@
 
 import client from '@/lib/sanity.client';
 import Image from 'next/image';
-import s from '@/app/(main)/[pageSlug]/[entitySlug]/styles.module.scss';
+import s from '@/app/(main)/[pageSlug]/[entitySlug]/EntityPage.module.scss';
 import { useNextSanityImage } from 'next-sanity-image';
 import { SanityImageAsset } from 'sanity-codegen';
 import { SanityImageWithBlurhash } from '@/lib/helpers';

@@ -5,8 +5,8 @@
  * 2023 evan's website
  */
 import * as Schema from '@/lib/sanity.schema';
-import ps from '@/app/(main)/[pageSlug]/styles.module.scss';
-import s from '@/app/(main)/styles.module.scss';
+import ps from '@/app/(main)/[pageSlug]/Page.module.scss';
+import s from '@/app/(main)/Root.module.scss';
 import HomeLinks from '@/app/(main)/links';
 import EmPadder from '@/components/EmPadder/EmPadder';
 import Footer from '@/components/Footer';
@@ -56,7 +56,6 @@ export default async function Home() {
           triggerFrac={0.1}
           afterClass={s.links_containerHidden}
         >
-          {/* @ts-expect-error Server Component */}
           <HomeLinks />
         </ScrollTransition>
         <div className={s.stars}>

@@ -6,9 +6,8 @@
  */
 'use client';
 
-import s from './styles.module.scss';
+import s from './Card.module.scss';
 import Image from 'next/image';
-import * as Schema from '@/lib/sanity.schema';
 import client from '@/lib/sanity.client';
 import { useNextSanityImage } from 'next-sanity-image';
 import Link from 'next/link';
@@ -35,7 +34,7 @@ export default function Card<T extends SchemaEntity>({ item, priority = false }:
         alt={(item.cover as any).caption}
         className={s.image}
       />
-      <div className={s.titleArea}>
+      <hgroup className={s.titleArea}>
         {item._type === 'work' ? (
           <>
             <h2 className={s.title}>{item.role}</h2>
@@ -46,7 +45,7 @@ export default function Card<T extends SchemaEntity>({ item, priority = false }:
             <h2 className={s.title}>{item.title}</h2>
           </>
         )}
-      </div>
+      </hgroup>
       <div className={s.dateArea}>
         <div>
           {item.startDate

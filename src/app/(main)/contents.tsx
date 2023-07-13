@@ -6,9 +6,8 @@
  */
 "use client";
 
-import ps from '@/app/(main)/[pageSlug]/styles.module.scss';
 import { useMetaTheme } from "meta-theme-swap";
-import { HTMLProps, PropsWithChildren, useRef } from "react";
+import { HTMLProps, useRef } from "react";
 
 export default function PageContents(props: HTMLProps<HTMLDivElement>) {
   const itemsRef = useRef<HTMLDivElement>(null);

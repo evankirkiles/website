@@ -4,7 +4,7 @@
  * created on Mon Apr 03 2023
  * 2023 evan's website
  */
-import { createClient, groq } from 'next-sanity';
+import { createClient } from 'next-sanity';
 import imageUrlBuilder from '@sanity/image-url';
 import { cache } from 'react';
 

@@ -2,12 +2,11 @@
  * links.tsx
  * author: evan kirkiles
  * created on Tue Apr 04 2023
- * 2023 evan's personal website, 
+ * 2023 evan's personal website,
  */
 
-
 import * as Schema from '@/lib/sanity.schema';
-import s from '@/app/(main)/styles.module.scss';
+import s from '@/app/(main)/Root.module.scss';
 import groq from 'groq';
 import Link from 'next/link';
 import client from '@/lib/sanity.client';
@@ -28,9 +27,9 @@ export default async function HomeLinks() {
           title: 'About',
           pageNum: pages.length + 1,
         },
-      ].map(({ slug: { current: slug }, title, pageNum }) => (
+      ].map(({ slug: { current: slug }, title }) => (
         <li key={slug}>
-          <Link href={`/${slug}`} className={s.link}>
+          <Link href={`/${slug}`} className={s.link} tabIndex={0}>
             {title}
           </Link>
         </li>

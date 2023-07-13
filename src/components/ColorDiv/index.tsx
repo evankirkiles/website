@@ -31,3 +31,9 @@ export function ColorSection({ color, priority, ...props }: HTMLProps<HTMLDivEle
   useMetaTheme(ref, { color, priority });
   return <main {...props}  ref={ref}/>
 }
+
+export function ColorFooter({ color, priority, ...props }: HTMLProps<HTMLDivElement> & ColorDivProps) {
+  const ref = useRef(null);
+  useMetaTheme(ref, { color, priority });
+  return <footer {...props}  ref={ref}/>
+}

@@ -6,7 +6,7 @@
  */
 import * as Schema from '@/lib/sanity.schema';
 import { listPages } from '@/components/Nav/NavContents';
-import s from '@/app/(main)/[pageSlug]/styles.module.scss';
+import s from '@/app/(main)/[pageSlug]/Page.module.scss';
 import { PortableText } from '@portabletext/react';
 import groq from 'groq';
 import Link from 'next/link';

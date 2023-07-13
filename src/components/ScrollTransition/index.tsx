@@ -7,7 +7,7 @@
 'use client';
 
 import classNames from 'classnames';
-import { HTMLProps, useEffect, useReducer, useState } from 'react';
+import { HTMLProps, useEffect, useReducer } from 'react';
 
 interface IScrollTransitionProps {
   triggerFrac: number;

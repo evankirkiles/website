@@ -10,7 +10,6 @@ import '@/app/(main)/globals.scss';
 import Nav from '@/components/Nav';
 import NavContents from '@/components/Nav/NavContents';
 import { PropsWithChildren, Suspense } from 'react';
-import Footer from '@/components/Footer';
 import { MetaThemeProvider } from 'meta-theme-swap';
 import { Metadata } from 'next';
 import {
@@ -31,15 +30,14 @@ export default function RootLayout({ children }: PropsWithChildren) {
           <GTMAnalytics />
         </Suspense>
       </head>
-      <MetaThemeProvider>
-        <body className={AkzidenzGrotesk.variable}>
-          {children}
-          <Nav>
-            {/* @ts-expect-error Server Component */}
-            <NavContents />
-          </Nav>
-        </body>
-      </MetaThemeProvider>
+        <MetaThemeProvider>
+          <body className={AkzidenzGrotesk.variable}>
+            <Nav>
+              <NavContents />
+            </Nav>
+            {children}
+          </body>
+        </MetaThemeProvider>
       <VercelAnalytics />
     </html>
   );
@@ -54,6 +52,7 @@ export const metadata: Metadata = {
   openGraph: metaOG,
   twitter: metaTwitter,
   other: { 'msapplication-TileColor': '#da532c' },
+  metadataBase: new URL(metaSite),
   icons: {
     icon: [
       {

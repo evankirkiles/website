@@ -6,7 +6,7 @@
  */
 
 import client from '@/lib/sanity.client';
-import s from '@/app/(main)/[pageSlug]/[entitySlug]/styles.module.scss';
+import s from '@/app/(main)/[pageSlug]/[entitySlug]/EntityPage.module.scss';
 import { SchemaEntity } from '@/lib/helpers';
 import * as Schema from '@/lib/sanity.schema';
 import groq from 'groq';
