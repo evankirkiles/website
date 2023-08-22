@@ -5,18 +5,17 @@
  * 2023 evan's personal website,
  */
 
-import * as Schema from '@/lib/sanity.schema';
 import s from '@/app/(main)/Root.module.scss';
 import groq from 'groq';
 import Link from 'next/link';
-import { getCachedClient } from '@/lib/sanity.client';
+import API from '@/lib/sanity';
 
 export const listPages = groq`
 *[_type == 'page'] | order(pageNum asc) { slug, title, pageNum }
 `;
 
 export default async function HomeLinks() {
-  const pages = await getCachedClient()<Schema.Page[]>(listPages);
+  const pages = await API.listPagesQuery.fetch()(undefined);
 
   return (
     <ul className={s.links}>

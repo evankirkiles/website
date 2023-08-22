@@ -5,8 +5,8 @@
  * 2023 evan's personal website,
  */
 
-import { defineField, SchemaTypeDefinition } from 'sanity'
-import * as F from './_fields'
+import { defineField, SchemaTypeDefinition } from 'sanity';
+import * as F from './_fields';
 
 const Page: SchemaTypeDefinition<'document'> = {
   name: 'page',
@@ -23,34 +23,32 @@ const Page: SchemaTypeDefinition<'document'> = {
       description: 'The number of this page in the website.',
       validation: (Rule) => Rule.required(),
       initialValue: 100,
-      codegen: {required: true},
-    }  as SanityCodegenField),
+      codegen: { required: true },
+    }),
     defineField({
       type: 'string',
       name: 'entityType',
       title: 'Entity Type',
       description: 'What type of data is shown on this page?',
       validation: (Rule) => Rule.required(),
-      codegen: {required: true},
-    }  as SanityCodegenField),
+      codegen: { required: true },
+    }),
     defineField({
       type: 'string',
       name: 'entityTitle',
       title: 'Entity Title',
       description: 'Label to give the data shown on this page.',
       validation: (Rule) => Rule.required(),
-      codegen: {required: true},
-    }  as SanityCodegenField),
+      codegen: { required: true },
+    }),
   ],
   orderings: [
     {
       title: 'Page Number',
       name: 'pageNumAsc',
-      by: [
-        { field: 'pageNum', direction: 'asc'}
-      ]
-    }
-  ]
-}
+      by: [{ field: 'pageNum', direction: 'asc' }],
+    },
+  ],
+};
 
 export default Page;

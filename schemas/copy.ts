@@ -27,7 +27,7 @@ const Page: SchemaTypeDefinition<'document'> = {
       description: 'The slug where this copy is located.',
       validation: (Rule) => Rule.required(),
       codegen: { required: true },
-    } as SanityCodegenField),
+    }),
     defineField({
       name: 'index',
       type: 'number',

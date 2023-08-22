@@ -5,47 +5,42 @@
  * 2023 the nobot space,
  */
 
-import { getCachedClient } from '@/lib/sanity.client';
-import * as Schema from '@/lib/sanity.schema';
-import { listPages } from '@/components/Nav/NavContents';
 import { PropsWithChildren } from 'react';
 import { Metadata } from 'next';
-import { groq } from 'next-sanity';
 import { toPlainText } from '@portabletext/react';
 import { metaOG, metaSite, metaTwitter } from '@/app/(main)/metaInfo';
-
-/**
- * Pre-generate static parameters for the dynamic route.
- *
- * @returns
- */
-export async function generateStaticParams() {
-  const pages = await getCachedClient()<Schema.Page[]>(listPages);
-  return pages.map((page) => ({
-    pageSlug: page.slug.current,
-  }));
-}
+import API from '@/lib/sanity';
 
 export default function Layout({ children }: PropsWithChildren) {
   return <>{children}</>;
 }
 
-const pagesBySlug = groq`
-*[_type == 'page' && slug.current == $pageSlug] { ... }
-`;
+interface PageParams {
+  params: {
+    pageSlug: string;
+  };
+}
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { pageSlug: string };
-}): Promise<Metadata> {
-  const page = (await getCachedClient()<Schema.Page[]>(pagesBySlug, params))[0];
+// Generate a page for each page in the Sanity dataset
+export async function generateStaticParams() {
+  const pages = await API.listPagesQuery.fetch()(undefined);
+  return pages.map<PageParams['params']>((page) => ({
+    pageSlug: page.slug.current,
+  }));
+}
+
+// Parse page's information into metadata
+export async function generateMetadata({ params }: PageParams) {
+  const page = await API.pageBySlugQuery.fetch()(params);
+
+  // parse page metadata from Sanity
   const description = page.description && toPlainText(page.description);
   const title = `${page.title} | Evan Kirkiles`;
   const descriptionF =
     description && description.length > 152
       ? description.substring(0, 152) + '...'
       : description;
+
   return {
     title,
     description: descriptionF,
@@ -53,13 +48,13 @@ export async function generateMetadata({
       ...metaOG,
       title,
       description: descriptionF,
-      url: `${metaSite}/${params.pageSlug}`,
+      url: `/${params.pageSlug}`,
     },
     twitter: {
       ...metaTwitter,
       title,
       description: descriptionF,
-      site: `${metaSite}/${params.pageSlug}`,
+      site: `/${params.pageSlug}`,
     },
-  };
+  } as Metadata;
 }

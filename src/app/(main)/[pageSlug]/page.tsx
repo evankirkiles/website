@@ -4,18 +4,16 @@
  * created on Mon Apr 03 2023
  * 2023 evan's personal website,
  */
-import * as Schema from '@/lib/sanity.schema';
-import { listPages } from '@/components/Nav/NavContents';
 import s from '@/app/(main)/[pageSlug]/Page.module.scss';
 import { PortableText } from '@portabletext/react';
 import groq from 'groq';
 import Link from 'next/link';
-import { getCachedClient } from '@/lib/sanity.client';
 import Card from '@/components/Card';
 import EmPadder from '@/components/EmPadder/EmPadder';
-import { SchemaEntity } from '@/lib/helpers';
 import Footer from '@/components/Footer';
 import PageContents from '@/app/(main)/contents';
+import API from '@/lib/sanity';
+import { notFound } from 'next/navigation';
 
 interface PageProps {
   params: {
@@ -23,34 +21,16 @@ interface PageProps {
   };
 }
 
-const pagesBySlug = groq`
-*[_type == 'page' && slug.current == $pageSlug] { ... }
-`;
-
-const entitiesByPage = groq`
-*[_type == $type] | order(startDate desc) {
-  ...,
-  cover {
-    ...,
-    "metadata": asset->metadata
-  }
-}
-`;
-
-/**
- * A generated page, corresponding to a Sanity "Page" entry.
- *
- * @param param0
- * @returns
- */
+// A single page with half a book displaying the Sanity content
 export default async function PagePage({ params }: PageProps) {
   // figure out page metadata and titling
-  const [pages, slugPages] = await Promise.all([
-    getCachedClient()<Schema.Page[]>(listPages),
-    getCachedClient()<Schema.Page[]>(pagesBySlug, params),
+  const [pages, page] = await Promise.all([
+    API.listPagesQuery.fetch()(undefined),
+    API.pageBySlugQuery.fetch()(params),
   ]);
-  const page = slugPages[0];
-  if (!page) return null;
+  if (!page) notFound();
+
+  // get previous and next pages to render
   const prevSlug =
     page.pageNum === 1 ? '' : pages[page.pageNum - 2].slug.current;
   const prevTitle =
@@ -60,13 +40,9 @@ export default async function PagePage({ params }: PageProps) {
   const nextTitle =
     page.pageNum === pages.length ? 'About' : pages[page.pageNum].title;
 
-  // get all of the projects specified by the page.
-  const projectsByPage = await getCachedClient()<SchemaEntity[]>(
-    entitiesByPage,
-    {
-      type: page.entityType,
-    }
-  );
+  // get all of the entities specified by the page's "type".
+  const qParams = { type: page.entityType };
+  const entities = await API.listEntitiesByTypeQuery.fetch()(qParams);
 
   return (
     <main className={s.container}>
@@ -100,7 +76,7 @@ export default async function PagePage({ params }: PageProps) {
       <PageContents className={s.columnContent}>
         <h2 className={s.columnContent_label}>{page.entityTitle}</h2>
         <div className={s.columnContent_inner}>
-          {projectsByPage.map((entity) => (
+          {entities.map((entity) => (
             <Card key={entity._id} item={entity} />
           ))}
         </div>

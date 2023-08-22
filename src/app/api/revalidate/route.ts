@@ -9,6 +9,7 @@ import { webhookSecret } from '@/env';
 import getClient from '@/lib/sanity.client';
 import {
   Design,
+  Page,
   Play,
   Project,
   SanityImageAsset,
@@ -17,15 +18,15 @@ import {
 } from '@/lib/sanity.schema';
 import { isValidSignature, SIGNATURE_HEADER_NAME } from '@sanity/webhook';
 import groq from 'groq';
-import { revalidatePath } from 'next/cache';
+import { revalidateTag } from 'next/cache';
 import { NextRequest, NextResponse } from 'next/server';
-import { Slug } from 'sanity';
 
 function assertIsTyped(
   body: any
 ): asserts body is
   | SanityImageAsset
   | Scopedcopy
+  | Page
   | Design
   | Play
   | Project
@@ -69,40 +70,27 @@ export async function POST(req: NextRequest) {
         break;
       }
       case 'scopedcopy':
-        revalidated.push(body.slug);
+        revalidated.push(`page:/${body.slug}`);
         break;
       // Validate anythig else with a slug
       default: {
-        const slug = (body as any).slug as Slug | undefined;
-        if (slug) revalidated.push(slug.current);
+        const { slug } = body;
+        if (slug) revalidated.push(`page:${slug.current}`);
         break;
       }
     }
 
-    // Accumulate all the unique paths that need to be revalidated
-    const stalePaths = [
-      ...new Set(
-        revalidated.flatMap((slug) => {
-          let prevPath = '';
-          return slug.split('/').map((curr) => {
-            prevPath += `/${curr}`;
-            return prevPath;
-          });
-        })
-      ),
-    ];
-
     // If gallery priority was set, we also need to revalidate the index
     if ((body as any).galleryPriority) {
-      stalePaths.push('/');
+      revalidated.push('page:/');
     }
 
     // send the revalidation requests
-    stalePaths.forEach(revalidatePath);
+    revalidated.forEach(revalidateTag);
     return NextResponse.json({
       success: true,
-      revalidated_n: stalePaths.length,
-      paths: stalePaths,
+      revalidated_n: revalidated.length,
+      paths: revalidated,
     });
   } catch (e) {
     return NextResponse.json({ success: false, error: e });
