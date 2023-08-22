@@ -7,7 +7,7 @@
 
 import { SchemaEntity } from '@/lib/helpers';
 import getClient from '@/lib/sanity.client';
-import { Page } from '@/lib/sanity.schema';
+import { Page, Scopedcopy } from '@/lib/sanity.schema';
 import groq from 'groq';
 
 function buildQuery<R = any, P = any>(query: {
@@ -25,6 +25,32 @@ function buildQuery<R = any, P = any>(query: {
       }),
   };
 }
+
+/* -------------------------------------------------------------------------- */
+/*                                 Scoped Copy                                */
+/* -------------------------------------------------------------------------- */
+// To be removed for a page builder approach in the future.
+
+const indexPageCopyQuery = buildQuery<Scopedcopy>({
+  groq: groq`*[_type == 'scopedcopy' && slug == '/'][0]`,
+  tag: () => [`page:/`],
+});
+
+/* -------------------------------------------------------------------------- */
+/*                              Gallery Entities                              */
+/* -------------------------------------------------------------------------- */
+
+const galleryEntitiesQuery = buildQuery<SchemaEntity[]>({
+  groq: groq`
+  *[defined(galleryPriority)] | order(galleryPriority asc) {
+    ...,
+    cover {
+      ...,
+      "metadata": asset->metadata
+    }
+  }`,
+  tag: () => [`gallery:list`],
+});
 
 /* -------------------------------------------------------------------------- */
 /*                                    Pages                                   */
@@ -71,10 +97,12 @@ const entityBySlugQuery = buildQuery<SchemaEntity, { slug: string }>({
 });
 
 const API = {
+  indexPageCopyQuery,
   listPagesQuery,
   pageBySlugQuery,
   listEntitiesByTypeQuery,
   entityBySlugQuery,
+  galleryEntitiesQuery,
 };
 
 export default API;

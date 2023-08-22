@@ -82,7 +82,7 @@ export async function POST(req: NextRequest) {
 
     // If gallery priority was set, we also need to revalidate the index
     if ((body as any).galleryPriority) {
-      revalidated.push('page:/');
+      revalidated.push('gallery:list');
     }
 
     // send the revalidation requests

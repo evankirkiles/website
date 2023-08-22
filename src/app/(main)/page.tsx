@@ -17,24 +17,11 @@ import { SchemaEntity } from '@/lib/helpers';
 import Card from '@/components/Card';
 import ScrollTransition from '@/components/ScrollTransition';
 import PageContents from '@/app/(main)/contents';
-
-const indexPageCopy = groq`
-  *[_type == 'scopedcopy' && slug == '/']
-`;
-
-const galleryEntites = groq`
-  *[defined(galleryPriority)] | order(galleryPriority asc) {
-    ...,
-    cover {
-      ...,
-      "metadata": asset->metadata
-    }
-  }
-`;
+import API from '@/lib/sanity';
 
 export default async function Home() {
-  const copy = (await getCachedClient()<Schema.Scopedcopy[]>(indexPageCopy))[0];
-  const gallery = await getCachedClient()<SchemaEntity[]>(galleryEntites);
+  const copy = await API.indexPageCopyQuery.fetch()(undefined);
+  const gallery = await API.galleryEntitiesQuery.fetch()(undefined);
 
   return (
     <main className={ps.container}>
