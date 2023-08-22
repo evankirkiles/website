@@ -70,7 +70,7 @@ export async function POST(req: NextRequest) {
         break;
       }
       case 'scopedcopy':
-        revalidated.push(`page:/${body.slug}`);
+        revalidated.push(`page:${body.slug}`);
         break;
       // Validate anythig else with a slug
       default: {
