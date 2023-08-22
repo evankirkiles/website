@@ -75,7 +75,7 @@ export async function POST(req: NextRequest) {
       // Validate anythig else with a slug
       default: {
         const { slug } = body;
-        if (slug) revalidated.push(`page:${slug.current}`);
+        if (slug) revalidated.push(`page:/${slug.current}`);
         break;
       }
     }
