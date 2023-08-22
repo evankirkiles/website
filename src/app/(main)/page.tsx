@@ -11,7 +11,7 @@ import HomeLinks from '@/app/(main)/links';
 import EmPadder from '@/components/EmPadder/EmPadder';
 import Footer from '@/components/Footer';
 import { groq } from 'next-sanity';
-import client from '@/lib/sanity.client';
+import { getCachedClient } from '@/lib/sanity.client';
 import { PortableText } from '@portabletext/react';
 import { SchemaEntity } from '@/lib/helpers';
 import Card from '@/components/Card';
@@ -33,8 +33,8 @@ const galleryEntites = groq`
 `;
 
 export default async function Home() {
-  const copy = (await client.fetch<Schema.Scopedcopy[]>(indexPageCopy))[0];
-  const gallery = await client.fetch<SchemaEntity[]>(galleryEntites);
+  const copy = (await getCachedClient()<Schema.Scopedcopy[]>(indexPageCopy))[0];
+  const gallery = await getCachedClient()<SchemaEntity[]>(galleryEntites);
 
   return (
     <main className={ps.container}>

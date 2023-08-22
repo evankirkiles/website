@@ -5,7 +5,7 @@
  * 2023 the nobot space,
  */
 
-import client from '@/lib/sanity.client';
+import { getCachedClient } from '@/lib/sanity.client';
 import s from '@/app/(main)/[pageSlug]/[entitySlug]/EntityPage.module.scss';
 import { SchemaEntity } from '@/lib/helpers';
 import * as Schema from '@/lib/sanity.schema';
@@ -43,10 +43,10 @@ export default async function EntityPageLayout<T extends SchemaEntity>({
   params,
 }: EntityPageProps) {
   // figure out page metadata and titling
-  const page = (await client.fetch<Schema.Page[]>(pagesBySlug, params))[0];
+  const page = (await getCachedClient()<Schema.Page[]>(pagesBySlug, params))[0];
   // retrieve the entity found on this page
   const entity = (
-    await client.fetch<T[]>(entityBySlug, {
+    await getCachedClient()<T[]>(entityBySlug, {
       slug: `${params.pageSlug}/${params.entitySlug}`,
     })
   )[0];
@@ -128,7 +128,7 @@ export default async function EntityPageLayout<T extends SchemaEntity>({
                   >
                     {entity.url}
                   </a>
-                  <GrLinkNext className={s.visit_icon}/>
+                  <GrLinkNext className={s.visit_icon} />
                 </div>
               )}
             </section>

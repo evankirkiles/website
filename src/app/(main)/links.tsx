@@ -9,14 +9,14 @@ import * as Schema from '@/lib/sanity.schema';
 import s from '@/app/(main)/Root.module.scss';
 import groq from 'groq';
 import Link from 'next/link';
-import client from '@/lib/sanity.client';
+import { getCachedClient } from '@/lib/sanity.client';
 
 export const listPages = groq`
 *[_type == 'page'] | order(pageNum asc) { slug, title, pageNum }
 `;
 
 export default async function HomeLinks() {
-  const pages = await client.fetch<Schema.Page[]>(listPages);
+  const pages = await getCachedClient()<Schema.Page[]>(listPages);
 
   return (
     <ul className={s.links}>

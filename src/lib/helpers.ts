@@ -12,9 +12,3 @@ export type SchemaEntity =
   | Schema.Work
   | Schema.Play
   | Schema.Project;
-
-export interface SanityImageWithBlurhash extends Schema.SanityImageAsset {
-  metadata: Schema.SanityImageAsset["metadata"] & {
-    blurHash: string;
-  }
-}

@@ -6,11 +6,12 @@
  */
 'use client';
 
-import { GTM_ID, pageview } from '@/lib/gtm';
+import { pageview } from '@/lib/gtm';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { Analytics } from '@vercel/analytics/react';
 import Script from 'next/script';
 import { useEffect } from 'react';
+import { gtmId, vercelEnv } from '@/env';
 
 export function GTMAnalytics() {
   const pathname = usePathname();
@@ -19,7 +20,7 @@ export function GTMAnalytics() {
     if (pathname) pageview(pathname);
   }, [pathname, searchParams]);
 
-  if (process.env.NEXT_PUBLIC_VERCEL_ENV !== 'production') {
+  if (vercelEnv !== 'production') {
     return null;
   }
 
@@ -27,7 +28,7 @@ export function GTMAnalytics() {
     <>
       <noscript>
         <iframe
-          src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
+          src={`https://www.googletagmanager.com/ns.html?id=${gtmId}`}
           height="0"
           width="0"
           style={{ display: 'none', visibility: 'hidden' }}
@@ -42,7 +43,7 @@ export function GTMAnalytics() {
           new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
           j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-          })(window,document,'script','dataLayer', '${GTM_ID}');
+          })(window,document,'script','dataLayer', '${gtmId}');
           `,
         }}
       />

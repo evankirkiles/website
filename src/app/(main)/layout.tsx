@@ -20,6 +20,7 @@ import {
   metaTwitter,
 } from '@/app/(main)/metaInfo';
 import { GTMAnalytics, VercelAnalytics } from '@/components/Analytics';
+import { siteUrl } from '@/env';
 
 export default function RootLayout({ children }: PropsWithChildren) {
   return (
@@ -30,14 +31,14 @@ export default function RootLayout({ children }: PropsWithChildren) {
           <GTMAnalytics />
         </Suspense>
       </head>
-        <MetaThemeProvider>
-          <body className={AkzidenzGrotesk.variable}>
-            <Nav>
-              <NavContents />
-            </Nav>
-            {children}
-          </body>
-        </MetaThemeProvider>
+      <MetaThemeProvider>
+        <body className={AkzidenzGrotesk.variable}>
+          <Nav>
+            <NavContents />
+          </Nav>
+          {children}
+        </body>
+      </MetaThemeProvider>
       <VercelAnalytics />
     </html>
   );
@@ -45,6 +46,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
 
 export const metadata: Metadata = {
   title: metaTitle,
+  metadataBase: new URL(siteUrl),
   description: metaDescription,
   authors: { name: 'Evan Kirkiles', url: metaSite },
   manifest: '/site.webmanifest',
@@ -52,7 +54,6 @@ export const metadata: Metadata = {
   openGraph: metaOG,
   twitter: metaTwitter,
   other: { 'msapplication-TileColor': '#da532c' },
-  metadataBase: new URL(metaSite),
   icons: {
     icon: [
       {

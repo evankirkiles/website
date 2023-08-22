@@ -5,8 +5,10 @@
  * 2023 the nobot space,
  */
 
+import { siteUrl } from '@/env';
+
 export const metaTitle = 'Evan Kirkiles';
-export const metaSite = process.env.NEXT_PUBLIC_SITE_URL!;
+export const metaSite = siteUrl;
 export const metaDescription =
   'Evan Kirkiles is a programmer, artist, and designer in his junior year at Yale University.';
 

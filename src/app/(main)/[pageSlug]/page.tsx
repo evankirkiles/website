@@ -10,7 +10,7 @@ import s from '@/app/(main)/[pageSlug]/Page.module.scss';
 import { PortableText } from '@portabletext/react';
 import groq from 'groq';
 import Link from 'next/link';
-import client from '@/lib/sanity.client';
+import { getCachedClient } from '@/lib/sanity.client';
 import Card from '@/components/Card';
 import EmPadder from '@/components/EmPadder/EmPadder';
 import { SchemaEntity } from '@/lib/helpers';
@@ -46,8 +46,8 @@ const entitiesByPage = groq`
 export default async function PagePage({ params }: PageProps) {
   // figure out page metadata and titling
   const [pages, slugPages] = await Promise.all([
-    client.fetch<Schema.Page[]>(listPages),
-    client.fetch<Schema.Page[]>(pagesBySlug, params),
+    getCachedClient()<Schema.Page[]>(listPages),
+    getCachedClient()<Schema.Page[]>(pagesBySlug, params),
   ]);
   const page = slugPages[0];
   if (!page) return null;
@@ -61,9 +61,12 @@ export default async function PagePage({ params }: PageProps) {
     page.pageNum === pages.length ? 'About' : pages[page.pageNum].title;
 
   // get all of the projects specified by the page.
-  const projectsByPage = await client.fetch<SchemaEntity[]>(entitiesByPage, {
-    type: page.entityType,
-  });
+  const projectsByPage = await getCachedClient()<SchemaEntity[]>(
+    entitiesByPage,
+    {
+      type: page.entityType,
+    }
+  );
 
   return (
     <main className={s.container}>

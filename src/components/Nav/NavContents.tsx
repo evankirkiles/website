@@ -9,7 +9,7 @@ import * as Schema from '@/lib/sanity.schema';
 import s from './styles.module.scss';
 import groq from 'groq';
 import { IoLogoGithub, IoLogoInstagram, IoLogoLinkedin } from 'react-icons/io';
-import client from '@/lib/sanity.client';
+import { getCachedClient } from '@/lib/sanity.client';
 import NavLink from '@/components/NavLink';
 import Link from 'next/link';
 
@@ -18,7 +18,7 @@ export const listPages = groq`
 `;
 
 export default async function NavContents() {
-  const pages = await client.fetch<Schema.Page[]>(listPages);
+  const pages = await getCachedClient()<Schema.Page[]>(listPages);
 
   return (
     <div className={s.contents}>
@@ -54,9 +54,21 @@ export default async function NavContents() {
       <ul className={s.contact}>
         <li style={{ fontWeight: 700, marginBottom: '1em' }}>Contact</li>
         <li>
-          email: <a href="mailto:kirkilese@gmail.com">kirkilese@gmail.com</a>
+          Email: <a href="mailto:kirkilese@gmail.com">kirkilese@gmail.com</a>
         </li>
-        <li>socials: @evankirkiles</li>
+        <li>Socials: @evankirkiles</li>
+        <li>
+          Resume available{' '}
+          <a
+            href="/evankirkiles_resume.pdf"
+            rel="noopener noreferrer"
+            target="_blank"
+            aria-label="View my resume"
+          >
+            here
+          </a>
+          .
+        </li>
         <li className={s.media}>
           <a
             href="https://www.instagram.com/evankirkiles"

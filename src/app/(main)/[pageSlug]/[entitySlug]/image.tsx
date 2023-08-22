@@ -6,12 +6,11 @@
  */
 'use client';
 
-import client from '@/lib/sanity.client';
+import { getClient } from '@/lib/sanity.client';
 import Image from 'next/image';
 import s from '@/app/(main)/[pageSlug]/[entitySlug]/EntityPage.module.scss';
 import { useNextSanityImage } from 'next-sanity-image';
 import { SanityImageAsset } from 'sanity-codegen';
-import { SanityImageWithBlurhash } from '@/lib/helpers';
 
 interface IEntityImageProps {
   image: SanityImageAsset;
@@ -19,14 +18,14 @@ interface IEntityImageProps {
 }
 
 export default function EntityImage({ image, hideCaption }: IEntityImageProps) {
-  const imageProps = useNextSanityImage(client, image);
+  const imageProps = useNextSanityImage(getClient(), image);
   return (
     <figure className={s.image_outer}>
       <Image
         {...imageProps}
         // sizes="(max-width: 800px) 100vw, 800px"
         placeholder="blur"
-        blurDataURL={(image as SanityImageWithBlurhash).metadata.blurHash}
+        blurDataURL={image.metadata.lqip}
         alt={(image as any).caption}
         className={s.image}
       />

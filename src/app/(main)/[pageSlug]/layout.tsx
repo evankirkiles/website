@@ -2,10 +2,10 @@
  * layout.tsx
  * author: evan kirkiles
  * created on Sat Apr 08 2023
- * 2023 the nobot space, 
+ * 2023 the nobot space,
  */
 
-import client from '@/lib/sanity.client';
+import { getCachedClient } from '@/lib/sanity.client';
 import * as Schema from '@/lib/sanity.schema';
 import { listPages } from '@/components/Nav/NavContents';
 import { PropsWithChildren } from 'react';
@@ -16,13 +16,13 @@ import { metaOG, metaSite, metaTwitter } from '@/app/(main)/metaInfo';
 
 /**
  * Pre-generate static parameters for the dynamic route.
- * 
- * @returns 
+ *
+ * @returns
  */
 export async function generateStaticParams() {
-  const pages = await client.fetch<Schema.Page[]>(listPages);
+  const pages = await getCachedClient()<Schema.Page[]>(listPages);
   return pages.map((page) => ({
-    pageSlug: page.slug.current
+    pageSlug: page.slug.current,
   }));
 }
 
@@ -36,8 +36,10 @@ const pagesBySlug = groq`
 
 export async function generateMetadata({
   params,
-}: { params: { pageSlug: string }}): Promise<Metadata> {
-  const page = (await client.fetch<Schema.Page[]>(pagesBySlug, params))[0];
+}: {
+  params: { pageSlug: string };
+}): Promise<Metadata> {
+  const page = (await getCachedClient()<Schema.Page[]>(pagesBySlug, params))[0];
   const description = page.description && toPlainText(page.description);
   const title = `${page.title} | Evan Kirkiles`;
   const descriptionF =
@@ -51,13 +53,13 @@ export async function generateMetadata({
       ...metaOG,
       title,
       description: descriptionF,
-      url: `${metaSite}/${params.pageSlug}`
+      url: `${metaSite}/${params.pageSlug}`,
     },
     twitter: {
       ...metaTwitter,
       title,
       description: descriptionF,
-      site: `${metaSite}/${params.pageSlug}`
+      site: `${metaSite}/${params.pageSlug}`,
     },
   };
 }

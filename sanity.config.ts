@@ -8,7 +8,7 @@ import { defineConfig, isDev } from 'sanity';
 import { visionTool } from '@sanity/vision';
 import { deskTool } from 'sanity/desk';
 import schemaTypes from './schemas';
-import { dataset, projectId } from '@/lib/sanity.client';
+import { dataset, projectId } from '@/env';
 
 const devOnlyPlugins: any[] = [];
 
@@ -17,7 +17,7 @@ export default defineConfig({
   title: "Evan's Personal Website",
   projectId,
   dataset,
-  basePath: "/studio",
+  basePath: '/studio',
   plugins: [deskTool(), visionTool(), ...(isDev ? devOnlyPlugins : [])],
   schema: {
     types: schemaTypes,

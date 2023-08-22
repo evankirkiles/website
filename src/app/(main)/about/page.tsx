@@ -9,7 +9,7 @@ import s from '@/app/(main)/[pageSlug]/Page.module.scss';
 import EmPadder from '@/components/EmPadder/EmPadder';
 import { PortableText } from '@portabletext/react';
 import Link from 'next/link';
-import client from '@/lib/sanity.client';
+import { getCachedClient } from '@/lib/sanity.client';
 import { groq } from 'next-sanity';
 import Footer from '@/components/Footer';
 
@@ -18,11 +18,17 @@ const pageCopy = groq`
 `;
 
 export default async function About() {
-  const copy = await client.fetch<Schema.Scopedcopy[]>(pageCopy);
+  const copy = await getCachedClient()<Schema.Scopedcopy[]>(pageCopy);
 
   return (
-    <main className={s.container} style={{ display: 'flex', flexDirection: 'column'}}>
-      <EmPadder className={s.columnMeta} style={{ maxWidth: 'unset', height: '100vh', position: 'relative' }}>
+    <main
+      className={s.container}
+      style={{ display: 'flex', flexDirection: 'column' }}
+    >
+      <EmPadder
+        className={s.columnMeta}
+        style={{ maxWidth: 'unset', height: '100vh', position: 'relative' }}
+      >
         <div className={s.links}>
           <Link href={`/`} className={s.link_home}>
             <strong>Evan Kirkiles</strong>
@@ -34,7 +40,7 @@ export default async function About() {
           <PortableText value={copy[0].content || []} />
         </div>
         <div style={{ gridArea: 'c' }}>
-        <PortableText value={copy[1].content || []} />
+          <PortableText value={copy[1].content || []} />
         </div>
       </EmPadder>
       <Footer />

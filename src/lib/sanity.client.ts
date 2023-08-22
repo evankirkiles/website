@@ -4,23 +4,35 @@
  * created on Mon Apr 03 2023
  * 2023 evan's website
  */
-import { createClient } from 'next-sanity';
-import imageUrlBuilder from '@sanity/image-url';
+import { createClient, SanityClient } from 'next-sanity';
 import { cache } from 'react';
+import { projectId, dataset, apiVersion } from '@/env';
 
-export const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!;
-export const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET!;
-export const apiVersion = process.env.NEXT_PUBLIC_SANITY_API_VERSION!;
+export function getClient(preview?: { token?: string }): SanityClient {
+  const client = createClient({
+    projectId,
+    dataset,
+    apiVersion,
+    useCdn: false,
+    perspective: 'published',
+  });
+  if (preview) {
+    if (!preview.token) {
+      throw new Error('You must provide a token to preview drafts.');
+    }
+    return client.withConfig({
+      token: preview.token,
+      useCdn: false,
+      ignoreBrowserTokenWarning: true,
+      perspective: 'previewDrafts',
+    });
+  }
+  return client;
+}
 
-const client = createClient({
-  projectId,
-  dataset,
-  apiVersion,
-  useCdn: false,
-});
+export const getCachedClient = (preview?: { token?: string }) => {
+  const client = getClient(preview);
+  return cache(client.fetch.bind(client));
+};
 
-export const clientFetch = cache(client.fetch.bind(client));
-
-export const imageUrl = imageUrlBuilder(client);
-
-export default client;
+export default getClient;
